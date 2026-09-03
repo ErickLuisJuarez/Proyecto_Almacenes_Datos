@@ -1,6 +1,5 @@
 ---
 title: "Proyecto Almacenes y Minería de Datos"
-subtitle: "Identificación y Predicción de Deserción Escolar en Nivel Medio Superior"
 author:
   - "Erick Luis Juárez"
   - "Julio Alejandro Herrera Avalos"
@@ -19,6 +18,14 @@ format:
 
 # Bienvenida
 
-Bienvenido al repositorio y sitio web del **Proyecto Integrador** para la asignatura de **Almacenes y Minería de Datos** de la Facultad de Ciencias, UNAM[cite: 1]. 
+Bienvenido al repositorio y sitio web del **Proyecto Integrador** para la asignatura de **Almacenes y Minería de Datos** de la Facultad de Ciencias, UNAM. 
 
-En este sitio se documenta el desarrollo incremental del proyecto bajo la metodología **CRISP-DM**[cite: 1].
+En este sitio se documenta el desarrollo incremental del proyecto bajo la metodología **CRISP-DM**.
+
+---
+
+### Resumen del proyecto
+
+---
+
+### Recursos y archivos del proyecto
