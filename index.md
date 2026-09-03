@@ -8,6 +8,10 @@ author:
 format: html
 ---
 
-# Proyecto - Almacenes y Minería de Datos
 
-Bienvenido al sitio web del proyecto. Navega en la barra superior para consultar los entregables.
+::: {.column-page-left}
+# Bienvenida
+
+Bienvenido al repositorio y sitio web del **Proyecto Integrador** para la asignatura de **Almacenes y Minería de Datos** de la Facultad de Ciencias, UNAM[cite: 1]. 
+
+En este sitio se documenta el desarrollo incremental del proyecto bajo la metodología **CRISP-DM**[cite: 1].
