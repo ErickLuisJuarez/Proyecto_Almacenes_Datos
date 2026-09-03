@@ -8,6 +8,7 @@ author:
 format: html
 ---
 
+![](imagenes/portada.png){fig-align="center" width="70%"}
 
 ::: {.column-page-left}
 # Bienvenida
