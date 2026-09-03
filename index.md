@@ -1,16 +1,22 @@
 ---
-title: "Proyecto Almacenes y Mineria de Datos"
+title: "Proyecto Almacenes y Minería de Datos"
+subtitle: "Identificación y Predicción de Deserción Escolar en Nivel Medio Superior"
 author:
-- "Erick Luis Juárez"
-- "Julio Alejandro Herrera Avalos"
-- "Luis Mario Solares Ramos"
-- "Cesar Candelario Fuentes Anica"
-format: html
+  - "Erick Luis Juárez"
+  - "Julio Alejandro Herrera Avalos"
+  - "Luis Mario Solares Ramos"
+  - "Cesar Candelario Fuentes Anica"
+date: "2026-09-03"
+format:
+  html:
+    theme: cosmo
+    toc: false
 ---
 
-![](imagenes/portada.png){fig-align="center" width="70%"}
-
 ::: {.column-page-left}
+
+![](imagenes/logofac.png){fig-align="center" width="70%"}
+
 # Bienvenida
 
 Bienvenido al repositorio y sitio web del **Proyecto Integrador** para la asignatura de **Almacenes y Minería de Datos** de la Facultad de Ciencias, UNAM[cite: 1]. 
