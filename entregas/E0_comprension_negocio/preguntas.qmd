@@ -17,7 +17,7 @@ format:
 
 ## Alineación y Metodología
 
-Para cumplir con la fase E0 de la metodología CRISP-DM, la necesidad logística planteada por la SEP se tradujo en un conjunto de 4 preguntas de investigación cuantitativas y accionables. Cada una está ordenada por su prioridad estratégica de negocio y conectada de forma explícita con una tarea de minería de datos.
+Para cumplir con la fase E0 de la metodología CRISP-DM, la necesidad logística planteada por la entrevista con el skateholder de la SEP se tradujo en un conjunto de 4 preguntas de investigación cuantitativas y accionables donde ada una está ordenada por su prioridad estratégica de negocio y conectada de forma explícita con una tarea de minería de datos.
 
 ---
 
