@@ -40,9 +40,9 @@ A continuación se detallan las preguntas formuladas al stakeholder simulado, su
 > **Respuesta del Stakeholder:** "Sí, siempre que el sistema operativo sea una distribución Linux ligera como Linux Mint o Ubuntu MATE e incluya suites de software educativo libre como LibreOffice, GeoGebra, Tux Math para no interrumpir el plan de estudios."
 * **Fuente Verificable:** *Linux Mint & UNESCO* — [Requisitos Técnicos Oficiales de Linux Mint](https://linuxmint.com/download.php) (solo se exige 2 GB de RAM) y [Directrices de la UNESCO para Recursos Educativos Abiertos](https://www.unesco.org/es/open-educational-resources).
 
-### 4. ¿Cuál es la principal restricción operativa para implementar esta solución?
-> **Respuesta del Stakeholder:** "No contamos con personal técnico suficiente para desplegar brigadas de instalación en todos los Centros de Trabajo (CCT) del país simultáneamente. Necesitamos saber con precisión matemática qué escuelas intervenir primero."
-* **Fuente Verificable:** *INEGI / SEP (2020)* — [Censo de Escuelas, Maestros y Alumnos de Educación Básica y Especial (CEMABE)](https://www.inegi.org.mx/programas/cemabe/).
+### 4. ¿Cuál es el principal cuello de botella o restricción operativa para implementar esta solución?
+> **Respuesta del Stakeholder:** "No contamos con personal técnico suficiente ni logística para desplegar brigadas de instalación en todos los Centros de Trabajo (CCT) del país de manera simultánea. Necesitamos un modelo analítico que nos diga con precisión matemática qué escuelas intervenir primero."
+* **Fuente Verificable:** *SEP & INEGI* — [Principales Cifras del Sistema Educativo Nacional 2024-2025 (SEP)](https://www.planeacion.sep.gob.mx/Doc/estadistica_e_indicadores/principales_cifras/principales_cifras_2024_2025_bolsillo.pdf) y [Tabulados Interactivos de Educación (INEGI)](https://www.inegi.org.mx/app/tabulados/interactivos/?px=Educacion_07&bd=Educacion).
 
 ---
 
