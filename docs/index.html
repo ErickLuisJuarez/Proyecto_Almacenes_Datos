@@ -79,6 +79,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -191,20 +220,29 @@ ul.task-list li input[type="checkbox"] {
 </div>
 <section id="bienvenida" class="level1">
 <h1>Bienvenida</h1>
-<p>Bienvenido al repositorio y sitio web del <strong>Proyecto Integrador</strong> para la asignatura de <strong>Almacenes y Minería de Datos</strong> de la Facultad de Ciencias, UNAM.</p>
-<p>En este sitio se documenta el desarrollo incremental del proyecto bajo la metodología <strong>CRISP-DM</strong>.</p>
+<p>Bienvenido al repositorio y sitio web del Proyecto Integrador para la asignatura de Almacenes y Minería de Datos de la Facultad de Ciencias, UNAM.</p>
+<p>En este sitio se documenta el desarrollo incremental del proyecto bajo la metodología CRISP-DM.</p>
 <hr>
 <section id="resumen-del-proyecto" class="level3">
 <h3 class="anchored" data-anchor-id="resumen-del-proyecto">Resumen del proyecto</h3>
+<ul>
+<li><strong>Tema Principal:</strong> Equipamiento Escolar y Rescate Tecnológico con Linux</li>
+<li><strong>Problemática:</strong> Inoperatividad inminente de los laboratorios de cómputo en escuelas públicas por la finalización del soporte oficial de Windows 10 y la incompatibilidad del hardware existente con Windows 11</li>
+<li><strong>Propuesta de Solución:</strong> Identificar e implementar un programa de reacondicionamiento e instalación de distribuciones Linux ligeras en planteles públicos para extender la vida útil de los equipos existentes</li>
+<li><strong>Tarea de Minería de Datos:</strong> Clasificación Supervisada y Priorización (Scoring) para clasificar qué planteles escolares representan la mayor prioridad y factibilidad para la transición técnica</li>
+<li><strong>Stakeholder:</strong> Coordinador de Tecnologías de la Información y Comunicaciones (TIC) de la Secretaría de Educación Pública (SEP)</li>
+</ul>
 <hr>
 </section>
 <section id="recursos-y-archivos-del-proyecto" class="level3">
 <h3 class="anchored" data-anchor-id="recursos-y-archivos-del-proyecto">Recursos y archivos del proyecto</h3>
-
-
+<p>A través de la barra de navegación superior se puede acceder a las distintas secciones tales como:</p>
+<p><strong>E0: Comprensión del Negocio</strong>: * <strong>[Bitácora de Entrevista]:</strong> Diagnóstico y registro del diálogo con el Coordinador de TIC de la SEP. * <strong>[Business Understanding Canvas]:</strong> Matriz sintética con el problema, objetivos, restricciones y actores del proyecto. * <strong>[Preguntas de Investigación]:</strong> Preguntas de negocio traducidas a tareas cuantitativas y variables de minería. * <strong>[Criterio de Éxito]:</strong> Métricas clave de rendimiento operativo y técnico (<span class="math inline">\(F1\text{-}score\)</span>, precisión y ahorro presupuestal). * <strong>[Supuestos y Riesgos]:</strong> Amenazas asociadas al proyecto, compatibilidad de hardware y planes de mitigación. * <strong>[Uso de IA]:</strong> Registro transparente del apoyo de modelos de lenguaje en el diseño del entregable.</p>
 </section>
 </section>
 </div>
+
+
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
