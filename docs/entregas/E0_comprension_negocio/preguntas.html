@@ -6,8 +6,13 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Erick Luis Juárez">
+<meta name="author" content="Julio Alejandro Herrera Avalos">
+<meta name="author" content="Luis Mario Solares Ramos">
+<meta name="author" content="Cesar Candelario Fuentes Anica">
+<meta name="dcterms.date" content="2026-09-07">
 
-<title>preguntas – Proyecto Almacenes y Minería de Datos</title>
+<title>Preguntas de Investigación Priorizadas – Proyecto Almacenes y Minería de Datos</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -74,6 +79,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -113,7 +147,7 @@ ul.task-list li input[type="checkbox"] {
   </li>  
         <li>
     <a class="dropdown-item" href="../../entregas/E0_comprension_negocio/preguntas.html">
- <span class="dropdown-text">preguntas.html</span></a>
+ <span class="dropdown-text">Preguntas de Investigación Priorizadas</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="../../entregas/E0_comprension_negocio/criterio_exito.html">
@@ -144,11 +178,142 @@ ul.task-list li input[type="checkbox"] {
         
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
+<main class="content page-columns page-full" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Preguntas de Investigación Priorizadas</h1>
+<p class="subtitle lead">E0: Comprensión del Negocio — Rescate Tecnológico con Linux</p>
+</div>
 
 
 
+<div class="quarto-title-meta">
 
+    <div>
+    <div class="quarto-title-meta-heading">Authors</div>
+    <div class="quarto-title-meta-contents">
+             <p>Erick Luis Juárez </p>
+             <p>Julio Alejandro Herrera Avalos </p>
+             <p>Luis Mario Solares Ramos </p>
+             <p>Cesar Candelario Fuentes Anica </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">September 7, 2026</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<div class="column-page-left">
+<section id="alineación-y-metodología" class="level2">
+<h2 class="anchored" data-anchor-id="alineación-y-metodología">Alineación y Metodología</h2>
+<p>Para cumplir con la fase E0 de la metodología CRISP-DM, la necesidad logística planteada por la SEP se tradujo en un conjunto de 4 preguntas de investigación cuantitativas y accionables. Cada una está ordenada por su prioridad estratégica de negocio y conectada de forma explícita con una tarea de minería de datos.</p>
+<hr>
+</section>
+<section id="preguntas-de-investigación-priorizadas" class="level2">
+<h2 class="anchored" data-anchor-id="preguntas-de-investigación-priorizadas">Preguntas de Investigación Priorizadas</h2>
+<section id="pregunta-1-prioridad-1-tarea-clasificación-binaria" class="level3">
+<h3 class="anchored" data-anchor-id="pregunta-1-prioridad-1-tarea-clasificación-binaria">Pregunta 1 (Prioridad 1 — Tarea: Clasificación Binaria)</h3>
+<ul>
+<li><strong>Pregunta de Negocio:</strong> ¿Con qué precisión se puede determinar si un Centro de Trabajo (CCT) es técnicamente apto para la instalación de una distribución ligera de Linux (Linux Mint) sin requerir inversión en hardware nuevo?</li>
+<li><strong>Conexión con Minería de Datos:</strong> <strong>Clasificación Binaria</strong>. Se busca predecir una variable objetivo discreta <span class="math inline">\(Y \in \{\text{Apto para Migración}, \text{No Apto / Sustitución Requerida}\}\)</span> utilizando algoritmos supervisados.</li>
+<li><strong>Variables Asociadas:</strong> Conteo total de computadoras funcionales, presencia de energía eléctrica y red eléctrica escolar. &gt; <strong>Nota:</strong> <em>Las variables a nivel de componente individual como capacidad de memoria RAM <span class="math inline">\(\ge 2\text{ GB}\)</span> y tipo de procesador se recopilarán mediante un levantamiento técnico de muestra piloto en campo, al no ser reportadas individualmente por el padrón de datos abiertos.</em></li>
+</ul>
+<hr>
+</section>
+<section id="pregunta-2-prioridad-2-tarea-modelado-de-scoring-ranking" class="level3">
+<h3 class="anchored" data-anchor-id="pregunta-2-prioridad-2-tarea-modelado-de-scoring-ranking">Pregunta 2 (Prioridad 2 — Tarea: Modelado de Scoring / Ranking)</h3>
+<ul>
+<li><strong>Pregunta de Negocio:</strong> ¿Cómo ordenar a los planteles clasificados como “Aptos” para maximizar el impacto social y operativo de las brigadas de instalación de la SEP?</li>
+<li><strong>Conexión con Minería de Datos:</strong> <strong>Asignación de Puntuación (Scoring) y Priorización</strong>. Construcción de un índice continuo de prioridad <span class="math inline">\([0, 100]\)</span> que combine la viabilidad técnica con el impacto socioeducativo.</li>
+<li><strong>Variables Asociadas:</strong> Matrícula total de alumnos beneficiados (SEP), nivel educativo, índice de marginalidad de la zona (CONAPO) y disponibilidad de conectividad a internet (INEGI).</li>
+</ul>
+<hr>
+</section>
+<section id="pregunta-3-prioridad-3-tarea-agrupamiento-clustering" class="level3">
+<h3 class="anchored" data-anchor-id="pregunta-3-prioridad-3-tarea-agrupamiento-clustering">Pregunta 3 (Prioridad 3 — Tarea: Agrupamiento / Clustering)</h3>
+<ul>
+<li><strong>Pregunta de Negocio:</strong> ¿Existen perfiles homogéneos de infraestructura entre los planteles que permitan estandarizar las imágenes de instalación y paquetes de software educativo libre?</li>
+<li><strong>Conexión con Minería de Datos:</strong> <strong>Aprendizaje No Supervisado (Clustering / <span class="math inline">\(k\)</span>-Means)</strong>. Identificación de segmentos o clusters de escuelas con características logísticas similares para desplegar imágenes ISO preconfiguradas.</li>
+<li><strong>Variables Asociadas:</strong> Cantidad de computadoras funcionales en el laboratorio y disponibilidad de infraestructura de red local en el plantel.</li>
+</ul>
+<hr>
+</section>
+<section id="pregunta-4-prioridad-4-tarea-regresión-estimación-financiera" class="level3">
+<h3 class="anchored" data-anchor-id="pregunta-4-prioridad-4-tarea-regresión-estimación-financiera">Pregunta 4 (Prioridad 4 — Tarea: Regresión / Estimación Financiera)</h3>
+<ul>
+<li><strong>Pregunta de Negocio:</strong> ¿A cuánto asciende el ahorro económico estimado en licenciamiento de software que obtendría la SEP por municipio al ejecutar la migración a Linux?</li>
+<li><strong>Conexión con Minería de Datos:</strong> <strong>Regresión / Modelado Econométrico Predictivo</strong>. Estimación de una variable continua <span class="math inline">\(Y\)</span> (ahorro neto en MXN) en función del volumen de equipos recuperados y costos operativos.</li>
+<li><strong>Variables Asociadas:</strong> Número de computadoras reacondicionadas por CCT, costo de licencias comerciales de software de oficina/sistema operativo evitados (precios públicos de referencia) y presupuesto operativo proyectado para brigadas.</li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="matriz-de-coherencia-datos-vs.-minería" class="level2">
+<h2 class="anchored" data-anchor-id="matriz-de-coherencia-datos-vs.-minería">Matriz de Coherencia: Datos vs.&nbsp;Minería</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 29%">
+<col style="width: 23%">
+<col style="width: 23%">
+<col style="width: 23%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Prioridad</th>
+<th style="text-align: left;">Pregunta de Investigación</th>
+<th style="text-align: left;">Tarea de Minería de Datos</th>
+<th style="text-align: left;">Fuentes de Datos Utilizadas</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><strong>P1</strong></td>
+<td style="text-align: left;">Identificación de aptitud técnica por CCT</td>
+<td style="text-align: left;">Clasificación Binaria</td>
+<td style="text-align: left;">SEP (SIGED) &amp; Muestreo Técnico de Campo</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><strong>P2</strong></td>
+<td style="text-align: left;">Priorización de escuelas para brigadas</td>
+<td style="text-align: left;">Scoring / Ranking Prioritario</td>
+<td style="text-align: left;">SEP (Padrón CCT), INEGI &amp; CONAPO</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><strong>P3</strong></td>
+<td style="text-align: left;">Perfiles de hardware para imágenes ISO</td>
+<td style="text-align: left;">Clustering (<span class="math inline">\(k\)</span>-Means)</td>
+<td style="text-align: left;">SEP (SIGED) &amp; INEGI (Tabulados)</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><strong>P4</strong></td>
+<td style="text-align: left;">Estimación de ahorro presupuestal municipal</td>
+<td style="text-align: left;">Regresión Lineal / Predictiva</td>
+<td style="text-align: left;">Precios Comerciales de Licenciamiento &amp; SHCP (PEF)</td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+<section id="referencias-bibliográficas" class="level2">
+<h2 class="anchored" data-anchor-id="referencias-bibliográficas">Referencias Bibliográficas</h2>
+<p>Consejo Nacional de Población. (2021). <em>Índices de marginación 2020: Índice de marginación por entidad federativa, municipio y localidad</em>. Secretaría de Gobernación, Gobierno de México. https://www.gob.mx/conapo/documentos/indices-de-marginacion-2020-284372</p>
+<p>Instituto Nacional de Estadística y Geografía. (2023). <em>Estadística de Educación (Tabulados de infraestructura educativa y equipamiento tecnológico)</em>. INEGI. https://www.inegi.org.mx/app/tabulados/interactivos/?px=Educacion_07&amp;bd=Educacion</p>
+<p>Secretaría de Educación Pública. (2024). <em>Sistema Nacional de Información Estadística Educativa: Padrón Oficial de Centros de Trabajo (CCT)</em>. Dirección General de Planeación, Programación y Estadística Educativa, SEP. https://www.planeacion.sep.gob.mx/</p>
+<p>Secretaría de Hacienda y Crédito Público. (2024). <em>Presupuesto de Egresos de la Federación para el Ejercicio Fiscal 2024: Tomo III, Ramo 11 Educación Pública</em>. SHCP, Gobierno de México. https://www.pef.hacienda.gob.mx/es/PEF2024/ramo11-III</p>
+</section>
+</div>
 
 
 

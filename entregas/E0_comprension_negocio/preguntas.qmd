@@ -1,0 +1,76 @@
+---
+title: "Preguntas de Investigación Priorizadas"
+subtitle: "E0: Comprensión del Negocio — Rescate Tecnológico con Linux"
+author:
+  - "Erick Luis Juárez"
+  - "Julio Alejandro Herrera Avalos"
+  - "Luis Mario Solares Ramos"
+  - "Cesar Candelario Fuentes Anica"
+date: "2026-09-07"
+format:
+  html:
+    theme: cosmo
+    toc: true
+---
+
+::: {.column-page-left}
+
+## Alineación y Metodología
+
+Para cumplir con la fase E0 de la metodología CRISP-DM, la necesidad logística planteada por la SEP se tradujo en un conjunto de 4 preguntas de investigación cuantitativas y accionables. Cada una está ordenada por su prioridad estratégica de negocio y conectada de forma explícita con una tarea de minería de datos.
+
+---
+
+## Preguntas de Investigación Priorizadas
+
+### Pregunta 1 (Prioridad 1 — Tarea: Clasificación Binaria)
+* **Pregunta de Negocio:** ¿Con qué precisión se puede determinar si un Centro de Trabajo (CCT) es técnicamente apto para la instalación de una distribución ligera de Linux (Linux Mint) sin requerir inversión en hardware nuevo?
+* **Conexión con Minería de Datos:** **Clasificación Binaria**. Se busca predecir una variable objetivo discreta $Y \in \{\text{Apto para Migración}, \text{No Apto / Sustitución Requerida}\}$ utilizando algoritmos supervisados.
+* **Variables Asociadas:** Conteo total de computadoras funcionales, presencia de energía eléctrica y red eléctrica escolar.
+> **Nota:** *Las variables a nivel de componente individual como capacidad de memoria RAM $\ge 2\text{ GB}$ y tipo de procesador se recopilarán mediante un levantamiento técnico de muestra piloto en campo, al no ser reportadas individualmente por el padrón de datos abiertos.*
+
+---
+
+### Pregunta 2 (Prioridad 2 — Tarea: Modelado de Scoring / Ranking)
+* **Pregunta de Negocio:** ¿Cómo ordenar a los planteles clasificados como "Aptos" para maximizar el impacto social y operativo de las brigadas de instalación de la SEP?
+* **Conexión con Minería de Datos:** **Asignación de Puntuación (Scoring) y Priorización**. Construcción de un índice continuo de prioridad $[0, 100]$ que combine la viabilidad técnica con el impacto socioeducativo.
+* **Variables Asociadas:** Matrícula total de alumnos beneficiados (SEP), nivel educativo, índice de marginalidad de la zona (CONAPO) y disponibilidad de conectividad a internet (INEGI).
+
+---
+
+### Pregunta 3 (Prioridad 3 — Tarea: Agrupamiento / Clustering)
+* **Pregunta de Negocio:** ¿Existen perfiles homogéneos de infraestructura entre los planteles que permitan estandarizar las imágenes de instalación y paquetes de software educativo libre?
+* **Conexión con Minería de Datos:** **Aprendizaje No Supervisado (Clustering / $k$-Means)**. Identificación de segmentos o clusters de escuelas con características logísticas similares para desplegar imágenes ISO preconfiguradas.
+* **Variables Asociadas:** Cantidad de computadoras funcionales en el laboratorio y disponibilidad de infraestructura de red local en el plantel.
+
+---
+
+### Pregunta 4 (Prioridad 4 — Tarea: Regresión / Estimación Financiera)
+* **Pregunta de Negocio:** ¿A cuánto asciende el ahorro económico estimado en licenciamiento de software que obtendría la SEP por municipio al ejecutar la migración a Linux?
+* **Conexión con Minería de Datos:** **Regresión / Modelado Econométrico Predictivo**. Estimación de una variable continua $Y$ (ahorro neto en MXN) en función del volumen de equipos recuperados y costos operativos.
+* **Variables Asociadas:** Número de computadoras reacondicionadas por CCT, costo de licencias comerciales de software de oficina/sistema operativo evitados (precios públicos de referencia) y presupuesto operativo proyectado para brigadas.
+
+---
+
+## Matriz de Coherencia: Datos vs. Minería
+
+| Prioridad | Pregunta de Investigación | Tarea de Minería de Datos | Fuentes de Datos Utilizadas |
+| :---: | :--- | :--- | :--- |
+| **P1** | Identificación de aptitud técnica por CCT | Clasificación Binaria | SEP (SIGED) & Muestreo Técnico de Campo |
+| **P2** | Priorización de escuelas para brigadas | Scoring / Ranking Prioritario | SEP (Padrón CCT), INEGI & CONAPO |
+| **P3** | Perfiles de hardware para imágenes ISO | Clustering ($k$-Means) | SEP (SIGED) & INEGI (Tabulados) |
+| **P4** | Estimación de ahorro presupuestal municipal | Regresión Lineal / Predictiva | Precios Comerciales de Licenciamiento & SHCP (PEF) |
+
+---
+
+## Referencias Bibliográficas
+
+Consejo Nacional de Población. (2021). *Índices de marginación 2020: Índice de marginación por entidad federativa, municipio y localidad*. Secretaría de Gobernación, Gobierno de México. https://www.gob.mx/conapo/documentos/indices-de-marginacion-2020-284372
+
+Instituto Nacional de Estadística y Geografía. (2023). *Estadística de Educación (Tabulados de infraestructura educativa y equipamiento tecnológico)*. INEGI. https://www.inegi.org.mx/app/tabulados/interactivos/?px=Educacion_07&bd=Educacion
+
+Secretaría de Educación Pública. (2024). *Sistema Nacional de Información Estadística Educativa: Padrón Oficial de Centros de Trabajo (CCT)*. Dirección General de Planeación, Programación y Estadística Educativa, SEP. https://www.planeacion.sep.gob.mx/
+
+Secretaría de Hacienda y Crédito Público. (2024). *Presupuesto de Egresos de la Federación para el Ejercicio Fiscal 2024: Tomo III, Ramo 11 Educación Pública*. SHCP, Gobierno de México. https://www.pef.hacienda.gob.mx/es/PEF2024/ramo11-III
+
+:::
