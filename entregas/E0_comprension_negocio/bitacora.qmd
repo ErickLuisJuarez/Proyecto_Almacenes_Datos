@@ -1,0 +1,56 @@
+---
+title: "Bitácora de Entrevista con el Stakeholder"
+subtitle: "E0: Comprensión del Negocio — Rescate Tecnológico con Linux"
+author:
+  - "Erick Luis Juárez"
+  - "Julio Alejandro Herrera Avalos"
+  - "Luis Mario Solares Ramos"
+  - "Cesar Candelario Fuentes Anica"
+date: "2026-09-07"
+format:
+  html:
+    theme: cosmo
+    toc: true
+---
+
+::: {.column-page-left}
+
+##Informacion de la Sesion y Modalidad
+
+* **Fecha y Hora:** 4 de septiembre de 2026 — 11:09 hrs.
+* **Modalidad:** Ejercicio de Rol Documentado con Stakeholder Simulado.
+* **Stakeholder Simulado:** Mtro. Roberto Molina — Coordinador de Tecnologías de la Información y Comunicaciones (TIC) de la Secretaría de Educación Pública (SEP).
+* **Entrevistadores:** Equipo Consultor (Erick Luis Juárez, Julio Alejandro Herrera Avalos, Luis Mario Solares Ramos, Cesar Candelario Fuentes Anica).
+
+---
+
+## Preguntas Realizadas y Respuestas Clave Fundamentadas
+
+A continuación se detallan las preguntas formuladas al stakeholder simulado, sus respuestas en paráfrasis fiel y la **fuente oficial verificable** que sustenta la factibilidad del escenario operativo:
+
+### 1. ¿Cuál es el impacto operativo del fin de soporte de Windows 10 en los laboratorios escolares?
+> **Respuesta del Stakeholder:** "El fin del soporte deja expuestos a ataques y fallas a miles de equipos en secundarias y bachilleratos. La mayoría no cumplen los requisitos mínimos exigidos para instalar Windows 11, como el chip TPM 2.0 o procesadores de última generación."
+* **Fuente Verificable:** *Microsoft Support & Learn* — [Documentación sobre el Fin de Soporte de Windows 10](https://learn.microsoft.com/es-es/lifecycle/products/windows-10-home-and-pro), [Especificaciones y Requisitos de Windows 11](https://www.microsoft.com/es-es/windows/windows-11-specifications) y [Aviso Oficial: Windows 10 support ended on October 14, 2025](https://support.microsoft.com/en-us/windows/windows-10-support-ended-on-october-14-2025-a131a296-e2a2-4a00-bfdd-7603ed782354)
+
+### 2. ¿Existe presupuesto disponible para renovar el parque informático por PCs nuevas?
+> **Respuesta del Stakeholder:** "No. La partida presupuestal asignada a infraestructura tecnológica para el ciclo escolar actual no cubre la sustitución masiva de hardware. Comprar equipos nuevos para cada plantel público es financieramente inviable a corto y mediano plazo."
+* **Fuente Verificable:** *SHCP (2025)* — [Presupuesto de Egresos de la Federación (PEF), Ramo 11 Educación Pública](https://www.pef.hacienda.gob.mx/es/PEF/R11).
+
+### 3. ¿Es factible la adopción de un sistema operativo Open Source como alternativa?
+> **Respuesta del Stakeholder:** "Sí, siempre que el sistema operativo sea una distribución Linux ligera como Linux Mint o Ubuntu MATE e incluya suites de software educativo libre como LibreOffice, GeoGebra, Tux Math para no interrumpir el plan de estudios."
+* **Fuente Verificable:** *Linux Mint & UNESCO* — [Requisitos Técnicos Oficiales de Linux Mint](https://linuxmint.com/download.php) (solo se exige 2 GB de RAM) y [Directrices de la UNESCO para Recursos Educativos Abiertos](https://www.unesco.org/es/open-educational-resources).
+
+### 4. ¿Cuál es la principal restricción operativa para implementar esta solución?
+> **Respuesta del Stakeholder:** "No contamos con personal técnico suficiente para desplegar brigadas de instalación en todos los Centros de Trabajo (CCT) del país simultáneamente. Necesitamos saber con precisión matemática qué escuelas intervenir primero."
+* **Fuente Verificable:** *INEGI / SEP (2020)* — [Censo de Escuelas, Maestros y Alumnos de Educación Básica y Especial (CEMABE)](https://www.inegi.org.mx/programas/cemabe/).
+
+---
+
+## Reflexión del Equipo
+
+Tras concluir el ejercicio de entrevista y confrontar las respuestas con las fuentes públicas oficiales, nuestro entendimiento del problema cambió drásticamente en los siguientes aspectos:
+
+* **De sustitución de hardware a optimización analítica:** Inicialmente concebíamos el proyecto como un problema de gestión presupuestal simple. La entrevista nos hizo comprender que el verdadero cuello de botella es un problema de logística y asignación de recursos limitados, lo cual se resuelve mediante un modelo de minería de datos que clasifique y ordene por prioridad a los planteles.
+* **Identificación de umbrales técnicos:** Comprendimos que no todas las escuelas con computadoras obsoletas son candidatas a migración. Aquellas con menos de 2 GB de RAM o sin energía eléctrica constante deben descartarse antes del modelado, enfocando el algoritmo de clasificación únicamente en los planteles técnicamente viables.
+
+:::
