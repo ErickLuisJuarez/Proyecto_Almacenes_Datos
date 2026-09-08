@@ -26,11 +26,7 @@ En este sitio se documenta el desarrollo incremental del proyecto bajo la metodo
 
 ### Resumen del proyecto
 
-* **Tema Principal:** Equipamiento Escolar y Rescate Tecnológico con Linux
-* **Problemática:** Inoperatividad inminente de los laboratorios de cómputo en escuelas públicas por la finalización del soporte oficial de Windows 10 y la incompatibilidad del hardware existente con Windows 11
-* **Propuesta de Solución:** Identificar e implementar un programa de reacondicionamiento e instalación de distribuciones Linux ligeras en planteles públicos para extender la vida útil de los equipos existentes
-* **Tarea de Minería de Datos:** Clasificación Supervisada y Priorización (Scoring) para clasificar qué planteles escolares representan la mayor prioridad y factibilidad para la transición técnica
-* **Stakeholder:** Coordinador de Tecnologías de la Información y Comunicaciones (TIC) de la Secretaría de Educación Pública (SEP)
+Este proyecto aborda la problemática inminente de obsolescencia en los laboratorios de cómputo de las escuelas públicas del país, provocada por el fin del soporte oficial de Windows 10 y la incompatibilidad de las computadoras existentes con los requisitos de hardware de Windows 11. Ante la falta de presupuesto para renovar el parque informático, la propuesta consiste en implementar un programa de rescate tecnológico orientado al reacondicionamiento de equipos mediante la instalación de distribuciones ligeras de Linux. Para llevar a cabo esta estrategia de manera eficiente, el proyecto utiliza modelos de minería de datos (clasificación supervisada y ranking prioritario) que analizan variables socio-demográficas, de infraestructura y de conectividad provenientes de bases de datos públicas (SEP e INEGI). Esto permitirá al Coordinador de Tecnologías de la SEP identificar y priorizar los planteles educativos con mayor urgencia y factibilidad técnica de migración.
 
 ---
 
@@ -39,6 +35,7 @@ En este sitio se documenta el desarrollo incremental del proyecto bajo la metodo
 A través de la barra de navegación superior se puede acceder a las distintas secciones tales como:
 
 **E0: Comprensión del Negocio**:
+
 * **[Bitácora de Entrevista]:** Diagnóstico y registro del diálogo con el Coordinador de TIC de la SEP.
 * **[Business Understanding Canvas]:** Matriz sintética con el problema, objetivos, restricciones y actores del proyecto.
 * **[Preguntas de Investigación]:** Preguntas de negocio traducidas a tareas cuantitativas y variables de minería.
