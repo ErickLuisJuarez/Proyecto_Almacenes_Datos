@@ -1,0 +1,33 @@
+---
+title: "Business Understanding Canvas"
+subtitle: "E0: Comprensión del Negocio — Rescate Tecnológico con Linux"
+author:
+  - "Erick Luis Juárez"
+  - "Julio Alejandro Herrera Avalos"
+  - "Luis Mario Solares Ramos"
+  - "Cesar Candelario Fuentes Anica"
+date: "2026-09-07"
+format:
+  html:
+    theme: cosmo
+---
+
+::: {.column-page-left}
+
+| **1. Situación actual / dolor del problema** | **2. Objetivos de negocio** |
+| :--- | :--- |
+| * El soporte de Windows 10 ya terminó (octubre 2025), y muchas de las PCs de los laboratorios escolares no cumplen los requisitos de Windows 11 (TPM 2.0, RAM).<br>* No hay presupuesto en el PEF (SHCP) para reemplazar el hardware de forma masiva.<br>* La SEP no tiene personal suficiente para mandar brigadas a revisar, uno por uno, decenas de miles de planteles de secundaria y bachillerato sin saber antes cuáles realmente lo necesitan. | * Reacondicionar los laboratorios que se puedan con una distribución ligera de Linux (Linux Mint) en vez de comprar equipo nuevo.<br>* Aprovechar mejor a las brigadas técnicas, cubriendo más planteles en el primer ciclo de despliegue.<br>* Priorizar las zonas de mayor marginación, para que la intervención no solo sea eficiente sino también equitativa. |
+
+| **3. Objetivos de minería de datos** | **4. Stakeholders y beneficiarios** |
+| :--- | :--- |
+| * **Clasificación binaria (P1):** predecir si un CCT es apto o no apto según energía eléctrica y número de PCs.<br>* **Scoring / ranking (P2):** un índice de 0 a 100 que combine viabilidad técnica, matrícula y marginación (CONAPO), para decidir a quién atender primero.<br>* **Clustering con k-means (P3):** agrupar planteles con perfiles de laboratorio parecidos, para no armar una imagen ISO distinta por escuela.<br>* **Regresión (P4):** estimar cuánto ahorraría cada municipio en licenciamiento. | * **Stakeholder:** Mtro. Roberto Molina, Coordinador de TIC de la SEP.<br>* **Beneficiarios directos:** estudiantes y docentes de secundarias y bachilleratos públicos que hoy se quedan sin equipo funcional.<br>* **Ejecutores:** las brigadas técnicas de despliegue de la SEP. |
+
+| **5. Criterio de éxito de negocio** | **6. Restricciones y recursos disponibles** |
+| :--- | :--- |
+| * Recuperar al menos el **35% de las PCs en riesgo de obsolescencia** de los planteles piloto en la primera fase, sin gastar en licencias de software comercial.<br>* Para que esto sea confiable, el modelo de clasificación (P1) necesita al menos 85% de precisión — si no, corremos el riesgo de mandar una brigada a un plantel que en realidad no es viable. | * Regla técnica de partida: al menos 2GB de RAM y suministro eléctrico estable.<br>* Datos públicos disponibles: Padrón CCT (SEP/SIGED), tabulados de INEGI, marginación (CONAPO) y el PEF Ramo 11 (SHCP).<br>* El hueco más importante: ninguna de estas fuentes dice qué RAM o procesador tiene cada PC — eso solo lo sabemos si lo levantamos nosotros en una muestra piloto. |
+
+| **7. Riesgos principales y mitigación** |
+| :--- |
+| * **Riesgo 1 — los números de SIGED podrían no coincidir con la realidad:** el sistema puede reportar más (o menos) equipos de los que en verdad funcionan en el plantel. *Mitigación:* antes de desplegar a gran escala, hacer un muestreo técnico en campo que valide esos números.<br>* **Riesgo 2 — que los docentes no quieran usar Linux:** por falta de familiaridad con software libre, puede haber resistencia al cambio. *Mitigación:* preinstalar suites educativas fáciles de usar (LibreOffice, TuxMath) e incluir guías de uso como parte del mismo despliegue (ligado al perfil de clustering, P3). |
+
+:::

@@ -6,8 +6,13 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Erick Luis Juárez">
+<meta name="author" content="Julio Alejandro Herrera Avalos">
+<meta name="author" content="Luis Mario Solares Ramos">
+<meta name="author" content="Cesar Candelario Fuentes Anica">
+<meta name="dcterms.date" content="2026-09-07">
 
-<title>canvas – Proyecto Almacenes y Minería de Datos</title>
+<title>Business Understanding Canvas – Proyecto Almacenes y Minería de Datos</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -109,7 +114,7 @@ ul.task-list li input[type="checkbox"] {
   </li>  
         <li>
     <a class="dropdown-item" href="../../entregas/E0_comprension_negocio/canvas.html">
- <span class="dropdown-text">canvas.html</span></a>
+ <span class="dropdown-text">Business Understanding Canvas</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="../../entregas/E0_comprension_negocio/preguntas.html">
@@ -144,11 +149,114 @@ ul.task-list li input[type="checkbox"] {
         
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
+<main class="content page-columns page-full" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Business Understanding Canvas</h1>
+<p class="subtitle lead">E0: Comprensión del Negocio — Rescate Tecnológico con Linux</p>
+</div>
 
 
 
+<div class="quarto-title-meta">
 
+    <div>
+    <div class="quarto-title-meta-heading">Authors</div>
+    <div class="quarto-title-meta-contents">
+             <p>Erick Luis Juárez </p>
+             <p>Julio Alejandro Herrera Avalos </p>
+             <p>Luis Mario Solares Ramos </p>
+             <p>Cesar Candelario Fuentes Anica </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">September 7, 2026</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<div class="column-page-left">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;"><strong>1. Situación actual / dolor del problema</strong></th>
+<th style="text-align: left;"><strong>2. Objetivos de negocio</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">* El soporte de Windows 10 ya terminó (octubre 2025), y muchas de las PCs de los laboratorios escolares no cumplen los requisitos de Windows 11 (TPM 2.0, RAM).<br>* No hay presupuesto en el PEF (SHCP) para reemplazar el hardware de forma masiva.<br>* La SEP no tiene personal suficiente para mandar brigadas a revisar, uno por uno, decenas de miles de planteles de secundaria y bachillerato sin saber antes cuáles realmente lo necesitan.</td>
+<td style="text-align: left;">* Reacondicionar los laboratorios que se puedan con una distribución ligera de Linux (Linux Mint) en vez de comprar equipo nuevo.<br>* Aprovechar mejor a las brigadas técnicas, cubriendo más planteles en el primer ciclo de despliegue.<br>* Priorizar las zonas de mayor marginación, para que la intervención no solo sea eficiente sino también equitativa.</td>
+</tr>
+</tbody>
+</table>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;"><strong>3. Objetivos de minería de datos</strong></th>
+<th style="text-align: left;"><strong>4. Stakeholders y beneficiarios</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">* <strong>Clasificación binaria (P1):</strong> predecir si un CCT es apto o no apto según energía eléctrica y número de PCs.<br>* <strong>Scoring / ranking (P2):</strong> un índice de 0 a 100 que combine viabilidad técnica, matrícula y marginación (CONAPO), para decidir a quién atender primero.<br>* <strong>Clustering con k-means (P3):</strong> agrupar planteles con perfiles de laboratorio parecidos, para no armar una imagen ISO distinta por escuela.<br>* <strong>Regresión (P4):</strong> estimar cuánto ahorraría cada municipio en licenciamiento.</td>
+<td style="text-align: left;">* <strong>Stakeholder:</strong> Mtro. Roberto Molina, Coordinador de TIC de la SEP.<br>* <strong>Beneficiarios directos:</strong> estudiantes y docentes de secundarias y bachilleratos públicos que hoy se quedan sin equipo funcional.<br>* <strong>Ejecutores:</strong> las brigadas técnicas de despliegue de la SEP.</td>
+</tr>
+</tbody>
+</table>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;"><strong>5. Criterio de éxito de negocio</strong></th>
+<th style="text-align: left;"><strong>6. Restricciones y recursos disponibles</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">* Recuperar al menos el <strong>35% de las PCs en riesgo de obsolescencia</strong> de los planteles piloto en la primera fase, sin gastar en licencias de software comercial.<br>* Para que esto sea confiable, el modelo de clasificación (P1) necesita al menos 85% de precisión — si no, corremos el riesgo de mandar una brigada a un plantel que en realidad no es viable.</td>
+<td style="text-align: left;">* Regla técnica de partida: al menos 2GB de RAM y suministro eléctrico estable.<br>* Datos públicos disponibles: Padrón CCT (SEP/SIGED), tabulados de INEGI, marginación (CONAPO) y el PEF Ramo 11 (SHCP).<br>* El hueco más importante: ninguna de estas fuentes dice qué RAM o procesador tiene cada PC — eso solo lo sabemos si lo levantamos nosotros en una muestra piloto.</td>
+</tr>
+</tbody>
+</table>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 100%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;"><strong>7. Riesgos principales y mitigación</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">* <strong>Riesgo 1 — los números de SIGED podrían no coincidir con la realidad:</strong> el sistema puede reportar más (o menos) equipos de los que en verdad funcionan en el plantel. <em>Mitigación:</em> antes de desplegar a gran escala, hacer un muestreo técnico en campo que valide esos números.<br>* <strong>Riesgo 2 — que los docentes no quieran usar Linux:</strong> por falta de familiaridad con software libre, puede haber resistencia al cambio. <em>Mitigación:</em> preinstalar suites educativas fáciles de usar (LibreOffice, TuxMath) e incluir guías de uso como parte del mismo despliegue (ligado al perfil de clustering, P3).</td>
+</tr>
+</tbody>
+</table>
+</div>
 
 
 
