@@ -15,7 +15,7 @@ format:
 
 ::: {.column-page-left}
 
-##Informacion de la Sesion y Modalidad
+## Informacion de la Sesion y Modalidad
 
 * **Fecha y Hora:** 4 de septiembre de 2026 — 11:09 hrs.
 * **Modalidad:** Ejercicio de Rol Documentado con Stakeholder Simulado.
