@@ -6,8 +6,13 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Erick Luis Juárez">
+<meta name="author" content="Julio Alejandro Herrera Avalos">
+<meta name="author" content="Luis Mario Solares Ramos">
+<meta name="author" content="Cesar Candelario Fuentes Anica">
+<meta name="dcterms.date" content="2026-09-09">
 
-<title>criterio_exito – Proyecto Almacenes y Minería de Datos</title>
+<title>Criterio de Éxito en Términos de Negocio – Proyecto Almacenes y Minería de Datos</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -74,6 +79,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -117,15 +151,15 @@ ul.task-list li input[type="checkbox"] {
   </li>  
         <li>
     <a class="dropdown-item" href="../../entregas/E0_comprension_negocio/criterio_exito.html">
- <span class="dropdown-text">criterio_exito.html</span></a>
+ <span class="dropdown-text">Criterio de Éxito en Términos de Negocio</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="../../entregas/E0_comprension_negocio/riesgos_supuestos.html">
- <span class="dropdown-text">riesgos_supuestos.html</span></a>
+ <span class="dropdown-text">Matriz de Supuestos y Riesgos</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="../../entregas/E0_comprension_negocio/uso_ia.html">
- <span class="dropdown-text">uso_ia.html</span></a>
+ <span class="dropdown-text">Documentación sobre el Uso de Herramientas de IA</span></a>
   </li>  
     </ul>
   </li>
@@ -144,11 +178,117 @@ ul.task-list li input[type="checkbox"] {
         
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
+<main class="content page-columns page-full" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Criterio de Éxito en Términos de Negocio</h1>
+<p class="subtitle lead">E0: Comprensión del Negocio — Rescate Tecnológico con Linux</p>
+</div>
 
 
 
+<div class="quarto-title-meta">
 
+    <div>
+    <div class="quarto-title-meta-heading">Authors</div>
+    <div class="quarto-title-meta-contents">
+             <p>Erick Luis Juárez </p>
+             <p>Julio Alejandro Herrera Avalos </p>
+             <p>Luis Mario Solares Ramos </p>
+             <p>Cesar Candelario Fuentes Anica </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">September 9, 2026</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<div class="column-page-left">
+<section id="definición-del-criterio-de-éxito-de-negocio" class="level2">
+<h2 class="anchored" data-anchor-id="definición-del-criterio-de-éxito-de-negocio">Definición del Criterio de Éxito de Negocio</h2>
+<p>Para evaluar el impacto real del proyecto en la SEP,creamos un criterio medible centrado en el rescate operativo de equipos y el ahorro presupuestal donde tenemos:</p>
+<blockquote class="blockquote">
+<p><strong>Criterio de Negocio:</strong> *La mision de recuperar de forma funcional al menos el 35% de la computadoras que estan en riesgo de ser obsoletas** en las secundarias y bachilleratos priorizados durante la primera fase de despliegue, logrando una reducción del 100% en costos por licencias comerciales de software como WIndows*</p>
+</blockquote>
+<hr>
+</section>
+<section id="conexión-entre-metas-de-negocio-y-métricas-técnicas" class="level2">
+<h2 class="anchored" data-anchor-id="conexión-entre-metas-de-negocio-y-métricas-técnicas">Conexión entre Metas de Negocio y Métricas Técnicas</h2>
+<p>Para asegurar que los modelos analíticos cumplan con esta meta operativa, conectamos las necesidades de la SEP con métricas técnicas específicas:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Dimensión de Negocio</th>
+<th style="text-align: left;">Meta de la SEP</th>
+<th style="text-align: left;">Tarea de Minería</th>
+<th style="text-align: left;">Métrica Técnica Requerida</th>
+<th style="text-align: left;">Por qué es Importante</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>Viabilidad de Visita</strong></td>
+<td style="text-align: left;">Evitar enviar brigadas a escuelas sin luz o con PCs inservibles.</td>
+<td style="text-align: left;">Clasificación Binaria (<span class="math inline">\(P1\)</span>)</td>
+<td style="text-align: left;"><strong>Precisión (Precision) <span class="math inline">\(\ge 85\%\)</span></strong></td>
+<td style="text-align: left;">Evitar tener falsos positivos para no desperdiciar viáticos ni el tiempo del personal en planteles no aptos para nuestro proyecto.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Priorización Social</strong></td>
+<td style="text-align: left;">Garantizar que las primeras escuelas atendidas sean las de mayor vulnerabilidad y sean viables.</td>
+<td style="text-align: left;">Scoring / Ranking (<span class="math inline">\(P2\)</span>)</td>
+<td style="text-align: left;"><strong>Correlación de Spearman (<span class="math inline">\(\rho \ge 0.75\)</span>)</strong></td>
+<td style="text-align: left;">Valida que el orden del ranking coincida fuertemente con los índices de marginación de la CONAPO.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Estandarización de Despliegue</strong></td>
+<td style="text-align: left;">Reducir la variabilidad entre laboratorios para poder usar imágenes ISO preconfiguradas en vez de configurar cada equipo por separado.</td>
+<td style="text-align: left;">Clustering <span class="math inline">\(k\)</span>-Means (<span class="math inline">\(P3\)</span>)</td>
+<td style="text-align: left;"><strong>Coeficiente de Silhouette <span class="math inline">\(\ge 0.55\)</span></strong></td>
+<td style="text-align: left;">Asegura que los grupos de escuelas identificados sean lo bastante distintos entre sí para justificar una imagen ISO por perfil.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Ahorro Presupuestal</strong></td>
+<td style="text-align: left;">Respaldar el ahorro estimado ante la SHCP.</td>
+<td style="text-align: left;">Regresión Econométrica (<span class="math inline">\(P4\)</span>)</td>
+<td style="text-align: left;"><strong>MAPE <span class="math inline">\(\le 15\%\)</span></strong></td>
+<td style="text-align: left;">Garantiza que la proyección de ahorro en pesos MXN sea lo suficientemente precisa para el Ramo 11.</td>
+</tr>
+</tbody>
+</table>
+<blockquote class="blockquote">
+<p><strong>Nota:</strong> los umbrales numéricos de la tabla como 35%, 85%, 0.75, 15% son metas que el equipo se propuso para la fase piloto, no son cifras oficiales tomadas de estudios o docuemntos. Se ajustarán con datos reales conforme avance el proyecto.</p>
+</blockquote>
+<hr>
+</section>
+<section id="cómo-vamos-a-comprobar-si-lo-logramos" class="level2">
+<h2 class="anchored" data-anchor-id="cómo-vamos-a-comprobar-si-lo-logramos">¿Cómo vamos a comprobar si lo logramos?</h2>
+<ol type="1">
+<li>Entrenar el modelo y ver si llega al 85% de precisión que nos pedimos.</li>
+<li>Hacer la prueba piloto en campo: ahí no solo validamos el modelo, sino que también medimos cuánto tarda de verdad instalar Linux en un laboratorio.</li>
+<li>Al final, contar cuántas computadoras quedaron funcionando con Linux contra el total que identificamos como obsoleto al principio.</li>
+</ol>
+</section>
+</div>
 
 
 

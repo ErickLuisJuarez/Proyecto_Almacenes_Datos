@@ -1,0 +1,38 @@
+---
+title: "Documentación sobre el Uso de Herramientas de IA"
+subtitle: "E0: Comprensión del Negocio — Rescate Tecnológico con Linux"
+author:
+  - "Erick Luis Juárez"
+  - "Julio Alejandro Herrera Avalos"
+  - "Luis Mario Solares Ramos"
+  - "Cesar Candelario Fuentes Anica"
+date: "2026-09-10"
+format:
+  html:
+    theme: cosmo
+    toc: true
+---
+
+::: {.column-page-left}
+
+En cumplimiento con los lineamientos éticos, de transparencia y no plagio de la asignatura, a continuación se detalla de forma transparente cómo empleamos modelos de lenguaje durante esta primera fase del proyecto.
+
+## Resumen de Modelos Utilizados
+
+* **Google Gemini:** Lo utilizamos en la etapa inicial para proponer el esqueleto general de la entrega como la estructura en Quarto, sugerencias de preguntas de investigación y del Business Canvas y para llevar a cabo la entrevista simulada del stakeholder (Mtro. Roberto Molina).
+* **Anthropic Claude:** Lo empleamos para desarrollar el criterio de éxito, la matriz de supuestos y riesgos, investigar y verificar las fuentes públicas oficiales citadas en la bitácora, desacoplar métricas técnicas de las metas de negocio, y revisar de forma crítica y corregir el material generado en la etapa inicial.
+
+---
+
+## Bitácora de Prompts y Aportaciones por Herramienta
+
+| Herramienta | Tarea Específica | Prompt Empleado (Resumen) | Resultado Obtenido | Validación y Edición del Equipo |
+| :--- | :--- | :--- | :--- | :--- |
+| **Google Gemini** | **Estructura Inicial, Canvas y Stakeholder** | *"Actúa como experto en CRISP-DM. Apóyame a estructurar la E0 para el rescate de PCs en secundarias/bachilleratos con Linux. Define $P1$-$P4$, un Canvas y simula las respuestas del stakeholder de la SEP."* | Borrador de la arquitectura del sitio, propuesta de bloques para el Canvas y la primera versión de la entrevista simulada del stakeholder. | El equipo revisó y adaptó la estructura propuesta para ajustarla a las especificaciones y rúbrica de la materia. |
+| **Anthropic Claude** | **Verificación de Fuentes, Criterios, Riesgos y Revisión** | *"Revisa el borrador de la E0: redacta criterios de éxito que nos pueda servir, la matriz de riesgos y corregir problemas de formato/redacción."* | Incorporación de citas oficiales verificables, redacción de la matriz de riesgos específica, desacople de métricas no relacionadas e integración de notas metodológicas. | Se verificaron manualmente las cifras de las fuentes oficiales citadas, se ajustó el alcance de planteles y se confirmó que los umbrales numéricos reflejaran las metas reales del equipo. |
+
+---
+
+Como equipo asumimos la responsabilidad total sobre la validez técnica, metodológica y operativa del material presentado. Ningún contenido generado por inteligencia artificial se incorporó de forma directa sin antes ser analizado, editado y contrastado con fuentes oficiales e información propia recopilada para esta entrega.
+
+:::

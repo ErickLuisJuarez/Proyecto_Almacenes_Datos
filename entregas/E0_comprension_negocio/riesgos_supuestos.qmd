@@ -1,0 +1,40 @@
+---
+title: "Matriz de Supuestos y Riesgos"
+subtitle: "E0: Comprensión del Negocio — Rescate Tecnológico con Linux"
+author:
+  - "Erick Luis Juárez"
+  - "Julio Alejandro Herrera Avalos"
+  - "Luis Mario Solares Ramos"
+  - "Cesar Candelario Fuentes Anica"
+date: "2026-09-10"
+format:
+  html:
+    theme: cosmo
+    toc: true
+---
+
+::: {.column-page-left}
+
+## Supuestos Iniciales
+
+Para el desarrollo de esta fase vamos a sumir las siguientes premisas sobre los datos y la operación donde podemos ver:
+
+1. **Llaves Geográficas Únicas:** Las claves CCT del padrón de la SEP se corresponden correctamente con las claves de municipio y localidad de INEGI y CONAPO.
+2. **Disponibilidad de Datos Abiertos:** Los microdatos del SIGED y los tabulados oficiales se mantendrán públicos durante el desarrollo del proyecto.
+3. **Compatibilidad de Arquitectura:** El equipo de computo en riesgo d eser obsoleto que cuenta con procesadores x86/x64 capaces de ejecutar versiones de Linux de 64 o 32 bits.
+4. **Viabilidad Normativa:** Las políticas de la SEP permiten la instalación de software libre sin requerir trámites de licenciamiento comercial.
+
+---
+
+## Matriz de Riesgos del Proyecto
+
+Tambuen odentificamos cuatro riesgos clave junto con sus estrategias de prevención, en las que podemos encontrar:
+
+| ID | Riesgo Concreto | Impacto | Probabilidad | Plan de Mitigación |
+| :---: | :--- | :---: | :---: | :--- |
+| **R1** | **Datos de Infraestructura Desactualizados:** Que la cantidad de computadoras reportada en el SIGED no coincida con la realidad del plantel. | **Alto** | **Media** | Realizar un muestreo piloto técnico en campo sobre una muestra de escuelas para aplicar un factor de ajuste antes de entrenar el modelo. |
+| **R2** | **Resistencia Docente al Cambio:** Rechazo al sistema operativo Linux por costumbre a interfaces comerciales. | **Medio** | **Alta** | Usar el modelo $P3$ para seleccionar entornos visuales parecidos a Windows (Linux Mint Cinnamon) e incluir programas educativos listos para usar (LibreOffice, TuxMath). |
+| **R3** | **Fallas Hardware No Registradas (RAM < 2 GB):** Que computadoras clasificadas como aptas fallen al instalar por fallas en componentes internos. | **Alto** | **Media** | Crear una versión ligera de respaldo ("Ultra-Light" con interfaz XFCE/LXDE) para las brigadas de campo. |
+| **R4** | **Falta de Datos en Zonas Rurales:** CCTs sin coordenadas o claves de localidad para cruzar con el índice de marginación. | **Medio** | **Baja** | Aplicar técnicas de imputación basadas en la media municipal del INEGI para no omitir escuelas vulnerables en el modelo. |
+
+:::

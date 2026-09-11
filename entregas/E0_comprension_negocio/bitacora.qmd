@@ -37,7 +37,7 @@ A continuación se detallan las preguntas formuladas al stakeholder simulado, su
 * **Fuente Verificable:** *SHCP (2025)* — [Presupuesto de Egresos de la Federación (PEF), Ramo 11 Educación Pública](https://www.pef.hacienda.gob.mx/es/PEF/R11).
 
 ### 3. ¿Es factible la adopción de un sistema operativo Open Source como alternativa?
-> **Respuesta del Stakeholder:** "Sí, siempre que el sistema operativo sea una distribución Linux ligera como Linux Mint o Ubuntu MATE e incluya suites de software educativo libre como LibreOffice, GeoGebra, Tux Math para no interrumpir el plan de estudios."
+> **Respuesta del Stakeholder:** "Sí, siempre que el sistema operativo sea una distribución Linux ligera como Linux Mint o Ubuntu MATE e incluya suites de software educativo libre como LibreOffice, GeoGebra, Tux Math para no interrumpir el plan de estudios ya que muchos alumnos quizas les cueste al principio adaptarse."
 * **Fuente Verificable:** *Linux Mint & UNESCO* — [Requisitos Técnicos Oficiales de Linux Mint](https://linuxmint.com/download.php) (solo se exige 2 GB de RAM) y [Directrices de la UNESCO para Recursos Educativos Abiertos](https://www.unesco.org/es/open-educational-resources).
 
 ### 4. ¿Cuál es el principal cuello de botella o restricción operativa para implementar esta solución?
@@ -50,7 +50,7 @@ A continuación se detallan las preguntas formuladas al stakeholder simulado, su
 
 Tras concluir el ejercicio de entrevista y confrontar las respuestas con las fuentes públicas oficiales, nuestro entendimiento del problema cambió drásticamente en los siguientes aspectos:
 
-* **De sustitución de hardware a optimización analítica:** Inicialmente concebíamos el proyecto como un problema de gestión presupuestal simple. La entrevista nos hizo comprender que el verdadero cuello de botella es un problema de logística y asignación de recursos limitados, lo cual se resuelve mediante un modelo de minería de datos que clasifique y ordene por prioridad a los planteles.
-* **Identificación de umbrales técnicos:** Comprendimos que no todas las escuelas con computadoras obsoletas son candidatas a migración. Aquellas con menos de 2 GB de RAM o sin energía eléctrica constante deben descartarse antes del modelado, enfocando el algoritmo de clasificación únicamente en los planteles técnicamente viables.
+* **De sustitución de hardware a optimización analítica:** Inicialmente pensamos el proyecto como un problema de gestión presupuestal simple ppero despues de la entrevista nos hizo comprender que el verdadero cuello de botella es un problema de logística y asignación de recursos limitados, lo cual se resuelve mediante un modelo de minería de datos que clasifique y ordene por prioridad a los planteles.
+* **Identificación de umbrales técnicos:** Comprendimos que no todas las escuelas con computadoras obsoletas son candidatas a migración (muchas de ellas son modelos bastante antiguos en algunas de estas escuelas), como aquellas con menos de 2 GB de RAM o sin energía eléctrica constante deben descartarse antes del modelado, enfocando el algoritmo de clasificación únicamente en los planteles técnicamente viables para nuestro proyecto
 
 :::

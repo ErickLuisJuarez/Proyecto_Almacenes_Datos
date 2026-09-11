@@ -6,8 +6,13 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Erick Luis Juárez">
+<meta name="author" content="Julio Alejandro Herrera Avalos">
+<meta name="author" content="Luis Mario Solares Ramos">
+<meta name="author" content="Cesar Candelario Fuentes Anica">
+<meta name="dcterms.date" content="2026-09-10">
 
-<title>uso_ia – Proyecto Almacenes y Minería de Datos</title>
+<title>Documentación sobre el Uso de Herramientas de IA – Proyecto Almacenes y Minería de Datos</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -74,6 +79,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -117,15 +151,15 @@ ul.task-list li input[type="checkbox"] {
   </li>  
         <li>
     <a class="dropdown-item" href="../../entregas/E0_comprension_negocio/criterio_exito.html">
- <span class="dropdown-text">criterio_exito.html</span></a>
+ <span class="dropdown-text">Criterio de Éxito en Términos de Negocio</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="../../entregas/E0_comprension_negocio/riesgos_supuestos.html">
- <span class="dropdown-text">riesgos_supuestos.html</span></a>
+ <span class="dropdown-text">Matriz de Supuestos y Riesgos</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="../../entregas/E0_comprension_negocio/uso_ia.html">
- <span class="dropdown-text">uso_ia.html</span></a>
+ <span class="dropdown-text">Documentación sobre el Uso de Herramientas de IA</span></a>
   </li>  
     </ul>
   </li>
@@ -144,11 +178,93 @@ ul.task-list li input[type="checkbox"] {
         
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
+<main class="content page-columns page-full" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Documentación sobre el Uso de Herramientas de IA</h1>
+<p class="subtitle lead">E0: Comprensión del Negocio — Rescate Tecnológico con Linux</p>
+</div>
 
 
 
+<div class="quarto-title-meta">
 
+    <div>
+    <div class="quarto-title-meta-heading">Authors</div>
+    <div class="quarto-title-meta-contents">
+             <p>Erick Luis Juárez </p>
+             <p>Julio Alejandro Herrera Avalos </p>
+             <p>Luis Mario Solares Ramos </p>
+             <p>Cesar Candelario Fuentes Anica </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">September 10, 2026</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<div class="column-page-left">
+<p>En cumplimiento con los lineamientos éticos, de transparencia y no plagio de la asignatura, a continuación se detalla de forma transparente cómo empleamos modelos de lenguaje durante esta primera fase del proyecto.</p>
+<section id="resumen-de-modelos-utilizados" class="level2">
+<h2 class="anchored" data-anchor-id="resumen-de-modelos-utilizados">Resumen de Modelos Utilizados</h2>
+<ul>
+<li><strong>Google Gemini:</strong> Lo utilizamos en la etapa inicial para proponer el esqueleto general de la entrega como la estructura en Quarto, sugerencias de preguntas de investigación y del Business Canvas y para llevar a cabo la entrevista simulada del stakeholder (Mtro. Roberto Molina).</li>
+<li><strong>Anthropic Claude:</strong> Lo empleamos para desarrollar el criterio de éxito, la matriz de supuestos y riesgos, investigar y verificar las fuentes públicas oficiales citadas en la bitácora, desacoplar métricas técnicas de las metas de negocio, y revisar de forma crítica y corregir el material generado en la etapa inicial.</li>
+</ul>
+<hr>
+</section>
+<section id="bitácora-de-prompts-y-aportaciones-por-herramienta" class="level2">
+<h2 class="anchored" data-anchor-id="bitácora-de-prompts-y-aportaciones-por-herramienta">Bitácora de Prompts y Aportaciones por Herramienta</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Herramienta</th>
+<th style="text-align: left;">Tarea Específica</th>
+<th style="text-align: left;">Prompt Empleado (Resumen)</th>
+<th style="text-align: left;">Resultado Obtenido</th>
+<th style="text-align: left;">Validación y Edición del Equipo</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>Google Gemini</strong></td>
+<td style="text-align: left;"><strong>Estructura Inicial, Canvas y Stakeholder</strong></td>
+<td style="text-align: left;"><em>“Actúa como experto en CRISP-DM. Apóyame a estructurar la E0 para el rescate de PCs en secundarias/bachilleratos con Linux. Define <span class="math inline">\(P1\)</span>-<span class="math inline">\(P4\)</span>, un Canvas y simula las respuestas del stakeholder de la SEP.”</em></td>
+<td style="text-align: left;">Borrador de la arquitectura del sitio, propuesta de bloques para el Canvas y la primera versión de la entrevista simulada del stakeholder.</td>
+<td style="text-align: left;">El equipo revisó y adaptó la estructura propuesta para ajustarla a las especificaciones y rúbrica de la materia.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Anthropic Claude</strong></td>
+<td style="text-align: left;"><strong>Verificación de Fuentes, Criterios, Riesgos y Revisión</strong></td>
+<td style="text-align: left;"><em>“Revisa el borrador de la E0: redacta criterios de éxito que nos pueda servir, la matriz de riesgos y corregir problemas de formato/redacción.”</em></td>
+<td style="text-align: left;">Incorporación de citas oficiales verificables, redacción de la matriz de riesgos específica, desacople de métricas no relacionadas e integración de notas metodológicas.</td>
+<td style="text-align: left;">Se verificaron manualmente las cifras de las fuentes oficiales citadas, se ajustó el alcance de planteles y se confirmó que los umbrales numéricos reflejaran las metas reales del equipo.</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<p>Como equipo asumimos la responsabilidad total sobre la validez técnica, metodológica y operativa del material presentado. Ningún contenido generado por inteligencia artificial se incorporó de forma directa sin antes ser analizado, editado y contrastado con fuentes oficiales e información propia recopilada para esta entrega.</p>
+</section>
+</div>
 
 
 

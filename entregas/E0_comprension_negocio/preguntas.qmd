@@ -27,7 +27,7 @@ Para cumplir con la fase E0 de la metodología CRISP-DM, la necesidad logística
 * **Pregunta de Negocio:** ¿Con qué precisión se puede determinar si un Centro de Trabajo (CCT) es técnicamente apto para la instalación de una distribución ligera de Linux (Linux Mint) sin requerir inversión en hardware nuevo?
 * **Conexión con Minería de Datos:** **Clasificación Binaria**. Se busca predecir una variable objetivo discreta $Y \in \{\text{Apto para Migración}, \text{No Apto / Sustitución Requerida}\}$ utilizando algoritmos supervisados.
 * **Variables Asociadas:** Conteo total de computadoras funcionales, presencia de energía eléctrica y red eléctrica escolar.
-> **Nota:** *Las variables a nivel de componente individual como capacidad de memoria RAM $\ge 2\text{ GB}$ y tipo de procesador se recopilarán mediante un levantamiento técnico de muestra piloto en campo, al no ser reportadas individualmente por el padrón de datos abiertos.*
+> **Nota importante:** *Las variables a nivel de componente individual como capacidad de memoria RAM $\ge 2\text{ GB}$ y tipo de procesador se recopilarán mediante un levantamiento técnico de muestra piloto en campo, al no ser reportadas individualmente por el padrón de datos abiertos.*
 
 ---
 

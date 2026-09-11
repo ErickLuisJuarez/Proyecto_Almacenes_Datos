@@ -6,8 +6,13 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Erick Luis Juárez">
+<meta name="author" content="Julio Alejandro Herrera Avalos">
+<meta name="author" content="Luis Mario Solares Ramos">
+<meta name="author" content="Cesar Candelario Fuentes Anica">
+<meta name="dcterms.date" content="2026-09-10">
 
-<title>riesgos_supuestos – Proyecto Almacenes y Minería de Datos</title>
+<title>Matriz de Supuestos y Riesgos – Proyecto Almacenes y Minería de Datos</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -74,6 +79,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -117,15 +151,15 @@ ul.task-list li input[type="checkbox"] {
   </li>  
         <li>
     <a class="dropdown-item" href="../../entregas/E0_comprension_negocio/criterio_exito.html">
- <span class="dropdown-text">criterio_exito.html</span></a>
+ <span class="dropdown-text">Criterio de Éxito en Términos de Negocio</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="../../entregas/E0_comprension_negocio/riesgos_supuestos.html">
- <span class="dropdown-text">riesgos_supuestos.html</span></a>
+ <span class="dropdown-text">Matriz de Supuestos y Riesgos</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="../../entregas/E0_comprension_negocio/uso_ia.html">
- <span class="dropdown-text">uso_ia.html</span></a>
+ <span class="dropdown-text">Documentación sobre el Uso de Herramientas de IA</span></a>
   </li>  
     </ul>
   </li>
@@ -144,11 +178,108 @@ ul.task-list li input[type="checkbox"] {
         
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
+<main class="content page-columns page-full" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Matriz de Supuestos y Riesgos</h1>
+<p class="subtitle lead">E0: Comprensión del Negocio — Rescate Tecnológico con Linux</p>
+</div>
 
 
 
+<div class="quarto-title-meta">
 
+    <div>
+    <div class="quarto-title-meta-heading">Authors</div>
+    <div class="quarto-title-meta-contents">
+             <p>Erick Luis Juárez </p>
+             <p>Julio Alejandro Herrera Avalos </p>
+             <p>Luis Mario Solares Ramos </p>
+             <p>Cesar Candelario Fuentes Anica </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">September 10, 2026</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<div class="column-page-left">
+<section id="supuestos-iniciales" class="level2">
+<h2 class="anchored" data-anchor-id="supuestos-iniciales">Supuestos Iniciales</h2>
+<p>Para el desarrollo de esta fase vamos a sumir las siguientes premisas sobre los datos y la operación donde podemos ver:</p>
+<ol type="1">
+<li><strong>Llaves Geográficas Únicas:</strong> Las claves CCT del padrón de la SEP se corresponden correctamente con las claves de municipio y localidad de INEGI y CONAPO.</li>
+<li><strong>Disponibilidad de Datos Abiertos:</strong> Los microdatos del SIGED y los tabulados oficiales se mantendrán públicos durante el desarrollo del proyecto.</li>
+<li><strong>Compatibilidad de Arquitectura:</strong> El equipo de computo en riesgo d eser obsoleto que cuenta con procesadores x86/x64 capaces de ejecutar versiones de Linux de 64 o 32 bits.</li>
+<li><strong>Viabilidad Normativa:</strong> Las políticas de la SEP permiten la instalación de software libre sin requerir trámites de licenciamiento comercial.</li>
+</ol>
+<hr>
+</section>
+<section id="matriz-de-riesgos-del-proyecto" class="level2">
+<h2 class="anchored" data-anchor-id="matriz-de-riesgos-del-proyecto">Matriz de Riesgos del Proyecto</h2>
+<p>Tambuen odentificamos cuatro riesgos clave junto con sus estrategias de prevención, en las que podemos encontrar:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 21%">
+<col style="width: 17%">
+<col style="width: 21%">
+<col style="width: 21%">
+<col style="width: 17%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">ID</th>
+<th style="text-align: left;">Riesgo Concreto</th>
+<th style="text-align: center;">Impacto</th>
+<th style="text-align: center;">Probabilidad</th>
+<th style="text-align: left;">Plan de Mitigación</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><strong>R1</strong></td>
+<td style="text-align: left;"><strong>Datos de Infraestructura Desactualizados:</strong> Que la cantidad de computadoras reportada en el SIGED no coincida con la realidad del plantel.</td>
+<td style="text-align: center;"><strong>Alto</strong></td>
+<td style="text-align: center;"><strong>Media</strong></td>
+<td style="text-align: left;">Realizar un muestreo piloto técnico en campo sobre una muestra de escuelas para aplicar un factor de ajuste antes de entrenar el modelo.</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><strong>R2</strong></td>
+<td style="text-align: left;"><strong>Resistencia Docente al Cambio:</strong> Rechazo al sistema operativo Linux por costumbre a interfaces comerciales.</td>
+<td style="text-align: center;"><strong>Medio</strong></td>
+<td style="text-align: center;"><strong>Alta</strong></td>
+<td style="text-align: left;">Usar el modelo <span class="math inline">\(P3\)</span> para seleccionar entornos visuales parecidos a Windows (Linux Mint Cinnamon) e incluir programas educativos listos para usar (LibreOffice, TuxMath).</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><strong>R3</strong></td>
+<td style="text-align: left;"><strong>Fallas Hardware No Registradas (RAM &lt; 2 GB):</strong> Que computadoras clasificadas como aptas fallen al instalar por fallas en componentes internos.</td>
+<td style="text-align: center;"><strong>Alto</strong></td>
+<td style="text-align: center;"><strong>Media</strong></td>
+<td style="text-align: left;">Crear una versión ligera de respaldo (“Ultra-Light” con interfaz XFCE/LXDE) para las brigadas de campo.</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><strong>R4</strong></td>
+<td style="text-align: left;"><strong>Falta de Datos en Zonas Rurales:</strong> CCTs sin coordenadas o claves de localidad para cruzar con el índice de marginación.</td>
+<td style="text-align: center;"><strong>Medio</strong></td>
+<td style="text-align: center;"><strong>Baja</strong></td>
+<td style="text-align: left;">Aplicar técnicas de imputación basadas en la media municipal del INEGI para no omitir escuelas vulnerables en el modelo.</td>
+</tr>
+</tbody>
+</table>
+</section>
+</div>
 
 
 
