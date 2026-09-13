@@ -1,4 +1,9 @@
 # Proyecto Almacenes y Minería de Datos
+
+Integrantes: Erick Luis Juárez
+             Julio Alejandro Herrera Avalos
+             Luis Mario Solares Ramos
+             Cesar Candelario Fuentes Anica
 Sitio desplegado:  https://erickluisjuarez.github.io/Proyecto_Almacenes_Datos/
 
 
