@@ -44,7 +44,7 @@ Para asegurar que los modelos analíticos cumplan con esta meta operativa, conec
 ## ¿Cómo vamos a comprobar si lo logramos?
 
 1. Entrenar el modelo y ver si llega al 85% de precisión que nos pedimos.
-2. Hacer la prueba piloto en campo: ahí no solo validamos el modelo, sino
+2. Hacer la prueba piloto en campo: no solo se valida el modelo, sino
    que también medimos cuánto tarda de verdad instalar Linux en un
    laboratorio.
 3. Al final, contar cuántas computadoras quedaron funcionando con Linux
