@@ -79,6 +79,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -110,27 +139,27 @@ ul.task-list li input[type="checkbox"] {
     <ul class="dropdown-menu" aria-labelledby="nav-menu-e0-comprensión-del-negocio">    
         <li>
     <a class="dropdown-item" href="../../entregas/E0_comprension_negocio/bitacora.html">
- <span class="dropdown-text">Bitácora de Entrevista con el Stakeholder</span></a>
+ <span class="dropdown-text">Bitácora</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="../../entregas/E0_comprension_negocio/canvas.html">
- <span class="dropdown-text">Business Understanding Canvas</span></a>
+ <span class="dropdown-text">Canvas</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="../../entregas/E0_comprension_negocio/preguntas.html">
- <span class="dropdown-text">Preguntas de Investigación Priorizadas</span></a>
+ <span class="dropdown-text">Preguntas</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="../../entregas/E0_comprension_negocio/criterio_exito.html">
- <span class="dropdown-text">Criterio de Éxito en Términos de Negocio</span></a>
+ <span class="dropdown-text">Criterios de Éxito</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="../../entregas/E0_comprension_negocio/riesgos_supuestos.html">
- <span class="dropdown-text">Matriz de Supuestos y Riesgos</span></a>
+ <span class="dropdown-text">Riesgos y Supuestos</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="../../entregas/E0_comprension_negocio/uso_ia.html">
- <span class="dropdown-text">Documentación sobre el Uso de Herramientas de IA</span></a>
+ <span class="dropdown-text">Uso de IA</span></a>
   </li>  
     </ul>
   </li>
@@ -139,12 +168,30 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text">E1: Arquitectura del DW</span>
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-e1-arquitectura-del-dw">    
-        <li class="dropdown-header">entregas/E1_arquitectura_dw/fuentes.qmd</li>
-        <li class="dropdown-header">entregas/E1_arquitectura_dw/estrella.qmd</li>
-        <li class="dropdown-header">entregas/E1_arquitectura_dw/arquitectura.qmd</li>
-        <li class="dropdown-header">entregas/E1_arquitectura_dw/trazabilidad.qmd</li>
-        <li class="dropdown-header">entregas/E1_arquitectura_dw/pivote.qmd</li>
-        <li class="dropdown-header">entregas/E1_arquitectura_dw/uso_ia.qmd</li>
+        <li>
+    <a class="dropdown-item" href="../../entregas/E1_arquitectura_dw/fuentes.html">
+ <span class="dropdown-text">Catálogo de Fuentes</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../entregas/E1_arquitectura_dw/estrella.html">
+ <span class="dropdown-text">Modelo Estrella</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../entregas/E1_arquitectura_dw/arquitectura.html">
+ <span class="dropdown-text">Arquitectura BigQuery</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../entregas/E1_arquitectura_dw/trazabilidad.html">
+ <span class="dropdown-text">Matriz de Trazabilidad</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../entregas/E1_arquitectura_dw/pivote.html">
+ <span class="dropdown-text">Análisis de Pivote</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../entregas/E1_arquitectura_dw/uso_ia.html">
+ <span class="dropdown-text">Uso de IA</span></a>
+  </li>  
     </ul>
   </li>
 </ul>
@@ -162,7 +209,7 @@ ul.task-list li input[type="checkbox"] {
         
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
+<main class="content page-columns page-full" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
@@ -199,6 +246,92 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<div class="column-page-left">
+<section id="justificación-del-modelo-dimensional-y-trazabilidad" class="level2">
+<h2 class="anchored" data-anchor-id="justificación-del-modelo-dimensional-y-trazabilidad">Justificación del Modelo Dimensional y Trazabilidad</h2>
+<p>Para garantizar que el diseño del Data Warehouse mantenga los pies sobre la tierra respecto a lo planteado en la etapa de Negocio (<span class="math inline">\(E0\)</span>), amarramos cada tabla y métrica del esquema estrella con las cuatro preguntas de investigación iniciales (<span class="math inline">\(P1, P2, P3, P4\)</span>).</p>
+<p>En esta versión marcamos con total claridad dónde la cobertura es parcial. Preferimos ser transparentes con los alcances de las bases de datos públicas disponibles, en lugar de asumir que todo está resuelto al 100%.</p>
+<hr>
+</section>
+<section id="matriz-de-trazabilidad-pregunta---métrica---dimensión---fuente" class="level2">
+<h2 class="anchored" data-anchor-id="matriz-de-trazabilidad-pregunta---métrica---dimensión---fuente">Matriz de Trazabilidad Pregunta - Métrica - Dimensión - Fuente</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 19%">
+<col style="width: 15%">
+<col style="width: 15%">
+<col style="width: 15%">
+<col style="width: 15%">
+<col style="width: 19%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Pregunta E0</th>
+<th style="text-align: left;">Tarea de Minería</th>
+<th style="text-align: left;">Métricas (Hecho)</th>
+<th style="text-align: left;">Dimensiones Asociadas</th>
+<th style="text-align: left;">Fuentes de Datos Utilizadas</th>
+<th style="text-align: center;">Estado</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><strong>P1</strong></td>
+<td style="text-align: left;">Clasificación Binaria (Aptitud Técnica)</td>
+<td style="text-align: left;"><code>num_pcs_funcionales</code></td>
+<td style="text-align: left;"><code>dim_cct</code>, <code>dim_geografica</code>, <code>dim_fecha</code></td>
+<td style="text-align: left;">SEP (SIGED)</td>
+<td style="text-align: center;"><strong>Cubierta parcialmente</strong></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><strong>P2</strong></td>
+<td style="text-align: left;">Scoring / Ranking (Priorización Social)</td>
+<td style="text-align: left;"><code>indice_prioridad</code>, <code>matricula_total</code></td>
+<td style="text-align: left;"><code>dim_cct</code>, <code>dim_geografica</code>, <code>dim_marginacion</code></td>
+<td style="text-align: left;">SEP (Padrón CCT), CONAPO &amp; INEGI</td>
+<td style="text-align: center;">Cubierta <em>(depende de P1)</em></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><strong>P3</strong></td>
+<td style="text-align: left;">Clustering k-Means (Perfiles Hardware)</td>
+<td style="text-align: left;"><code>total_equipos_laboratorio</code>, <code>tiene_red_local</code></td>
+<td style="text-align: left;"><code>dim_cct</code>, <code>dim_perfil_hardware</code></td>
+<td style="text-align: left;">SEP (SIGED) &amp; INEGI (Tabulados)</td>
+<td style="text-align: center;">Cubierta <em>(depende de P1)</em></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><strong>P4</strong></td>
+<td style="text-align: left;">Regresión Predictiva (Ahorro Financiero)</td>
+<td style="text-align: left;"><code>monto_ahorro_licenciamiento_mxn</code></td>
+<td style="text-align: left;"><code>dim_geografica</code>, <code>dim_fecha</code>, <code>dim_cct</code></td>
+<td style="text-align: left;">SHCP (PEF Ramo 11) &amp; Precios Públicos</td>
+<td style="text-align: center;"><strong>Cubierta</strong></td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+<section id="limitación-explícita-en-el-alcance" class="level2">
+<h2 class="anchored" data-anchor-id="limitación-explícita-en-el-alcance">Limitación explícita en el alcance</h2>
+<p><strong>¿Por qué P1 está marcada como “Cubierta parcialmente”?</strong></p>
+<p>Para saber si una escuela es apta para migrar a Linux, fijamos en el Canvas de <span class="math inline">\(E0\)</span> que los equipos deben tener al menos <strong>2 GB de RAM y procesador compatible</strong>. Sin embargo, en las bases públicas disponibles (SIGED) no existe ese nivel de detalle por componente individual; solo contamos con el total de computadoras funcionales por plantel.</p>
+<p>Esta limitación ya la habíamos contemplado como el <strong>Riesgo 1</strong> en <code>riesgos_supuestos.qmd</code>. Como el levantamiento directo en campo para resolverlo sigue pendiente, no podemos dar por hecho que la variable de RAM/procesador esté validada. De momento, tomamos <code>num_pcs_funcionales</code> como un indicador aproximado (<em>proxy</em>) de viabilidad.</p>
+<p><strong>Nota sobre la variable de electricidad:</strong> En un borrador previo contemplábamos incluir la disponibilidad de energía eléctrica atribuida al censo CEMABE (INEGI-SEP, 2013). Debido a que no logramos verificar el archivo descargable ni la columna exacta dentro de los plazos de esta entrega, <strong>decidimos excluir la variable del hecho</strong> para evitar citar datos sin confirmación directa.</p>
+<p><strong>Impacto en P2 y P3:</strong> Dado que <span class="math inline">\(P2\)</span> y <span class="math inline">\(P3\)</span> usan el filtro de <span class="math inline">\(P1\)</span> para calcular los rankings de priorización y perfiles de equipo, ambas heredan la misma incertidumbre. Sus fuentes directas (matrícula, marginación, red local) sí están completas, pero el resultado final dependerá de consolidar el dato de <span class="math inline">\(P1\)</span>.</p>
+<p><strong>Propuesta para <code>estrella.qmd</code>:</strong> En <code>dim_cct</code> mantendremos los campos <code>ram_estimada</code> y <code>procesador_generacion</code> declarados como nulos o pendientes en lugar de omitirlos. Así dejamos documentada la limitación en la estructura sin esconder el dato faltante.</p>
+<hr>
+</section>
+<section id="integridad-dimensional-cero-dimensiones-huérfanas" class="level2">
+<h2 class="anchored" data-anchor-id="integridad-dimensional-cero-dimensiones-huérfanas">Integridad Dimensional (Cero Dimensiones Huérfanas)</h2>
+<ul>
+<li><strong><code>dim_fecha</code></strong>: permite medir el avance temporal de las brigadas y dar seguimiento al ahorro acumulado por ciclo escolar (<span class="math inline">\(P1, P4\)</span>).</li>
+<li><strong><code>dim_cct</code></strong>: identifica de forma única a cada plantel, asociando su infraestructura básica y la cantidad de equipos a actualizar (<span class="math inline">\(P1, P2, P3\)</span>).</li>
+<li><strong><code>dim_geografica</code></strong>: agrupa los planteles por estado, municipio y localidad para planear las rutas de visita y costeo regional (<span class="math inline">\(P1, P2, P4\)</span>).</li>
+<li><strong><code>dim_marginacion</code></strong>: integra los datos de CONAPO para dar peso prioritario a las escuelas en municipios con mayor rezago social (<span class="math inline">\(P2\)</span>).</li>
+<li><strong><code>dim_perfil_hardware</code></strong>: clasifica los laboratorios para sugerir la imagen ISO adecuada, condicionada a la validación de <span class="math inline">\(P1\)</span> (<span class="math inline">\(P3\)</span>).</li>
+</ul>
+</section>
+</div>
 
 
 

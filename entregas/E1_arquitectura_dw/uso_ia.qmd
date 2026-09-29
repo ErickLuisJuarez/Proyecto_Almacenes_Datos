@@ -1,0 +1,51 @@
+---
+title: "Documentación sobre el Uso de Herramientas de IA"
+subtitle: "E1: Arquitectura del DW — Rescate Tecnológico con Linux"
+author:
+  - "Erick Luis Juárez"
+  - "Julio Alejandro Herrera Avalos"
+  - "Luis Mario Solares Ramos"
+  - "Cesar Candelario Fuentes Anica"
+date: "2026-09-28"
+format:
+  html:
+    theme: cosmo
+    toc: true
+---
+
+::: {.column-page-left}
+
+En cumplimiento con los lineamientos éticos de la asignatura, se documenta a continuación el uso de herramientas de inteligencia artificial e investigación profunda durante el desarrollo de la Entrega E1.
+
+## Herramientas utilizadas y metodología de trabajo
+
+El equipo utilizó herramientas de asistencia con lenguaje natural y deep research para agilizar la búsqueda de fuentes de datos, estructurar el proyecto en Quarto y diseñar la arquitectura del Data Warehouse. Ninguna salida generada por las IA se incorporó al catálogo ni a los documentos sin haber sido abierta, inspeccionada y confirmada directamente por los integrantes del equipo.
+
+---
+
+## Bitácora de prompts y aportaciones por herramienta
+
+| Herramienta | Tarea específica | Prompt empleado (resumen) | Resultado obtenido | Validación del equipo |
+| :--- | :--- | :--- | :--- | :--- |
+| **Google Gemini** | Estructuración del proyecto en Quarto, navegación y redacción | *"Ayúdame a estructurar el sitio web de Quarto (`_quarto.yml`), organizar la navegación del repositorio y corregir la redacción técnica de los documentos `.qmd`."* | Propuesta de estructura de directorios, plantilla de navegación para Quarto y borradores para la redacción de los documentos técnicos (`trazabilidad.qmd`, `pivote.qmd`). | Se verifico la compilación local del sitio Quarto, ajustó la navegación lateral y refinó la redacción para garantizar concordancia con E0. |
+| **Claude (Anthropic)** | Análisis de trazabilidad, justificación de pivote y verificación de fuentes | *"Revisa este análisis de trazabilidad y analiza si la limitación de datos en P1 requiere un pivote metodológico. Confirma si el portal del SIGED o CEMABE reportan electricidad por plantel."* | Argumento técnico para justificar que el cambio de grano no constituye un pivote e identificación de la falta de microdatos descargables para la variable de electricidad a nivel CCT. | Erick revisó manuealmente la lógica de trazabilidad y el equipo decidió descartar la variable `tiene_energia_electrica` del hecho de P1 al no poder auditar el archivo `.csv` descargable directo. |
+| **[PENDIENTE]** | *[Completar por Alejandro, Mario o Cesar]* | *[Prompt empleado]* | *[Resultado obtenido]* | *[Validación realizada]* |
+
+---
+
+## Fuentes propuestas y descartadas
+
+| Fuente propuesta por IA | Herramienta que la sugirió | Motivo del descarte |
+| :--- | :--- | :--- |
+| CEMABE (INEGI-SEP, 2013) — variable `tiene_energia_electrica` | Claude | No se logró ubicar el microdato público descargable a nivel CCT . En apego al principio de transparencia, se prefirió descartar la variable antes que citar una fuente no auditada sin datos verificables. |
+| *[COMPLETAR]* | *[COMPLETAR]* | *[COMPLETAR]* |
+
+---
+
+---
+
+## Declaración de responsabilidad
+
+El equipo verificó rigurosamente que ningún archivo de llaves `.json`, token de acceso o credencial de servicio de Google Cloud fuera subido al repositorio público de GitHub. Ninguna fuente de datos ni afirmación sobre la cobertura del Data Warehouse fue incorporada al entregable sin la confirmación directa por parte de los integrantes del equipo.
+
+:::

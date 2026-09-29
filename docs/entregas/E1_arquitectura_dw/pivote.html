@@ -12,7 +12,7 @@
 <meta name="author" content="Cesar Candelario Fuentes Anica">
 <meta name="dcterms.date" content="2026-09-28">
 
-<title>Arquitectura en GCP BigQuery y Capas del DW – Proyecto Almacenes y Minería de Datos</title>
+<title>Análisis de Alineación Metodológica y Pivote – Proyecto Almacenes y Minería de Datos</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -79,6 +79,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -110,27 +139,27 @@ ul.task-list li input[type="checkbox"] {
     <ul class="dropdown-menu" aria-labelledby="nav-menu-e0-comprensión-del-negocio">    
         <li>
     <a class="dropdown-item" href="../../entregas/E0_comprension_negocio/bitacora.html">
- <span class="dropdown-text">Bitácora de Entrevista con el Stakeholder</span></a>
+ <span class="dropdown-text">Bitácora</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="../../entregas/E0_comprension_negocio/canvas.html">
- <span class="dropdown-text">Business Understanding Canvas</span></a>
+ <span class="dropdown-text">Canvas</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="../../entregas/E0_comprension_negocio/preguntas.html">
- <span class="dropdown-text">Preguntas de Investigación Priorizadas</span></a>
+ <span class="dropdown-text">Preguntas</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="../../entregas/E0_comprension_negocio/criterio_exito.html">
- <span class="dropdown-text">Criterio de Éxito en Términos de Negocio</span></a>
+ <span class="dropdown-text">Criterios de Éxito</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="../../entregas/E0_comprension_negocio/riesgos_supuestos.html">
- <span class="dropdown-text">Matriz de Supuestos y Riesgos</span></a>
+ <span class="dropdown-text">Riesgos y Supuestos</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="../../entregas/E0_comprension_negocio/uso_ia.html">
- <span class="dropdown-text">Documentación sobre el Uso de Herramientas de IA</span></a>
+ <span class="dropdown-text">Uso de IA</span></a>
   </li>  
     </ul>
   </li>
@@ -139,12 +168,30 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text">E1: Arquitectura del DW</span>
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-e1-arquitectura-del-dw">    
-        <li class="dropdown-header">entregas/E1_arquitectura_dw/fuentes.qmd</li>
-        <li class="dropdown-header">entregas/E1_arquitectura_dw/estrella.qmd</li>
-        <li class="dropdown-header">entregas/E1_arquitectura_dw/arquitectura.qmd</li>
-        <li class="dropdown-header">entregas/E1_arquitectura_dw/trazabilidad.qmd</li>
-        <li class="dropdown-header">entregas/E1_arquitectura_dw/pivote.qmd</li>
-        <li class="dropdown-header">entregas/E1_arquitectura_dw/uso_ia.qmd</li>
+        <li>
+    <a class="dropdown-item" href="../../entregas/E1_arquitectura_dw/fuentes.html">
+ <span class="dropdown-text">Catálogo de Fuentes</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../entregas/E1_arquitectura_dw/estrella.html">
+ <span class="dropdown-text">Modelo Estrella</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../entregas/E1_arquitectura_dw/arquitectura.html">
+ <span class="dropdown-text">Arquitectura BigQuery</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../entregas/E1_arquitectura_dw/trazabilidad.html">
+ <span class="dropdown-text">Matriz de Trazabilidad</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../entregas/E1_arquitectura_dw/pivote.html">
+ <span class="dropdown-text">Análisis de Pivote</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../entregas/E1_arquitectura_dw/uso_ia.html">
+ <span class="dropdown-text">Uso de IA</span></a>
+  </li>  
     </ul>
   </li>
 </ul>
@@ -162,11 +209,11 @@ ul.task-list li input[type="checkbox"] {
         
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
+<main class="content page-columns page-full" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Arquitectura en GCP BigQuery y Capas del DW</h1>
+<h1 class="title">Análisis de Alineación Metodológica y Pivote</h1>
 <p class="subtitle lead">E1: Arquitectura del DW — Rescate Tecnológico con Linux</p>
 </div>
 
@@ -199,6 +246,33 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<div class="column-page-left">
+<section id="evaluación-de-necesidad-de-pivote" class="level2">
+<h2 class="anchored" data-anchor-id="evaluación-de-necesidad-de-pivote">Evaluación de necesidad de pivote</h2>
+<p>Al buscar y catalogar las fuentes oficiales, confirmamos algo que ya teníamos en el radar como un riesgo desde E0: las bases de datos abiertas públicas traen la información <strong>agregada por escuela (CCT)</strong> como el conteo total de computadoras operativa pero no traen la ficha técnica detallada por componente individual (RAM, procesador o año de compra de cada máquina).</p>
+<hr>
+</section>
+<section id="por-qué-es-un-ajuste-de-grano-y-no-un-pivote-de-tema" class="level2">
+<h2 class="anchored" data-anchor-id="por-qué-es-un-ajuste-de-grano-y-no-un-pivote-de-tema">Por qué es un ajuste de grano y no un pivote de tema</h2>
+<p>Adaptar la granularidad a lo que realmente ofrecen los datos no cuenta como un pivote. Un pivote real solo ocurre si se modifica el <strong>objetivo de minería de datos</strong> o el <strong>criterio de éxito</strong> fijados en E0. En nuestro caso, el proyecto se mantiene alineado por las siguientes razones:</p>
+<ol type="1">
+<li><strong>Sin cambio de dominio ni de objetivo:</strong> seguimos optimizando la priorización y la logística para instalar Linux Mint en secundarias y bachilleratos públicos, exactamente igual a lo planteado en E0.</li>
+<li><strong>El grano se declara desde los datos reales:</strong> como SIGED reporta a nivel de plantel y no por número de serie individual, fijamos la granularidad de la tabla de hechos como <strong>“una fila por Centro de Trabajo (CCT) por ciclo escolar”</strong>.</li>
+<li><strong>Reconocemos la limitación sin “inventar” datos:</strong> el modelo para la clasificación técnica (<span class="math inline">\(P1\)</span>) por ahora <strong>no puede</strong> validar el umbral de RAM <span class="math inline">\(\ge\)</span> 2 GB planteado en el Canvas de E0, sencillamente porque esa variable no existe en ninguna fuente pública verificada. Esto queda documentado como cobertura <strong>parcial</strong> en <code>trazabilidad.qmd</code> y dependerá del muestreo directo en campo (Riesgo 1 en <code>riesgos_supuestos.qmd</code> de E0) para ser resuelto en etapas posteriores.</li>
+</ol>
+<hr>
+</section>
+<section id="variable-descartada-durante-la-verificación-electricidad-por-plantel" class="level2">
+<h2 class="anchored" data-anchor-id="variable-descartada-durante-la-verificación-electricidad-por-plantel">Variable descartada durante la verificación: electricidad por plantel</h2>
+<p>En un borrador previo contemplábamos incluir la variable <code>tiene_energia_electrica</code> atribuida al censo. Al intentar verificar la fuente de forma directa descargando el archivo para validar el esquema real y no solo confiando en referencias secundarias, no fue posible confirmar que el dataset incluyera la columna exacta por CCT.</p>
+<p>En apego al criterio de transparencia del equipo, decidimos descartar dicha variable de la tabla de hechos en lugar de citar una fuente no auditada.</p>
+<hr>
+</section>
+<section id="conclusión" class="level2">
+<h2 class="anchored" data-anchor-id="conclusión">Conclusión</h2>
+<p><strong>No se requirió un pivote de tema ni un cambio en las metas de minería de E0.</strong> El modelo dimensional del Data Warehouse absorbió bien el ajuste de granularidad. Dejamos documentada esta limitación en la matriz de trazabilidad para reflejar con honestidad el estado real del proyecto.</p>
+</section>
+</div>
 
 
 

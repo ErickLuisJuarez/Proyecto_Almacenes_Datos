@@ -1,0 +1,46 @@
+---
+title: "Análisis de Alineación Metodológica y Pivote"
+subtitle: "E1: Arquitectura del DW — Rescate Tecnológico con Linux"
+author:
+  - "Erick Luis Juárez"
+  - "Julio Alejandro Herrera Avalos"
+  - "Luis Mario Solares Ramos"
+  - "Cesar Candelario Fuentes Anica"
+date: "2026-09-28"
+format:
+  html:
+    theme: cosmo
+    toc: true
+---
+
+::: {.column-page-left}
+
+## Evaluación de necesidad de pivote
+
+Al buscar y catalogar las fuentes oficiales, confirmamos algo que ya teníamos en el radar como un riesgo desde E0: las bases de datos abiertas públicas traen la información **agregada por escuela (CCT)** como el conteo total de computadoras operativa pero no traen la ficha técnica detallada por componente individual (RAM, procesador o año de compra de cada máquina).
+
+---
+
+## Por qué es un ajuste de grano y no un pivote de tema
+
+Adaptar la granularidad a lo que realmente ofrecen los datos no cuenta como un pivote. Un pivote real solo ocurre si se modifica el **objetivo de minería de datos** o el **criterio de éxito** fijados en E0. En nuestro caso, el proyecto se mantiene alineado por las siguientes razones:
+
+1. **Sin cambio de dominio ni de objetivo:** seguimos optimizando la priorización y la logística para instalar Linux Mint en secundarias y bachilleratos públicos, exactamente igual a lo planteado en E0.
+2. **El grano se declara desde los datos reales:** como SIGED reporta a nivel de plantel y no por número de serie individual, fijamos la granularidad de la tabla de hechos como **"una fila por Centro de Trabajo (CCT) por ciclo escolar"**.
+3. **Reconocemos la limitación sin "inventar" datos:** el modelo para la clasificación técnica ($P1$) por ahora **no puede** validar el umbral de RAM $\ge$ 2 GB planteado en el Canvas de E0, sencillamente porque esa variable no existe en ninguna fuente pública verificada. Esto queda documentado como cobertura **parcial** en `trazabilidad.qmd` y dependerá del muestreo directo en campo (Riesgo 1 en `riesgos_supuestos.qmd` de E0) para ser resuelto en etapas posteriores.
+
+---
+
+## Variable descartada durante la verificación: electricidad por plantel
+
+En un borrador previo contemplábamos incluir la variable `tiene_energia_electrica` atribuida al censo. Al intentar verificar la fuente de forma directa descargando el archivo para validar el esquema real y no solo confiando en referencias secundarias, no fue posible confirmar que el dataset incluyera la columna exacta por CCT. 
+
+En apego al criterio de transparencia del equipo, decidimos descartar dicha variable de la tabla de hechos en lugar de citar una fuente no auditada.
+
+---
+
+## Conclusión
+
+**No se requirió un pivote de tema ni un cambio en las metas de minería de E0.** El modelo dimensional del Data Warehouse absorbió bien el ajuste de granularidad. Dejamos documentada esta limitación en la matriz de trazabilidad para reflejar con honestidad el estado real del proyecto.
+
+:::
