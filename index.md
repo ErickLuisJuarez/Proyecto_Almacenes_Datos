@@ -43,4 +43,13 @@ A través de la barra de navegación superior se puede acceder a las distintas s
 * **[Supuestos y Riesgos]:** Amenazas asociadas al proyecto, compatibilidad de hardware y planes de mitigación.
 * **[Uso de IA]:** Registro transparente del apoyo de modelos de lenguaje en el diseño del entregable.
 
+#### **E1: Arquitectura del DW (Almacén de Datos)**
+
+* **Catálogo de Fuentes:** Selección e integración de bases de datos públicas oficiales
+* **Diseño Dimensional:** Esquema estrella, granularidad de los hechos y diagrama ER del DW
+* **Capas y BigQuery:** Documentación técnica del flujo en 3 capas (Staging $\rightarrow$ DW $\rightarrow$ DataMart) y scripts SQL
+* **Matriz de Trazabilidad:** Mapeo de la cobertura de preguntas de negocio con dimensiones y métricas sin dimensiones huérfanas
+* **Análisis de Pivote:** Evaluación de granularidad y ajustes metodológicos derivados de las fuentes reales
+* **Uso de IA:** Bitácora de prompts y proceso de validación técnica de código e infraestructura
+
 :::

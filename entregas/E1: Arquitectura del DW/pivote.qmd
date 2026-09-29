@@ -1,0 +1,14 @@
+---
+title: "Análisis de Alineación Metodológica y Pivote"
+subtitle: "E1: Arquitectura del DW — Rescate Tecnológico con Linux"
+author:
+  - "Erick Luis Juárez"
+  - "Julio Alejandro Herrera Avalos"
+  - "Luis Mario Solares Ramos"
+  - "Cesar Candelario Fuentes Anica"
+date: "2026-09-28"
+format:
+  html:
+    theme: cosmo
+    toc: true
+---

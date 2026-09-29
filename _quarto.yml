@@ -15,6 +15,14 @@ website:
           - entregas/E0_comprension_negocio/criterio_exito.qmd
           - entregas/E0_comprension_negocio/riesgos_supuestos.qmd
           - entregas/E0_comprension_negocio/uso_ia.qmd
+      - text: "E1: Arquitectura del DW"
+        menu:
+          - entregas/E1_arquitectura_dw/fuentes.qmd
+          - entregas/E1_arquitectura_dw/estrella.qmd
+          - entregas/E1_arquitectura_dw/arquitectura.qmd
+          - entregas/E1_arquitectura_dw/trazabilidad.qmd
+          - entregas/E1_arquitectura_dw/pivote.qmd
+          - entregas/E1_arquitectura_dw/uso_ia.qmd
 
 format:
   html:
