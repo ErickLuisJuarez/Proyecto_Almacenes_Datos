@@ -47,7 +47,7 @@ El cruce se realiza a nivel de granularidad CCT para infraestructura y por entid
 
 ---
 
-## Integridad Dimensional (Cero Dimensiones Huérfanas)
+## Integridad Dimensional
 
 * **`dim_fecha`**: Mide el avance temporal de las brigadas y el ahorro acumulado por ciclo escolar ($P1, P4$)
 * **`dim_cct`**: Identifica de forma única a cada plantel, asociando su infraestructura básica (`con_luz`, `internet`) y cantidad de equipos a actualizar ($P1, P2, P3$)

@@ -43,7 +43,7 @@ A través de la barra de navegación superior se puede acceder a las distintas s
 * **[Supuestos y Riesgos]:** Amenazas asociadas al proyecto, compatibilidad de hardware y planes de mitigación.
 * **[Uso de IA]:** Registro transparente del apoyo de modelos de lenguaje en el diseño del entregable.
 
-#### **E1: Arquitectura del DW (Almacén de Datos)**
+#### **E1: Arquitectura del DW**
 
 * **Catálogo de Fuentes:** Selección e integración de bases de datos públicas oficiales
 * **Diseño Dimensional:** Esquema estrella, granularidad de los hechos y diagrama ER del DW
