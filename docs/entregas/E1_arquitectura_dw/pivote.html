@@ -247,30 +247,39 @@ window.Quarto = {
 
 
 <div class="column-page-left">
-<section id="evaluación-de-necesidad-de-pivote" class="level2">
-<h2 class="anchored" data-anchor-id="evaluación-de-necesidad-de-pivote">Evaluación de necesidad de pivote</h2>
-<p>Al buscar y catalogar las fuentes oficiales, confirmamos algo que ya teníamos en el radar como un riesgo desde E0: las bases de datos abiertas públicas traen la información <strong>agregada por escuela (CCT)</strong> como el conteo total de computadoras operativa pero no traen la ficha técnica detallada por componente individual (RAM, procesador o año de compra de cada máquina).</p>
+<section id="evaluación-de-la-necesidad-de-pivote" class="level2">
+<h2 class="anchored" data-anchor-id="evaluación-de-la-necesidad-de-pivote">Evaluación de la necesidad de pivote</h2>
+<p>Al catalogar y auditar las fuentes abiertas oficiales descargadas de los portales gubernamentales (<code>Infraestructura.csv</code> de la SEP, <code>Indice_de_marginacion.csv</code> de CONAPO y <code>PEF_2026.csv</code> de la SHCP), confirmamos la viabilidad del proyecto bajo los supuestos planteados desde <span class="math inline">\(E0\)</span>: las fuentes reportan la información agregada a nivel de <strong>Centro de Trabajo (CCT)</strong> como el inventario de computadoras, laptops y el estado del servicio eléctrico, en lugar de una ficha técnica por número de serie individual (RAM o procesador por equipo).</p>
 <hr>
-</section>
-<section id="por-qué-es-un-ajuste-de-grano-y-no-un-pivote-de-tema" class="level2">
-<h2 class="anchored" data-anchor-id="por-qué-es-un-ajuste-de-grano-y-no-un-pivote-de-tema">Por qué es un ajuste de grano y no un pivote de tema</h2>
-<p>Adaptar la granularidad a lo que realmente ofrecen los datos no cuenta como un pivote. Un pivote real solo ocurre si se modifica el <strong>objetivo de minería de datos</strong> o el <strong>criterio de éxito</strong> fijados en E0. En nuestro caso, el proyecto se mantiene alineado por las siguientes razones:</p>
+<p>Para adaptar la granularidad a lo que ofrecen las bases de datos públicas no constituye un pivote. Un pivote solo se declara si se modifica el objetivo de minería de datos o el criterio de éxito definidos en <span class="math inline">\(E0\)</span> por lo que nuestro proyecto se mantiene 100% alineado por las siguientes razones:</p>
 <ol type="1">
-<li><strong>Sin cambio de dominio ni de objetivo:</strong> seguimos optimizando la priorización y la logística para instalar Linux Mint en secundarias y bachilleratos públicos, exactamente igual a lo planteado en E0.</li>
-<li><strong>El grano se declara desde los datos reales:</strong> como SIGED reporta a nivel de plantel y no por número de serie individual, fijamos la granularidad de la tabla de hechos como <strong>“una fila por Centro de Trabajo (CCT) por ciclo escolar”</strong>.</li>
-<li><strong>Reconocemos la limitación sin “inventar” datos:</strong> el modelo para la clasificación técnica (<span class="math inline">\(P1\)</span>) por ahora <strong>no puede</strong> validar el umbral de RAM <span class="math inline">\(\ge\)</span> 2 GB planteado en el Canvas de E0, sencillamente porque esa variable no existe en ninguna fuente pública verificada. Esto queda documentado como cobertura <strong>parcial</strong> en <code>trazabilidad.qmd</code> y dependerá del muestreo directo en campo (Riesgo 1 en <code>riesgos_supuestos.qmd</code> de E0) para ser resuelto en etapas posteriores.</li>
+<li><strong>Sin cambio de dominio ni de objetivo:</strong> Seguimos optimizando la priorización y la logística de despliegue de Linux Mint para el rescate de computadoras en primarias, secundarias y bachilleratos o eduación a eduación basica y media superior</li>
+<li><strong>El grano se declara a partir de las fuentes auditadas:</strong> Dado que la SEP reporta por plantel, fijamos la granularidad de la tabla de hechos como <strong>“una fila por Centro de Trabajo (CCT) por ciclo escolar”</strong>.</li>
+<li><strong>Reconocimiento de la limitación de hardware:</strong> La clasificación técnica (<span class="math inline">\(P1\)</span>) evalúa la aptitud del plantel utilizando las variables verificables en el dataset (<code>con_luz</code>, <code>computadora</code>, <code>laptop</code>, <code>internet</code>). La validación del umbral específico de RAM <span class="math inline">\(\ge\)</span> 2 GB se mantiene documentada como un atributo proxy sujeto al muestreo directo en campo ya que este no aparece en alguna base de datos publica que nos pueda facilitar esa parte</li>
 </ol>
 <hr>
 </section>
-<section id="variable-descartada-durante-la-verificación-electricidad-por-plantel" class="level2">
-<h2 class="anchored" data-anchor-id="variable-descartada-durante-la-verificación-electricidad-por-plantel">Variable descartada durante la verificación: electricidad por plantel</h2>
-<p>En un borrador previo contemplábamos incluir la variable <code>tiene_energia_electrica</code> atribuida al censo. Al intentar verificar la fuente de forma directa descargando el archivo para validar el esquema real y no solo confiando en referencias secundarias, no fue posible confirmar que el dataset incluyera la columna exacta por CCT.</p>
-<p>En apego al criterio de transparencia del equipo, decidimos descartar dicha variable de la tabla de hechos en lugar de citar una fuente no auditada.</p>
+<section id="confirmación-y-validación-de-variables-e-integración-de-fuentes" class="level2">
+<h2 class="anchored" data-anchor-id="confirmación-y-validación-de-variables-e-integración-de-fuentes">Confirmación y validación de variables e integración de fuentes</h2>
+<p>A diferencia de borradores preliminares donde se contemplaba descartar la variable de energía eléctrica por falta de microdatos en censos históricos, se tuvo que hacer una inspección directa en bases de datos y en la busqueda encontramos el archivo <code>Infraestructura.csv</code> (SEP/SIGED) donde confirmamos la presencia explícita de las siguientes columnas a nivel CCT:</p>
+<ul>
+<li><strong><code>con_luz</code></strong>: Estatus de la instalación eléctrica (<code>CON LUZ</code> / <code>SIN LUZ</code>).</li>
+<li><strong><code>computadora</code> y <code>laptop</code></strong>: Inventario total de equipos de cómputo por escuela.</li>
+<li><strong><code>internet</code></strong>: Disponibilidad de conectividad (<code>CON INTERNET</code> / <code>SIN INTERNET</code>).</li>
+</ul>
+<section id="mecanismo-de-integración-multidominio-cruce-de-fuentes" class="level3">
+<h3 class="anchored" data-anchor-id="mecanismo-de-integración-multidominio-cruce-de-fuentes">Mecanismo de integración multidominio (Cruce de fuentes):</h3>
+<p>Para alimentar las preguntas <span class="math inline">\(P1\)</span>, <span class="math inline">\(P2\)</span>, <span class="math inline">\(P3\)</span> y <span class="math inline">\(P4\)</span>, la capa de transformación (<code>eq_staging</code>) en BigQuery integra los tres datasets tomando como pivote geográfico la entidad federativa:</p>
+<ol type="1">
+<li><strong>SEP <span class="math inline">\(\leftrightarrow\)</span> CONAPO (<span class="math inline">\(P2\)</span>):</strong> Se enlaza <code>entidad_federativa</code> de <code>Infraestructura.csv</code> con <code>NOM_ENT</code> de <code>Indice_de_marginacion.csv</code> para asociar el Índice de Marginación (<code>IM_2020</code>) y Grado de Marginación (<code>GM_2020</code>) a cada CCT.</li>
+<li><strong>SEP <span class="math inline">\(\leftrightarrow\)</span> SHCP (<span class="math inline">\(P4\)</span>):</strong> Se enlaza <code>entidad_federativa</code> con <code>DESC_ENTIDAD_FEDERATIVA</code> de <code>PEF_2026.csv</code> (filtrando el Ramo 11 de Educación Pública) para contrastar el presupuesto estatal contra el ahorro estimado por licencias comerciales evadidas (<code>(computadora + laptop) * costo_licencia</code>).</li>
+</ol>
 <hr>
+</section>
 </section>
 <section id="conclusión" class="level2">
 <h2 class="anchored" data-anchor-id="conclusión">Conclusión</h2>
-<p><strong>No se requirió un pivote de tema ni un cambio en las metas de minería de E0.</strong> El modelo dimensional del Data Warehouse absorbió bien el ajuste de granularidad. Dejamos documentada esta limitación en la matriz de trazabilidad para reflejar con honestidad el estado real del proyecto.</p>
+<p>No se requirió un pivote de tema ni una modificación en las metas de minería de <span class="math inline">\(E0\)</span> ya que el modelo dimensional absorbió de forma natural el ajuste de granularidad a nivel CCT y la integración por entidad federativa de las tres dependencias (SEP, CONAPO y SHCP), manteniendo la coherencia metodológica y la transparencia en el alcance de los datos públicos.</p>
 </section>
 </div>
 

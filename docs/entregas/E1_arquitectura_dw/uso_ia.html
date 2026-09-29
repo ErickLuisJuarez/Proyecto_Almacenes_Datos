@@ -248,15 +248,15 @@ ul.task-list li input[type="checkbox"] {
 <td style="text-align: left;"><strong>Google Gemini</strong></td>
 <td style="text-align: left;">Estructuración del proyecto en Quarto, navegación y redacción</td>
 <td style="text-align: left;"><em>“Ayúdame a estructurar el sitio web de Quarto (<code>_quarto.yml</code>), organizar la navegación del repositorio y corregir la redacción técnica de los documentos <code>.qmd</code>.”</em></td>
-<td style="text-align: left;">Propuesta de estructura de directorios, plantilla de navegación para Quarto y borradores para la redacción de los documentos técnicos (<code>trazabilidad.qmd</code>, <code>pivote.qmd</code>).</td>
+<td style="text-align: left;">Propuesta de estructura de directorios, plantilla de navegación para Quarto y borradores para la redacción de los documentos técnicos (<code>trazabilidad.qmd</code>, <code>pivote.qmd</code>) ayudando por ejemplo en las mini portadas de cada documento</td>
 <td style="text-align: left;">Se verifico la compilación local del sitio Quarto, ajustó la navegación lateral y refinó la redacción para garantizar concordancia con E0.</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;"><strong>Claude (Anthropic)</strong></td>
-<td style="text-align: left;">Análisis de trazabilidad, justificación de pivote y verificación de fuentes</td>
-<td style="text-align: left;"><em>“Revisa este análisis de trazabilidad y analiza si la limitación de datos en P1 requiere un pivote metodológico. Confirma si el portal del SIGED o CEMABE reportan electricidad por plantel.”</em></td>
+<td style="text-align: left;">Análisis en la congruencia de los datos de los cvs y el pivote, ayudo con unos bugs en la barra de navegación y problemas con quarto render y verificación de fuentes</td>
+<td style="text-align: left;"><em>“Revisa este análisis de trazabilidad y analiza si la limitación de datos en P1 requiere un pivote metodológico. Confirma si el portal de la SEP reportan electricidad por plantel.”</em></td>
 <td style="text-align: left;">Argumento técnico para justificar que el cambio de grano no constituye un pivote e identificación de la falta de microdatos descargables para la variable de electricidad a nivel CCT.</td>
-<td style="text-align: left;">Erick revisó manuealmente la lógica de trazabilidad y el equipo decidió descartar la variable <code>tiene_energia_electrica</code> del hecho de P1 al no poder auditar el archivo <code>.csv</code> descargable directo.</td>
+<td style="text-align: left;">Se revisó manuealmente la lógica de trazabilidad y despues de revisar varias bases de datos publicas logramos encontrar lo necesario para nuestro criterio de exito</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;"><strong>[PENDIENTE]</strong></td>
@@ -267,37 +267,6 @@ ul.task-list li input[type="checkbox"] {
 </tr>
 </tbody>
 </table>
-<hr>
-</section>
-<section id="fuentes-propuestas-y-descartadas" class="level2">
-<h2 class="anchored" data-anchor-id="fuentes-propuestas-y-descartadas">Fuentes propuestas y descartadas</h2>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 33%">
-<col style="width: 33%">
-<col style="width: 33%">
-</colgroup>
-<thead>
-<tr class="header">
-<th style="text-align: left;">Fuente propuesta por IA</th>
-<th style="text-align: left;">Herramienta que la sugirió</th>
-<th style="text-align: left;">Motivo del descarte</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">CEMABE (INEGI-SEP, 2013) — variable <code>tiene_energia_electrica</code></td>
-<td style="text-align: left;">Claude</td>
-<td style="text-align: left;">No se logró ubicar el microdato público descargable a nivel CCT . En apego al principio de transparencia, se prefirió descartar la variable antes que citar una fuente no auditada sin datos verificables.</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"><em>[COMPLETAR]</em></td>
-<td style="text-align: left;"><em>[COMPLETAR]</em></td>
-<td style="text-align: left;"><em>[COMPLETAR]</em></td>
-</tr>
-</tbody>
-</table>
-<hr>
 <hr>
 </section>
 <section id="declaración-de-responsabilidad" class="level2">

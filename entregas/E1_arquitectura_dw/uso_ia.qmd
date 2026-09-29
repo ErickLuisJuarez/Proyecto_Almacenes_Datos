@@ -27,20 +27,9 @@ El equipo utilizó herramientas de asistencia con lenguaje natural y deep resear
 
 | Herramienta | Tarea específica | Prompt empleado (resumen) | Resultado obtenido | Validación del equipo |
 | :--- | :--- | :--- | :--- | :--- |
-| **Google Gemini** | Estructuración del proyecto en Quarto, navegación y redacción | *"Ayúdame a estructurar el sitio web de Quarto (`_quarto.yml`), organizar la navegación del repositorio y corregir la redacción técnica de los documentos `.qmd`."* | Propuesta de estructura de directorios, plantilla de navegación para Quarto y borradores para la redacción de los documentos técnicos (`trazabilidad.qmd`, `pivote.qmd`). | Se verifico la compilación local del sitio Quarto, ajustó la navegación lateral y refinó la redacción para garantizar concordancia con E0. |
-| **Claude (Anthropic)** | Análisis de trazabilidad, justificación de pivote y verificación de fuentes | *"Revisa este análisis de trazabilidad y analiza si la limitación de datos en P1 requiere un pivote metodológico. Confirma si el portal del SIGED o CEMABE reportan electricidad por plantel."* | Argumento técnico para justificar que el cambio de grano no constituye un pivote e identificación de la falta de microdatos descargables para la variable de electricidad a nivel CCT. | Erick revisó manuealmente la lógica de trazabilidad y el equipo decidió descartar la variable `tiene_energia_electrica` del hecho de P1 al no poder auditar el archivo `.csv` descargable directo. |
+| **Google Gemini** | Estructuración del proyecto en Quarto, navegación y redacción | *"Ayúdame a estructurar el sitio web de Quarto (`_quarto.yml`), organizar la navegación del repositorio y corregir la redacción técnica de los documentos `.qmd`."* | Propuesta de estructura de directorios, plantilla de navegación para Quarto y borradores para la redacción de los documentos técnicos (`trazabilidad.qmd`, `pivote.qmd`) ayudando por ejemplo en las mini portadas de cada documento | Se verifico la compilación local del sitio Quarto, ajustó la navegación lateral y refinó la redacción para garantizar concordancia con E0. |
+| **Claude (Anthropic)** | Análisis en la congruencia de los datos de los cvs y el pivote, ayudo con unos bugs en la barra de navegación y problemas con quarto render y verificación de fuentes | *"Revisa este análisis de trazabilidad y analiza si la limitación de datos en P1 requiere un pivote metodológico. Confirma si el portal de la SEP reportan electricidad por plantel."* | Argumento técnico para justificar que el cambio de grano no constituye un pivote e identificación de la falta de microdatos descargables para la variable de electricidad a nivel CCT. |  Se revisó manuealmente la lógica de trazabilidad y despues de revisar varias bases de datos publicas logramos encontrar lo necesario para nuestro criterio de exito |
 | **[PENDIENTE]** | *[Completar por Alejandro, Mario o Cesar]* | *[Prompt empleado]* | *[Resultado obtenido]* | *[Validación realizada]* |
-
----
-
-## Fuentes propuestas y descartadas
-
-| Fuente propuesta por IA | Herramienta que la sugirió | Motivo del descarte |
-| :--- | :--- | :--- |
-| CEMABE (INEGI-SEP, 2013) — variable `tiene_energia_electrica` | Claude | No se logró ubicar el microdato público descargable a nivel CCT . En apego al principio de transparencia, se prefirió descartar la variable antes que citar una fuente no auditada sin datos verificables. |
-| *[COMPLETAR]* | *[COMPLETAR]* | *[COMPLETAR]* |
-
----
 
 ---
 

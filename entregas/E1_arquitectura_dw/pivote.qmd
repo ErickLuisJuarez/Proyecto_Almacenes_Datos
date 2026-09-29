@@ -15,32 +15,38 @@ format:
 
 ::: {.column-page-left}
 
-## Evaluación de necesidad de pivote
+## Evaluación de la necesidad de pivote
 
-Al buscar y catalogar las fuentes oficiales, confirmamos algo que ya teníamos en el radar como un riesgo desde E0: las bases de datos abiertas públicas traen la información **agregada por escuela (CCT)** como el conteo total de computadoras operativa pero no traen la ficha técnica detallada por componente individual (RAM, procesador o año de compra de cada máquina).
-
----
-
-## Por qué es un ajuste de grano y no un pivote de tema
-
-Adaptar la granularidad a lo que realmente ofrecen los datos no cuenta como un pivote. Un pivote real solo ocurre si se modifica el **objetivo de minería de datos** o el **criterio de éxito** fijados en E0. En nuestro caso, el proyecto se mantiene alineado por las siguientes razones:
-
-1. **Sin cambio de dominio ni de objetivo:** seguimos optimizando la priorización y la logística para instalar Linux Mint en secundarias y bachilleratos públicos, exactamente igual a lo planteado en E0.
-2. **El grano se declara desde los datos reales:** como SIGED reporta a nivel de plantel y no por número de serie individual, fijamos la granularidad de la tabla de hechos como **"una fila por Centro de Trabajo (CCT) por ciclo escolar"**.
-3. **Reconocemos la limitación sin "inventar" datos:** el modelo para la clasificación técnica ($P1$) por ahora **no puede** validar el umbral de RAM $\ge$ 2 GB planteado en el Canvas de E0, sencillamente porque esa variable no existe en ninguna fuente pública verificada. Esto queda documentado como cobertura **parcial** en `trazabilidad.qmd` y dependerá del muestreo directo en campo (Riesgo 1 en `riesgos_supuestos.qmd` de E0) para ser resuelto en etapas posteriores.
+Al catalogar y auditar las fuentes abiertas oficiales descargadas de los portales gubernamentales (`Infraestructura.csv` de la SEP, `Indice_de_marginacion.csv` de CONAPO y `PEF_2026.csv` de la SHCP), confirmamos la viabilidad del proyecto bajo los supuestos planteados desde $E0$: las fuentes reportan la información agregada a nivel de **Centro de Trabajo (CCT)** como el inventario de computadoras, laptops y el estado del servicio eléctrico, en lugar de una ficha técnica por número de serie individual (RAM o procesador por equipo).
 
 ---
 
-## Variable descartada durante la verificación: electricidad por plantel
+Para adaptar la granularidad a lo que ofrecen las bases de datos públicas no constituye un pivote. Un pivote solo se declara si se modifica el objetivo de minería de datos o el criterio de éxito definidos en $E0$ por lo que nuestro proyecto se mantiene 100% alineado por las siguientes razones:
 
-En un borrador previo contemplábamos incluir la variable `tiene_energia_electrica` atribuida al censo. Al intentar verificar la fuente de forma directa descargando el archivo para validar el esquema real y no solo confiando en referencias secundarias, no fue posible confirmar que el dataset incluyera la columna exacta por CCT. 
+1. **Sin cambio de dominio ni de objetivo:** Seguimos optimizando la priorización y la logística de despliegue de Linux Mint para el rescate de computadoras en primarias, secundarias y bachilleratos o eduación a eduación basica y media superior
+2. **El grano se declara a partir de las fuentes auditadas:** Dado que la SEP reporta por plantel, fijamos la granularidad de la tabla de hechos como **"una fila por Centro de Trabajo (CCT) por ciclo escolar"**.
+3. **Reconocimiento de la limitación de hardware:** La clasificación técnica ($P1$) evalúa la aptitud del plantel utilizando las variables verificables en el dataset (`con_luz`, `computadora`, `laptop`, `internet`). La validación del umbral específico de RAM $\ge$ 2 GB se mantiene documentada como un atributo proxy sujeto al muestreo directo en campo ya que este no aparece en alguna base de datos publica que nos pueda facilitar esa parte
 
-En apego al criterio de transparencia del equipo, decidimos descartar dicha variable de la tabla de hechos en lugar de citar una fuente no auditada.
+---
+
+## Confirmación y validación de variables e integración de fuentes
+
+A diferencia de borradores preliminares donde se contemplaba descartar la variable de energía eléctrica por falta de microdatos en censos históricos, se tuvo que hacer una inspección directa en bases de datos y en la busqueda encontramos el archivo `Infraestructura.csv` (SEP/SIGED) donde confirmamos la presencia explícita de las siguientes columnas a nivel CCT:
+
+* **`con_luz`**: Estatus de la instalación eléctrica (`CON LUZ` / `SIN LUZ`).
+* **`computadora` y `laptop`**: Inventario total de equipos de cómputo por escuela.
+* **`internet`**: Disponibilidad de conectividad (`CON INTERNET` / `SIN INTERNET`).
+
+### Mecanismo de integración multidominio (Cruce de fuentes):
+Para alimentar las preguntas $P1$, $P2$, $P3$ y $P4$, la capa de transformación (`eq_staging`) en BigQuery integra los tres datasets tomando como pivote geográfico la entidad federativa:
+
+1. **SEP $\leftrightarrow$ CONAPO ($P2$):** Se enlaza `entidad_federativa` de `Infraestructura.csv` con `NOM_ENT` de `Indice_de_marginacion.csv` para asociar el Índice de Marginación (`IM_2020`) y Grado de Marginación (`GM_2020`) a cada CCT.
+2. **SEP $\leftrightarrow$ SHCP ($P4$):** Se enlaza `entidad_federativa` con `DESC_ENTIDAD_FEDERATIVA` de `PEF_2026.csv` (filtrando el Ramo 11 de Educación Pública) para contrastar el presupuesto estatal contra el ahorro estimado por licencias comerciales evadidas (`(computadora + laptop) * costo_licencia`).
 
 ---
 
 ## Conclusión
 
-**No se requirió un pivote de tema ni un cambio en las metas de minería de E0.** El modelo dimensional del Data Warehouse absorbió bien el ajuste de granularidad. Dejamos documentada esta limitación en la matriz de trazabilidad para reflejar con honestidad el estado real del proyecto.
+No se requirió un pivote de tema ni una modificación en las metas de minería de $E0$ ya que el modelo dimensional absorbió de forma natural el ajuste de granularidad a nivel CCT y la integración por entidad federativa de las tres dependencias (SEP, CONAPO y SHCP), manteniendo la coherencia metodológica y la transparencia en el alcance de los datos públicos.
 
 :::

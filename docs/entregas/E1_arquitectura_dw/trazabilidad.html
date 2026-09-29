@@ -250,7 +250,7 @@ window.Quarto = {
 <section id="justificación-del-modelo-dimensional-y-trazabilidad" class="level2">
 <h2 class="anchored" data-anchor-id="justificación-del-modelo-dimensional-y-trazabilidad">Justificación del Modelo Dimensional y Trazabilidad</h2>
 <p>Para garantizar que el diseño del Data Warehouse mantenga los pies sobre la tierra respecto a lo planteado en la etapa de Negocio (<span class="math inline">\(E0\)</span>), amarramos cada tabla y métrica del esquema estrella con las cuatro preguntas de investigación iniciales (<span class="math inline">\(P1, P2, P3, P4\)</span>).</p>
-<p>En esta versión marcamos con total claridad dónde la cobertura es parcial. Preferimos ser transparentes con los alcances de las bases de datos públicas disponibles, en lugar de asumir que todo está resuelto al 100%.</p>
+<p>En esta versión confirmamos la integración exitosa de las fuentes oficiales descargadas de Datos Publicos descargables a los cuales nombramos como: (<code>Infraestructura.csv</code> de la SEP, <code>Indice_de_marginacion.csv</code> de CONAPO y <code>PEF_2026.csv</code> de SHCP).</p>
 <hr>
 </section>
 <section id="matriz-de-trazabilidad-pregunta---métrica---dimensión---fuente" class="level2">
@@ -278,57 +278,54 @@ window.Quarto = {
 <tr class="odd">
 <td style="text-align: center;"><strong>P1</strong></td>
 <td style="text-align: left;">Clasificación Binaria (Aptitud Técnica)</td>
-<td style="text-align: left;"><code>num_pcs_funcionales</code></td>
+<td style="text-align: left;"><code>computadora</code>, <code>laptop</code>, <code>con_luz</code>, <code>internet</code></td>
 <td style="text-align: left;"><code>dim_cct</code>, <code>dim_geografica</code>, <code>dim_fecha</code></td>
-<td style="text-align: left;">SEP (SIGED)</td>
-<td style="text-align: center;"><strong>Cubierta parcialmente</strong></td>
+<td style="text-align: left;">SEP / SIGED (<code>Infraestructura.csv</code>)</td>
+<td style="text-align: center;"><strong>Cubierta (con proxy)</strong></td>
 </tr>
 <tr class="even">
 <td style="text-align: center;"><strong>P2</strong></td>
 <td style="text-align: left;">Scoring / Ranking (Priorización Social)</td>
-<td style="text-align: left;"><code>indice_prioridad</code>, <code>matricula_total</code></td>
+<td style="text-align: left;"><code>IM_2020</code>, <code>GM_2020</code>, <code>POB_TOT</code></td>
 <td style="text-align: left;"><code>dim_cct</code>, <code>dim_geografica</code>, <code>dim_marginacion</code></td>
-<td style="text-align: left;">SEP (Padrón CCT), CONAPO &amp; INEGI</td>
-<td style="text-align: center;">Cubierta <em>(depende de P1)</em></td>
+<td style="text-align: left;">CONAPO / INEGI (<code>Indice_de_marginacion.csv</code>)</td>
+<td style="text-align: center;"><strong>Cubierta al 100%</strong></td>
 </tr>
 <tr class="odd">
 <td style="text-align: center;"><strong>P3</strong></td>
 <td style="text-align: left;">Clustering k-Means (Perfiles Hardware)</td>
-<td style="text-align: left;"><code>total_equipos_laboratorio</code>, <code>tiene_red_local</code></td>
+<td style="text-align: left;"><code>total_equipos</code> (<code>computadora</code> + <code>laptop</code>), <code>internet</code></td>
 <td style="text-align: left;"><code>dim_cct</code>, <code>dim_perfil_hardware</code></td>
-<td style="text-align: left;">SEP (SIGED) &amp; INEGI (Tabulados)</td>
-<td style="text-align: center;">Cubierta <em>(depende de P1)</em></td>
+<td style="text-align: left;">SEP / SIGED (<code>Infraestructura.csv</code>)</td>
+<td style="text-align: center;"><strong>Cubierta al 100%</strong></td>
 </tr>
 <tr class="even">
 <td style="text-align: center;"><strong>P4</strong></td>
 <td style="text-align: left;">Regresión Predictiva (Ahorro Financiero)</td>
-<td style="text-align: left;"><code>monto_ahorro_licenciamiento_mxn</code></td>
+<td style="text-align: left;"><code>MONTO_PEF_2026</code>, <code>monto_ahorro_licenciamiento_mxn</code></td>
 <td style="text-align: left;"><code>dim_geografica</code>, <code>dim_fecha</code>, <code>dim_cct</code></td>
-<td style="text-align: left;">SHCP (PEF Ramo 11) &amp; Precios Públicos</td>
-<td style="text-align: center;"><strong>Cubierta</strong></td>
+<td style="text-align: left;">SHCP (<code>PEF_2026.csv</code> Ramo 11) &amp; Precios Públicos</td>
+<td style="text-align: center;"><strong>Cubierta al 100%</strong></td>
 </tr>
 </tbody>
 </table>
 <hr>
 </section>
-<section id="limitación-explícita-en-el-alcance" class="level2">
-<h2 class="anchored" data-anchor-id="limitación-explícita-en-el-alcance">Limitación explícita en el alcance</h2>
-<p><strong>¿Por qué P1 está marcada como “Cubierta parcialmente”?</strong></p>
-<p>Para saber si una escuela es apta para migrar a Linux, fijamos en el Canvas de <span class="math inline">\(E0\)</span> que los equipos deben tener al menos <strong>2 GB de RAM y procesador compatible</strong>. Sin embargo, en las bases públicas disponibles (SIGED) no existe ese nivel de detalle por componente individual; solo contamos con el total de computadoras funcionales por plantel.</p>
-<p>Esta limitación ya la habíamos contemplado como el <strong>Riesgo 1</strong> en <code>riesgos_supuestos.qmd</code>. Como el levantamiento directo en campo para resolverlo sigue pendiente, no podemos dar por hecho que la variable de RAM/procesador esté validada. De momento, tomamos <code>num_pcs_funcionales</code> como un indicador aproximado (<em>proxy</em>) de viabilidad.</p>
-<p><strong>Nota sobre la variable de electricidad:</strong> En un borrador previo contemplábamos incluir la disponibilidad de energía eléctrica atribuida al censo CEMABE (INEGI-SEP, 2013). Debido a que no logramos verificar el archivo descargable ni la columna exacta dentro de los plazos de esta entrega, <strong>decidimos excluir la variable del hecho</strong> para evitar citar datos sin confirmación directa.</p>
-<p><strong>Impacto en P2 y P3:</strong> Dado que <span class="math inline">\(P2\)</span> y <span class="math inline">\(P3\)</span> usan el filtro de <span class="math inline">\(P1\)</span> para calcular los rankings de priorización y perfiles de equipo, ambas heredan la misma incertidumbre. Sus fuentes directas (matrícula, marginación, red local) sí están completas, pero el resultado final dependerá de consolidar el dato de <span class="math inline">\(P1\)</span>.</p>
-<p><strong>Propuesta para <code>estrella.qmd</code>:</strong> En <code>dim_cct</code> mantendremos los campos <code>ram_estimada</code> y <code>procesador_generacion</code> declarados como nulos o pendientes en lugar de omitirlos. Así dejamos documentada la limitación en la estructura sin esconder el dato faltante.</p>
+<section id="validación-e-integridad-de-variables" class="level2">
+<h2 class="anchored" data-anchor-id="validación-e-integridad-de-variables">Validación e Integridad de Variables</h2>
+<p><strong>1. Variable de Electricidad (<code>con_luz</code>):</strong> A diferencia de borradores preliminares donde se contemplaba recurrir al censo CEMABE u otras bases de datos, la auditoría del archivo <code>Infraestructura.csv</code> (SEP/SIGED) confirmó la existencia directa de la columna <code>con_luz</code> (con categorías explícitas <code>"CON LUZ"</code> y <code>"SIN LUZ"</code>) junto con <code>internet</code>. Esto nos permite validar de manera la factibilidad eléctrica del plantel como prerrequisito en <span class="math inline">\(P1\)</span>.</p>
+<p><strong>2. Definición del Proxy para P1:</strong> Dado que las bases públicas agregadas reportan conteos por plantel (<code>computadora</code>, <code>laptop</code>) y no especificaciones técnicas por componente (RAM/procesador por número de serie), utilizamos el conteo total de equipos funcionales en planteles con energía eléctrica activa como variable proxy de viabilidad. La validación del umbral específico de RAM <span class="math inline">\(\ge\)</span> 2 GB se mantiene documentada en el modelo dimensional como atributo sujeto a verificación de campo (Riesgo 1).</p>
+<p><strong>3. Integración en el Esquema Estrella:</strong> El cruce se realiza a nivel de granularidad CCT para infraestructura y por entidad federativa (<code>entidad_federativa</code> <span class="math inline">\(\leftrightarrow\)</span> <code>NOM_ENT</code> / <code>DESC_ENTIDAD_FEDERATIVA</code>) para integrar los datos socioeconómicos de CONAPO y el presupuesto aprobado del Ramo 11 de la SHCP.</p>
 <hr>
 </section>
 <section id="integridad-dimensional-cero-dimensiones-huérfanas" class="level2">
 <h2 class="anchored" data-anchor-id="integridad-dimensional-cero-dimensiones-huérfanas">Integridad Dimensional (Cero Dimensiones Huérfanas)</h2>
 <ul>
-<li><strong><code>dim_fecha</code></strong>: permite medir el avance temporal de las brigadas y dar seguimiento al ahorro acumulado por ciclo escolar (<span class="math inline">\(P1, P4\)</span>).</li>
-<li><strong><code>dim_cct</code></strong>: identifica de forma única a cada plantel, asociando su infraestructura básica y la cantidad de equipos a actualizar (<span class="math inline">\(P1, P2, P3\)</span>).</li>
-<li><strong><code>dim_geografica</code></strong>: agrupa los planteles por estado, municipio y localidad para planear las rutas de visita y costeo regional (<span class="math inline">\(P1, P2, P4\)</span>).</li>
-<li><strong><code>dim_marginacion</code></strong>: integra los datos de CONAPO para dar peso prioritario a las escuelas en municipios con mayor rezago social (<span class="math inline">\(P2\)</span>).</li>
-<li><strong><code>dim_perfil_hardware</code></strong>: clasifica los laboratorios para sugerir la imagen ISO adecuada, condicionada a la validación de <span class="math inline">\(P1\)</span> (<span class="math inline">\(P3\)</span>).</li>
+<li><strong><code>dim_fecha</code></strong>: Mide el avance temporal de las brigadas y el ahorro acumulado por ciclo escolar (<span class="math inline">\(P1, P4\)</span>)</li>
+<li><strong><code>dim_cct</code></strong>: Identifica de forma única a cada plantel, asociando su infraestructura básica (<code>con_luz</code>, <code>internet</code>) y cantidad de equipos a actualizar (<span class="math inline">\(P1, P2, P3\)</span>)</li>
+<li><strong><code>dim_geografica</code></strong>: Agrupa planteles por entidad federativa, municipio y localidad para la planeación de rutas logísticas (<span class="math inline">\(P1, P2, P4\)</span>)</li>
+<li><strong><code>dim_marginacion</code></strong>: Integra el índice y grado de marginación 2020 de CONAPO para priorizar planteles en zonas con mayor vulnerabilidad social (<span class="math inline">\(P2\)</span>)</li>
+<li><strong><code>dim_perfil_hardware</code></strong>: Clasifica la densidad de equipos por laboratorio (<code>computadora</code> + <code>laptop</code>) para asignar el perfil de instalación Linux Mint (<span class="math inline">\(P3\)</span>)</li>
 </ul>
 </section>
 </div>
