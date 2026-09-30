@@ -79,35 +79,6 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 </head>
 
@@ -249,37 +220,40 @@ window.Quarto = {
 <div class="column-page-left">
 <section id="evaluación-de-la-necesidad-de-pivote" class="level2">
 <h2 class="anchored" data-anchor-id="evaluación-de-la-necesidad-de-pivote">Evaluación de la necesidad de pivote</h2>
-<p>Al catalogar y auditar las fuentes abiertas oficiales descargadas de los portales gubernamentales (<code>Infraestructura.csv</code> de la SEP, <code>Indice_de_marginacion.csv</code> de CONAPO y <code>PEF_2026.csv</code> de la SHCP), confirmamos la viabilidad del proyecto bajo los supuestos planteados desde <span class="math inline">\(E0\)</span>: las fuentes reportan la información agregada a nivel de <strong>Centro de Trabajo (CCT)</strong> como el inventario de computadoras, laptops y el estado del servicio eléctrico, en lugar de una ficha técnica por número de serie individual (RAM o procesador por equipo).</p>
+<p>Al catalogar y auditar las fuentes abiertas oficiales descargadas de los portales gubernamentales (<code>Infraestructura.csv</code> de la SEP, <code>Indice_de_marginacion.csv</code> de CONAPO y <code>PEF_2026.csv</code> de la SHCP), confirmamos la viabilidad del proyecto bajo los supuestos planteados desde E0: las fuentes reportan la información agregada a nivel de Centro de Trabajo (CCT), como el inventario de computadoras, laptops y el estado del servicio eléctrico, en lugar de una ficha técnica por número de serie individual (RAM o procesador por equipo).</p>
 <hr>
-<p>Para adaptar la granularidad a lo que ofrecen las bases de datos públicas no constituye un pivote. Un pivote solo se declara si se modifica el objetivo de minería de datos o el criterio de éxito definidos en <span class="math inline">\(E0\)</span> por lo que nuestro proyecto se mantiene 100% alineado por las siguientes razones:</p>
+</section>
+<section id="por-qué-es-un-ajuste-de-grano-y-no-un-pivote-de-tema" class="level2">
+<h2 class="anchored" data-anchor-id="por-qué-es-un-ajuste-de-grano-y-no-un-pivote-de-tema">Por qué es un ajuste de grano y no un pivote de tema</h2>
+<p>Adaptar la granularidad a lo que ofrecen las bases de datos públicas no constituye un pivote. Un pivote solo se declara si se modifica el objetivo de minería de datos o el criterio de éxito definidos en E0. Nuestro proyecto se mantiene 100% alineado por las siguientes razones:</p>
 <ol type="1">
-<li><strong>Sin cambio de dominio ni de objetivo:</strong> Seguimos optimizando la priorización y la logística de despliegue de Linux Mint para el rescate de computadoras en primarias, secundarias y bachilleratos o eduación a eduación basica y media superior</li>
-<li><strong>El grano se declara a partir de las fuentes auditadas:</strong> Dado que la SEP reporta por plantel, fijamos la granularidad de la tabla de hechos como <strong>“una fila por Centro de Trabajo (CCT) por ciclo escolar”</strong>.</li>
-<li><strong>Reconocimiento de la limitación de hardware:</strong> La clasificación técnica (<span class="math inline">\(P1\)</span>) evalúa la aptitud del plantel utilizando las variables verificables en el dataset (<code>con_luz</code>, <code>computadora</code>, <code>laptop</code>, <code>internet</code>). La validación del umbral específico de RAM <span class="math inline">\(\ge\)</span> 2 GB se mantiene documentada como un atributo proxy sujeto al muestreo directo en campo ya que este no aparece en alguna base de datos publica que nos pueda facilitar esa parte</li>
+<li><strong>Sin cambio de dominio ni de objetivo:</strong> Seguimos optimizando la priorización y la logística de despliegue de Linux Mint para el rescate de computadoras en escuelas públicas de educación básica y media superior (primarias, secundarias y bachilleratos).</li>
+<li><strong>El grano se declara a partir de las fuentes auditadas:</strong> Dado que la SEP reporta por plantel, fijamos la granularidad de la tabla de hechos como “una fila por Centro de Trabajo (CCT) por ciclo escolar”.</li>
+<li><strong>Reconocimiento de la limitación de hardware:</strong> La clasificación técnica (P1) evalúa la aptitud del plantel utilizando las variables verificables en el dataset (<code>con_luz</code>, <code>computadora</code>, <code>laptop</code>, <code>internet</code>). La validación del umbral específico de RAM mayor o igual a 2 GB se mantiene documentada como un atributo proxy sujeto al muestreo directo en campo, ya que dicho dato no se encuentra disponible en fuentes públicas abiertas por número de serie.</li>
 </ol>
 <hr>
 </section>
 <section id="confirmación-y-validación-de-variables-e-integración-de-fuentes" class="level2">
 <h2 class="anchored" data-anchor-id="confirmación-y-validación-de-variables-e-integración-de-fuentes">Confirmación y validación de variables e integración de fuentes</h2>
-<p>A diferencia de borradores preliminares donde se contemplaba descartar la variable de energía eléctrica por falta de microdatos en censos históricos, se tuvo que hacer una inspección directa en bases de datos y en la busqueda encontramos el archivo <code>Infraestructura.csv</code> (SEP/SIGED) donde confirmamos la presencia explícita de las siguientes columnas a nivel CCT:</p>
+<p>A diferencia de borradores preliminares donde se contemplaba descartar la variable de energía eléctrica por falta de microdatos en censos históricos, se realizó una inspección directa en las bases de datos abiertas descargadas. En el archivo <code>Infraestructura.csv</code> (SEP/SIGED) confirmamos la presencia explícita de las siguientes columnas a nivel CCT:</p>
 <ul>
-<li><strong><code>con_luz</code></strong>: Estatus de la instalación eléctrica (<code>CON LUZ</code> / <code>SIN LUZ</code>).</li>
+<li><strong><code>con_luz</code></strong>: Estatus de la instalación eléctrica (“CON LUZ” / “SIN LUZ”).</li>
 <li><strong><code>computadora</code> y <code>laptop</code></strong>: Inventario total de equipos de cómputo por escuela.</li>
-<li><strong><code>internet</code></strong>: Disponibilidad de conectividad (<code>CON INTERNET</code> / <code>SIN INTERNET</code>).</li>
+<li><strong><code>internet</code></strong>: Disponibilidad de conectividad (“CON INTERNET” / “SIN INTERNET”).</li>
 </ul>
 <section id="mecanismo-de-integración-multidominio-cruce-de-fuentes" class="level3">
 <h3 class="anchored" data-anchor-id="mecanismo-de-integración-multidominio-cruce-de-fuentes">Mecanismo de integración multidominio (Cruce de fuentes):</h3>
-<p>Para alimentar las preguntas <span class="math inline">\(P1\)</span>, <span class="math inline">\(P2\)</span>, <span class="math inline">\(P3\)</span> y <span class="math inline">\(P4\)</span>, la capa de transformación (<code>eq_staging</code>) en BigQuery integra los tres datasets tomando como pivote geográfico la entidad federativa:</p>
+<p>Para alimentar las preguntas P1, P2, P3 y P4, la capa de transformación (<code>eq_staging</code>) en BigQuery integra los tres datasets tomando como pivote geográfico la entidad federativa:</p>
 <ol type="1">
-<li><strong>SEP <span class="math inline">\(\leftrightarrow\)</span> CONAPO (<span class="math inline">\(P2\)</span>):</strong> Se enlaza <code>entidad_federativa</code> de <code>Infraestructura.csv</code> con <code>NOM_ENT</code> de <code>Indice_de_marginacion.csv</code> para asociar el Índice de Marginación (<code>IM_2020</code>) y Grado de Marginación (<code>GM_2020</code>) a cada CCT.</li>
-<li><strong>SEP <span class="math inline">\(\leftrightarrow\)</span> SHCP (<span class="math inline">\(P4\)</span>):</strong> Se enlaza <code>entidad_federativa</code> con <code>DESC_ENTIDAD_FEDERATIVA</code> de <code>PEF_2026.csv</code> (filtrando el Ramo 11 de Educación Pública) para contrastar el presupuesto estatal contra el ahorro estimado por licencias comerciales evadidas (<code>(computadora + laptop) * costo_licencia</code>).</li>
+<li><strong>SEP y CONAPO (P2):</strong> Se enlaza <code>entidad_federativa</code> de <code>Infraestructura.csv</code> con <code>NOM_ENT</code> de <code>Indice_de_marginacion.csv</code> para asociar el Índice de Marginación (<code>IM_2020</code>) y Grado de Marginación (<code>GM_2020</code>) a cada CCT.</li>
+<li><strong>SEP y SHCP (P4):</strong> Se enlaza <code>entidad_federativa</code> con <code>DESC_ENTIDAD_FEDERATIVA</code> de <code>PEF_2026.csv</code> (filtrando el Ramo 11 correspondiente a Educación Pública) para contrastar el presupuesto estatal contra el ahorro estimado por licencias comerciales evadidas (<code>(computadora + laptop) * costo_licencia</code>).</li>
 </ol>
 <hr>
 </section>
 </section>
 <section id="conclusión" class="level2">
 <h2 class="anchored" data-anchor-id="conclusión">Conclusión</h2>
-<p>No se requirió un pivote de tema ni una modificación en las metas de minería de <span class="math inline">\(E0\)</span> ya que el modelo dimensional absorbió de forma natural el ajuste de granularidad a nivel CCT y la integración por entidad federativa de las tres dependencias (SEP, CONAPO y SHCP), manteniendo la coherencia metodológica y la transparencia en el alcance de los datos públicos.</p>
+<p>No se requirió un pivote de tema ni una modificación en las metas de minería de E0, ya que el modelo dimensional absorbió de forma natural el ajuste de granularidad a nivel CCT y la integración por entidad federativa de las tres dependencias (SEP, CONAPO y SHCP), manteniendo la coherencia metodológica y la transparencia en el alcance de los datos públicos.</p>
 </section>
 </div>
 

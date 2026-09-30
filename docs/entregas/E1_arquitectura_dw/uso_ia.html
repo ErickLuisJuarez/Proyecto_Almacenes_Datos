@@ -221,7 +221,7 @@ ul.task-list li input[type="checkbox"] {
 <p>En cumplimiento con los lineamientos éticos de la asignatura, se documenta a continuación el uso de herramientas de inteligencia artificial e investigación profunda durante el desarrollo de la Entrega E1.</p>
 <section id="herramientas-utilizadas-y-metodología-de-trabajo" class="level2">
 <h2 class="anchored" data-anchor-id="herramientas-utilizadas-y-metodología-de-trabajo">Herramientas utilizadas y metodología de trabajo</h2>
-<p>El equipo utilizó herramientas de asistencia con lenguaje natural y deep research para agilizar la búsqueda de fuentes de datos, estructurar el proyecto en Quarto y diseñar la arquitectura del Data Warehouse. Ninguna salida generada por las IA se incorporó al catálogo ni a los documentos sin haber sido abierta, inspeccionada y confirmada directamente por los integrantes del equipo.</p>
+<p>El equipo utilizó herramientas de asistencia con lenguaje natural y procesamiento de código para agilizar la búsqueda de fuentes de datos, estructurar el proyecto en Quarto y diseñar la arquitectura del Data Warehouse. Ninguna salida generada por las herramientas de IA se incorporó al catálogo ni a los documentos sin haber sido abierta, inspeccionada y confirmada directamente mediante scripts por los integrantes del equipo.</p>
 <hr>
 </section>
 <section id="bitácora-de-prompts-y-aportaciones-por-herramienta" class="level2">
@@ -248,22 +248,15 @@ ul.task-list li input[type="checkbox"] {
 <td style="text-align: left;"><strong>Google Gemini</strong></td>
 <td style="text-align: left;">Estructuración del proyecto en Quarto, navegación y redacción</td>
 <td style="text-align: left;"><em>“Ayúdame a estructurar el sitio web de Quarto (<code>_quarto.yml</code>), organizar la navegación del repositorio y corregir la redacción técnica de los documentos <code>.qmd</code>.”</em></td>
-<td style="text-align: left;">Propuesta de estructura de directorios, plantilla de navegación para Quarto y borradores para la redacción de los documentos técnicos (<code>trazabilidad.qmd</code>, <code>pivote.qmd</code>) ayudando por ejemplo en las mini portadas de cada documento</td>
-<td style="text-align: left;">Se verifico la compilación local del sitio Quarto, ajustó la navegación lateral y refinó la redacción para garantizar concordancia con E0.</td>
+<td style="text-align: left;">Propuesta de estructura de directorios, plantilla de navegación para Quarto, maquetación de portadas y borradores para los documentos técnicos (<code>trazabilidad.qmd</code>, <code>pivote.qmd</code>).</td>
+<td style="text-align: left;">Se verificó la compilación local del sitio Quarto, se ajustó la navegación lateral y se refinó la redacción para garantizar concordancia con E0.</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;"><strong>Claude (Anthropic)</strong></td>
-<td style="text-align: left;">Análisis en la congruencia de los datos de los cvs y el pivote, ayudo con unos bugs en la barra de navegación y problemas con quarto render y verificación de fuentes</td>
-<td style="text-align: left;"><em>“Revisa este análisis de trazabilidad y analiza si la limitación de datos en P1 requiere un pivote metodológico. Confirma si el portal de la SEP reportan electricidad por plantel.”</em></td>
-<td style="text-align: left;">Argumento técnico para justificar que el cambio de grano no constituye un pivote e identificación de la falta de microdatos descargables para la variable de electricidad a nivel CCT.</td>
-<td style="text-align: left;">Se revisó manuealmente la lógica de trazabilidad y despues de revisar varias bases de datos publicas logramos encontrar lo necesario para nuestro criterio de exito</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;"><strong>[PENDIENTE]</strong></td>
-<td style="text-align: left;"><em>[Completar por Alejandro, Mario o Cesar]</em></td>
-<td style="text-align: left;"><em>[Prompt empleado]</em></td>
-<td style="text-align: left;"><em>[Resultado obtenido]</em></td>
-<td style="text-align: left;"><em>[Validación realizada]</em></td>
+<td style="text-align: left;">Análisis de congruencia en datos CSV, resolución de errores en Quarto y evaluación de pivote</td>
+<td style="text-align: left;"><em>“Revisa este análisis de trazabilidad y analiza si la limitación de datos en P1 requiere un pivote metodológico. Confirma si el portal de la SEP reporta electricidad por plantel.”</em></td>
+<td style="text-align: left;">Argumentación técnica para justificar que el cambio de grano no constituye un pivote, solución a fallas de renderizado en Quarto e identificación de la estructura del dataset de la SEP.</td>
+<td style="text-align: left;">Se revisó manualmente la lógica de trazabilidad y, tras auditar directamente las bases de datos públicas, se confirmaron los campos requeridos para los criterios de éxito del proyecto.</td>
 </tr>
 </tbody>
 </table>
@@ -271,7 +264,7 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="declaración-de-responsabilidad" class="level2">
 <h2 class="anchored" data-anchor-id="declaración-de-responsabilidad">Declaración de responsabilidad</h2>
-<p>El equipo verificó rigurosamente que ningún archivo de llaves <code>.json</code>, token de acceso o credencial de servicio de Google Cloud fuera subido al repositorio público de GitHub. Ninguna fuente de datos ni afirmación sobre la cobertura del Data Warehouse fue incorporada al entregable sin la confirmación directa por parte de los integrantes del equipo.</p>
+<p>El equipo verificó rigurosamente que ningún archivo de llaves <code>.json</code>, token de acceso o credencial de servicio de Google Cloud fuera subido al repositorio público de GitHub. Ninguna fuente de datos ni afirmación sobre la cobertura del Data Warehouse fue incorporada al entregable sin la confirmación directa y auditoría por parte de los integrantes del equipo.</p>
 </section>
 </div>
 

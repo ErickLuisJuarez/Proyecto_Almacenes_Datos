@@ -79,35 +79,6 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 </head>
 
@@ -249,8 +220,8 @@ window.Quarto = {
 <div class="column-page-left">
 <section id="justificación-del-modelo-dimensional-y-trazabilidad" class="level2">
 <h2 class="anchored" data-anchor-id="justificación-del-modelo-dimensional-y-trazabilidad">Justificación del Modelo Dimensional y Trazabilidad</h2>
-<p>Para garantizar que el diseño del Data Warehouse mantenga los pies sobre la tierra respecto a lo planteado en la etapa de Negocio (<span class="math inline">\(E0\)</span>), amarramos cada tabla y métrica del esquema estrella con las cuatro preguntas de investigación iniciales (<span class="math inline">\(P1, P2, P3, P4\)</span>).</p>
-<p>En esta versión confirmamos la integración exitosa de las fuentes oficiales descargadas de Datos Publicos descargables a los cuales nombramos como: (<code>Infraestructura.csv</code> de la SEP, <code>Indice_de_marginacion.csv</code> de CONAPO y <code>PEF_2026.csv</code> de SHCP).</p>
+<p>Para garantizar que el diseño del Data Warehouse mantenga la coherencia con lo planteado en la etapa de Negocio (E0), conectamos cada tabla y métrica del esquema estrella con las cuatro preguntas de investigación iniciales (P1, P2, P3 y P4).</p>
+<p>En esta versión confirmamos la integración exitosa de las fuentes oficiales descargadas de datos públicos, a las cuales nombramos en nuestra capa de almacenamiento staging como: <code>Infraestructura.csv</code> de la SEP, <code>Indice_de_marginacion.csv</code> de CONAPO e <code>PEF_2026.csv</code> de la SHCP.</p>
 <hr>
 </section>
 <section id="matriz-de-trazabilidad-pregunta---métrica---dimensión---fuente" class="level2">
@@ -281,7 +252,7 @@ window.Quarto = {
 <td style="text-align: left;"><code>computadora</code>, <code>laptop</code>, <code>con_luz</code>, <code>internet</code></td>
 <td style="text-align: left;"><code>dim_cct</code>, <code>dim_geografica</code>, <code>dim_fecha</code></td>
 <td style="text-align: left;">SEP / SIGED (<code>Infraestructura.csv</code>)</td>
-<td style="text-align: center;"><strong>Cubierta (con proxy)</strong></td>
+<td style="text-align: center;"><strong>Cubierta parcialmente</strong></td>
 </tr>
 <tr class="even">
 <td style="text-align: center;"><strong>P2</strong></td>
@@ -289,7 +260,7 @@ window.Quarto = {
 <td style="text-align: left;"><code>IM_2020</code>, <code>GM_2020</code>, <code>POB_TOT</code></td>
 <td style="text-align: left;"><code>dim_cct</code>, <code>dim_geografica</code>, <code>dim_marginacion</code></td>
 <td style="text-align: left;">CONAPO / INEGI (<code>Indice_de_marginacion.csv</code>)</td>
-<td style="text-align: center;"><strong>Cubierta al 100%</strong></td>
+<td style="text-align: center;"><strong>Cubierta</strong></td>
 </tr>
 <tr class="odd">
 <td style="text-align: center;"><strong>P3</strong></td>
@@ -297,7 +268,7 @@ window.Quarto = {
 <td style="text-align: left;"><code>total_equipos</code> (<code>computadora</code> + <code>laptop</code>), <code>internet</code></td>
 <td style="text-align: left;"><code>dim_cct</code>, <code>dim_perfil_hardware</code></td>
 <td style="text-align: left;">SEP / SIGED (<code>Infraestructura.csv</code>)</td>
-<td style="text-align: center;"><strong>Cubierta al 100%</strong></td>
+<td style="text-align: center;"><strong>Cubierta</strong></td>
 </tr>
 <tr class="even">
 <td style="text-align: center;"><strong>P4</strong></td>
@@ -305,7 +276,7 @@ window.Quarto = {
 <td style="text-align: left;"><code>MONTO_PEF_2026</code>, <code>monto_ahorro_licenciamiento_mxn</code></td>
 <td style="text-align: left;"><code>dim_geografica</code>, <code>dim_fecha</code>, <code>dim_cct</code></td>
 <td style="text-align: left;">SHCP (<code>PEF_2026.csv</code> Ramo 11) &amp; Precios Públicos</td>
-<td style="text-align: center;"><strong>Cubierta al 100%</strong></td>
+<td style="text-align: center;"><strong>Cubierta</strong></td>
 </tr>
 </tbody>
 </table>
@@ -313,19 +284,19 @@ window.Quarto = {
 </section>
 <section id="validación-e-integridad-de-variables" class="level2">
 <h2 class="anchored" data-anchor-id="validación-e-integridad-de-variables">Validación e Integridad de Variables</h2>
-<p><strong>1. Variable de Electricidad (<code>con_luz</code>):</strong> A diferencia de borradores preliminares donde se contemplaba recurrir al censo CEMABE u otras bases de datos, la auditoría del archivo <code>Infraestructura.csv</code> (SEP/SIGED) confirmó la existencia directa de la columna <code>con_luz</code> (con categorías explícitas <code>"CON LUZ"</code> y <code>"SIN LUZ"</code>) junto con <code>internet</code>. Esto nos permite validar de manera la factibilidad eléctrica del plantel como prerrequisito en <span class="math inline">\(P1\)</span>.</p>
-<p><strong>2. Definición del Proxy para P1:</strong> Dado que las bases públicas agregadas reportan conteos por plantel (<code>computadora</code>, <code>laptop</code>) y no especificaciones técnicas por componente (RAM/procesador por número de serie), utilizamos el conteo total de equipos funcionales en planteles con energía eléctrica activa como variable proxy de viabilidad. La validación del umbral específico de RAM <span class="math inline">\(\ge\)</span> 2 GB se mantiene documentada en el modelo dimensional como atributo sujeto a verificación de campo (Riesgo 1).</p>
-<p><strong>3. Integración en el Esquema Estrella:</strong> El cruce se realiza a nivel de granularidad CCT para infraestructura y por entidad federativa (<code>entidad_federativa</code> <span class="math inline">\(\leftrightarrow\)</span> <code>NOM_ENT</code> / <code>DESC_ENTIDAD_FEDERATIVA</code>) para integrar los datos socioeconómicos de CONAPO y el presupuesto aprobado del Ramo 11 de la SHCP.</p>
+<p><strong>1. Variable de Electricidad (<code>con_luz</code>):</strong> A diferencia de borradores preliminares donde se contemplaba recurrir al censo CEMABE u otras bases de datos históricas, la auditoría directa del archivo <code>Infraestructura.csv</code> (SEP/SIGED) confirmó la existencia directa de la columna <code>con_luz</code> (con categorías explícitas “CON LUZ” y “SIN LUZ”) junto con la variable <code>internet</code>. Esto nos permite validar de manera objetiva la factibilidad eléctrica del plantel como prerrequisito en P1.</p>
+<p><strong>2. Definición del Proxy para P1:</strong> Dado que las bases públicas agregadas reportan conteos por plantel (<code>computadora</code>, <code>laptop</code>) y no especificaciones técnicas por componente (RAM o procesador por número de serie), utilizamos el conteo total de equipos funcionales en planteles con energía eléctrica activa como variable proxy de viabilidad. La validación del umbral específico de memoria RAM mayor o igual a 2 GB se mantiene documentada en el modelo dimensional como un atributo sujeto a verificación en campo (Riesgo 1).</p>
+<p><strong>3. Integración en el Esquema Estrella:</strong> El cruce se realiza a nivel de granularidad CCT para infraestructura y por entidad federativa (<code>entidad_federativa</code> enlazado con <code>NOM_ENT</code> y <code>DESC_ENTIDAD_FEDERATIVA</code>) para integrar los datos socioeconómicos de CONAPO y el presupuesto aprobado del Ramo 11 de la SHCP.</p>
 <hr>
 </section>
 <section id="integridad-dimensional" class="level2">
 <h2 class="anchored" data-anchor-id="integridad-dimensional">Integridad Dimensional</h2>
 <ul>
-<li><strong><code>dim_fecha</code></strong>: Mide el avance temporal de las brigadas y el ahorro acumulado por ciclo escolar (<span class="math inline">\(P1, P4\)</span>)</li>
-<li><strong><code>dim_cct</code></strong>: Identifica de forma única a cada plantel, asociando su infraestructura básica (<code>con_luz</code>, <code>internet</code>) y cantidad de equipos a actualizar (<span class="math inline">\(P1, P2, P3\)</span>)</li>
-<li><strong><code>dim_geografica</code></strong>: Agrupa planteles por entidad federativa, municipio y localidad para la planeación de rutas logísticas (<span class="math inline">\(P1, P2, P4\)</span>)</li>
-<li><strong><code>dim_marginacion</code></strong>: Integra el índice y grado de marginación 2020 de CONAPO para priorizar planteles en zonas con mayor vulnerabilidad social (<span class="math inline">\(P2\)</span>)</li>
-<li><strong><code>dim_perfil_hardware</code></strong>: Clasifica la densidad de equipos por laboratorio (<code>computadora</code> + <code>laptop</code>) para asignar el perfil de instalación Linux Mint (<span class="math inline">\(P3\)</span>)</li>
+<li><strong><code>dim_fecha</code></strong>: Mide el avance temporal de las brigadas y el ahorro acumulado por ciclo escolar (P1, P4).</li>
+<li><strong><code>dim_cct</code></strong>: Identifica de forma única a cada plantel, asociando su infraestructura básica (<code>con_luz</code>, <code>internet</code>) y cantidad de equipos a actualizar (P1, P2, P3).</li>
+<li><strong><code>dim_geografica</code></strong>: Agrupa planteles por entidad federativa, municipio y localidad para la planeación de rutas logísticas (P1, P2, P4).</li>
+<li><strong><code>dim_marginacion</code></strong>: Integra el índice y grado de marginación 2020 de CONAPO para priorizar planteles en zonas con mayor vulnerabilidad social (P2).</li>
+<li><strong><code>dim_perfil_hardware</code></strong>: Clasifica la densidad de equipos por laboratorio (<code>computadora</code> + <code>laptop</code>) para asignar el perfil de instalación de Linux Mint (P3).</li>
 </ul>
 </section>
 </div>
