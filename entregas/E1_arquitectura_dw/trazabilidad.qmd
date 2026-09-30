@@ -17,9 +17,9 @@ format:
 
 ## Justificación del Modelo Dimensional y Trazabilidad
 
-Para garantizar que el diseño del Data Warehouse mantenga los pies sobre la tierra respecto a lo planteado en la etapa de Negocio ($E0$), amarramos cada tabla y métrica del esquema estrella con las cuatro preguntas de investigación iniciales ($P1, P2, P3, P4$).
+Para garantizar que el diseño del Data Warehouse mantenga la coherencia con lo planteado en la etapa de Negocio (E0), conectamos cada tabla y métrica del esquema estrella con las cuatro preguntas de investigación iniciales (P1, P2, P3 y P4).
 
-En esta versión confirmamos la integración exitosa de las fuentes oficiales descargadas de Datos Publicos descargables a los cuales nombramos como: (`Infraestructura.csv` de la SEP, `Indice_de_marginacion.csv` de CONAPO y `PEF_2026.csv` de SHCP).
+En esta versión confirmamos la integración exitosa de las fuentes oficiales descargadas de datos públicos, a las cuales nombramos en nuestra capa de almacenamiento staging como: `Infraestructura.csv` de la SEP, `Indice_de_marginacion.csv` de CONAPO e `PEF_2026.csv` de la SHCP.
 
 ---
 
@@ -27,32 +27,32 @@ En esta versión confirmamos la integración exitosa de las fuentes oficiales de
 
 | Pregunta E0 | Tarea de Minería | Métricas (Hecho) | Dimensiones Asociadas | Fuentes de Datos Utilizadas | Estado |
 | :---: | :--- | :--- | :--- | :--- | :---: |
-| **P1** | Clasificación Binaria (Aptitud Técnica) | `computadora`, `laptop`, `con_luz`, `internet` | `dim_cct`, `dim_geografica`, `dim_fecha` | SEP / SIGED (`Infraestructura.csv`) | **Cubierta (con proxy)** |
-| **P2** | Scoring / Ranking (Priorización Social) | `IM_2020`, `GM_2020`, `POB_TOT` | `dim_cct`, `dim_geografica`, `dim_marginacion` | CONAPO / INEGI (`Indice_de_marginacion.csv`) | **Cubierta al 100%** |
-| **P3** | Clustering k-Means (Perfiles Hardware) | `total_equipos` (`computadora` + `laptop`), `internet` | `dim_cct`, `dim_perfil_hardware` | SEP / SIGED (`Infraestructura.csv`) | **Cubierta al 100%** |
-| **P4** | Regresión Predictiva (Ahorro Financiero) | `MONTO_PEF_2026`, `monto_ahorro_licenciamiento_mxn` | `dim_geografica`, `dim_fecha`, `dim_cct` | SHCP (`PEF_2026.csv` Ramo 11) & Precios Públicos | **Cubierta al 100%** |
+| **P1** | Clasificación Binaria (Aptitud Técnica) | `computadora`, `laptop`, `con_luz`, `internet` | `dim_cct`, `dim_geografica`, `dim_fecha` | SEP / SIGED (`Infraestructura.csv`) | **Cubierta parcialmente** |
+| **P2** | Scoring / Ranking (Priorización Social) | `IM_2020`, `GM_2020`, `POB_TOT` | `dim_cct`, `dim_geografica`, `dim_marginacion` | CONAPO / INEGI (`Indice_de_marginacion.csv`) | **Cubierta** |
+| **P3** | Clustering k-Means (Perfiles Hardware) | `total_equipos` (`computadora` + `laptop`), `internet` | `dim_cct`, `dim_perfil_hardware` | SEP / SIGED (`Infraestructura.csv`) | **Cubierta** |
+| **P4** | Regresión Predictiva (Ahorro Financiero) | `MONTO_PEF_2026`, `monto_ahorro_licenciamiento_mxn` | `dim_geografica`, `dim_fecha`, `dim_cct` | SHCP (`PEF_2026.csv` Ramo 11) & Precios Públicos | **Cubierta** |
 
 ---
 
 ## Validación e Integridad de Variables
 
 **1. Variable de Electricidad (`con_luz`):**
-A diferencia de borradores preliminares donde se contemplaba recurrir al censo CEMABE u otras bases de datos, la auditoría del archivo `Infraestructura.csv` (SEP/SIGED) confirmó la existencia directa de la columna `con_luz` (con categorías explícitas `"CON LUZ"` y `"SIN LUZ"`) junto con `internet`. Esto nos permite validar de manera la factibilidad eléctrica del plantel como prerrequisito en $P1$.
+A diferencia de borradores preliminares donde se contemplaba recurrir al censo CEMABE u otras bases de datos históricas, la auditoría directa del archivo `Infraestructura.csv` (SEP/SIGED) confirmó la existencia directa de la columna `con_luz` (con categorías explícitas "CON LUZ" y "SIN LUZ") junto con la variable `internet`. Esto nos permite validar de manera objetiva la factibilidad eléctrica del plantel como prerrequisito en P1.
 
 **2. Definición del Proxy para P1:**
-Dado que las bases públicas agregadas reportan conteos por plantel (`computadora`, `laptop`) y no especificaciones técnicas por componente (RAM/procesador por número de serie), utilizamos el conteo total de equipos funcionales en planteles con energía eléctrica activa como variable proxy de viabilidad. La validación del umbral específico de RAM $\ge$ 2 GB se mantiene documentada en el modelo dimensional como atributo sujeto a verificación de campo (Riesgo 1).
+Dado que las bases públicas agregadas reportan conteos por plantel (`computadora`, `laptop`) y no especificaciones técnicas por componente (RAM o procesador por número de serie), utilizamos el conteo total de equipos funcionales en planteles con energía eléctrica activa como variable proxy de viabilidad. La validación del umbral específico de memoria RAM mayor o igual a 2 GB se mantiene documentada en el modelo dimensional como un atributo sujeto a verificación en campo (Riesgo 1).
 
 **3. Integración en el Esquema Estrella:**
-El cruce se realiza a nivel de granularidad CCT para infraestructura y por entidad federativa (`entidad_federativa` $\leftrightarrow$ `NOM_ENT` / `DESC_ENTIDAD_FEDERATIVA`) para integrar los datos socioeconómicos de CONAPO y el presupuesto aprobado del Ramo 11 de la SHCP.
+El cruce se realiza a nivel de granularidad CCT para infraestructura y por entidad federativa (`entidad_federativa` enlazado con `NOM_ENT` y `DESC_ENTIDAD_FEDERATIVA`) para integrar los datos socioeconómicos de CONAPO y el presupuesto aprobado del Ramo 11 de la SHCP.
 
 ---
 
 ## Integridad Dimensional
 
-* **`dim_fecha`**: Mide el avance temporal de las brigadas y el ahorro acumulado por ciclo escolar ($P1, P4$)
-* **`dim_cct`**: Identifica de forma única a cada plantel, asociando su infraestructura básica (`con_luz`, `internet`) y cantidad de equipos a actualizar ($P1, P2, P3$)
-* **`dim_geografica`**: Agrupa planteles por entidad federativa, municipio y localidad para la planeación de rutas logísticas ($P1, P2, P4$)
-* **`dim_marginacion`**: Integra el índice y grado de marginación 2020 de CONAPO para priorizar planteles en zonas con mayor vulnerabilidad social ($P2$)
-* **`dim_perfil_hardware`**: Clasifica la densidad de equipos por laboratorio (`computadora` + `laptop`) para asignar el perfil de instalación Linux Mint ($P3$)
+* **`dim_fecha`**: Mide el avance temporal de las brigadas y el ahorro acumulado por ciclo escolar (P1, P4).
+* **`dim_cct`**: Identifica de forma única a cada plantel, asociando su infraestructura básica (`con_luz`, `internet`) y cantidad de equipos a actualizar (P1, P2, P3).
+* **`dim_geografica`**: Agrupa planteles por entidad federativa, municipio y localidad para la planeación de rutas logísticas (P1, P2, P4).
+* **`dim_marginacion`**: Integra el índice y grado de marginación 2020 de CONAPO para priorizar planteles en zonas con mayor vulnerabilidad social (P2).
+* **`dim_perfil_hardware`**: Clasifica la densidad de equipos por laboratorio (`computadora` + `laptop`) para asignar el perfil de instalación de Linux Mint (P3).
 
 :::

@@ -19,7 +19,7 @@ En cumplimiento con los lineamientos éticos de la asignatura, se documenta a co
 
 ## Herramientas utilizadas y metodología de trabajo
 
-El equipo utilizó herramientas de asistencia con lenguaje natural y deep research para agilizar la búsqueda de fuentes de datos, estructurar el proyecto en Quarto y diseñar la arquitectura del Data Warehouse. Ninguna salida generada por las IA se incorporó al catálogo ni a los documentos sin haber sido abierta, inspeccionada y confirmada directamente por los integrantes del equipo.
+El equipo utilizó herramientas de asistencia con lenguaje natural y procesamiento de código para agilizar la búsqueda de fuentes de datos, estructurar el proyecto en Quarto y diseñar la arquitectura del Data Warehouse. Ninguna salida generada por las herramientas de IA se incorporó al catálogo ni a los documentos sin haber sido abierta, inspeccionada y confirmada directamente mediante scripts por los integrantes del equipo.
 
 ---
 
@@ -27,14 +27,13 @@ El equipo utilizó herramientas de asistencia con lenguaje natural y deep resear
 
 | Herramienta | Tarea específica | Prompt empleado (resumen) | Resultado obtenido | Validación del equipo |
 | :--- | :--- | :--- | :--- | :--- |
-| **Google Gemini** | Estructuración del proyecto en Quarto, navegación y redacción | *"Ayúdame a estructurar el sitio web de Quarto (`_quarto.yml`), organizar la navegación del repositorio y corregir la redacción técnica de los documentos `.qmd`."* | Propuesta de estructura de directorios, plantilla de navegación para Quarto y borradores para la redacción de los documentos técnicos (`trazabilidad.qmd`, `pivote.qmd`) ayudando por ejemplo en las mini portadas de cada documento | Se verifico la compilación local del sitio Quarto, ajustó la navegación lateral y refinó la redacción para garantizar concordancia con E0. |
-| **Claude (Anthropic)** | Análisis en la congruencia de los datos de los cvs y el pivote, ayudo con unos bugs en la barra de navegación y problemas con quarto render y verificación de fuentes | *"Revisa este análisis de trazabilidad y analiza si la limitación de datos en P1 requiere un pivote metodológico. Confirma si el portal de la SEP reportan electricidad por plantel."* | Argumento técnico para justificar que el cambio de grano no constituye un pivote e identificación de la falta de microdatos descargables para la variable de electricidad a nivel CCT. |  Se revisó manuealmente la lógica de trazabilidad y despues de revisar varias bases de datos publicas logramos encontrar lo necesario para nuestro criterio de exito |
-| **[PENDIENTE]** | *[Completar por Alejandro, Mario o Cesar]* | *[Prompt empleado]* | *[Resultado obtenido]* | *[Validación realizada]* |
+| **Google Gemini** | Estructuración del proyecto en Quarto, navegación y redacción | *"Ayúdame a estructurar el sitio web de Quarto (`_quarto.yml`), organizar la navegación del repositorio y corregir la redacción técnica de los documentos `.qmd`."* | Propuesta de estructura de directorios, plantilla de navegación para Quarto, maquetación de portadas y borradores para los documentos técnicos (`trazabilidad.qmd`, `pivote.qmd`). | Se verificó la compilación local del sitio Quarto, se ajustó la navegación lateral y se refinó la redacción para garantizar concordancia con E0. |
+| **Claude (Anthropic)** | Análisis de congruencia en datos CSV, resolución de errores en Quarto y evaluación de pivote | *"Revisa este análisis de trazabilidad y analiza si la limitación de datos en P1 requiere un pivote metodológico. Confirma si el portal de la SEP reporta electricidad por plantel."* | Argumentación técnica para justificar que el cambio de grano no constituye un pivote, solución a fallas de renderizado en Quarto e identificación de la estructura del dataset de la SEP. | Se revisó manualmente la lógica de trazabilidad y, tras auditar directamente las bases de datos públicas, se confirmaron los campos requeridos para los criterios de éxito del proyecto. |
 
 ---
 
 ## Declaración de responsabilidad
 
-El equipo verificó rigurosamente que ningún archivo de llaves `.json`, token de acceso o credencial de servicio de Google Cloud fuera subido al repositorio público de GitHub. Ninguna fuente de datos ni afirmación sobre la cobertura del Data Warehouse fue incorporada al entregable sin la confirmación directa por parte de los integrantes del equipo.
+El equipo verificó rigurosamente que ningún archivo de llaves `.json`, token de acceso o credencial de servicio de Google Cloud fuera subido al repositorio público de GitHub. Ninguna fuente de datos ni afirmación sobre la cobertura del Data Warehouse fue incorporada al entregable sin la confirmación directa y auditoría por parte de los integrantes del equipo.
 
 :::
