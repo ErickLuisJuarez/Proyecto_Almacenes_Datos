@@ -50,7 +50,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-bcee6f4fb1efaec4da1e3493886933c1.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-6ac2aec46ad7f46b16024ee4409aa65c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -78,6 +78,9 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
+<script src="../../site_libs/quarto-diagram/mermaid.min.js"></script>
+<script src="../../site_libs/quarto-diagram/mermaid-init.js"></script>
+<link href="../../site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
 
 
 </head>
@@ -217,6 +220,84 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<div class="cell" data-fig-width="15" data-fig-height="13" data-layout-align="center">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">erDiagram
+    dim_cct ||--o{ fact_infraestructura_escolar : "reporta"
+    dim_geografica ||--o{ fact_infraestructura_escolar : "reporta"
+    dim_fecha ||--o{ fact_infraestructura_escolar : "reporta"
+    dim_perfil_hardware ||--o{ fact_infraestructura_escolar : "asigna"
+    dim_marginacion ||--o{ fact_infraestructura_escolar : "califica"
+
+    %% Declaración de la Tabla de Hechos
+    fact_infraestructura_escolar {
+        int sk_hecho PK "Clave sustituta del hecho"
+        int sk_cct FK "Conecta con dim_cct"
+        int sk_geografica FK "Conecta con dim_geografica"
+        int sk_fecha FK "Conecta con dim_fecha"
+        int sk_perfil_hardware FK "Conecta con dim_perfil_hardware"
+        int sk_marginacion FK "Conecta con dim_marginacion"
+        int computadora "Métrica: Total de PCs de escritorio"
+        int laptop "Métrica: Total de laptops"
+        string con_luz "Métrica/Estado: CON LUZ o SIN LUZ"
+        string internet "Métrica/Estado: CON INTERNET o SIN INTERNET"
+        int pob_tot "Métrica: Población Total (CONAPO)"
+        float monto_pef_2026 "Métrica: Presupuesto SHCP"
+        float monto_ahorro_licenciamiento_mxn "Métrica: Ahorro calculado"
+    }
+
+    %% Declaración de la Dimensión CCT
+    dim_cct {
+        int sk_cct PK "Clave sustituta (Surrogate Key)"
+        string id_cct "Clave original de la SEP (Business Key)"
+        string nombre_escuela "Nombre del plantel"
+        string nivel_educativo "Ej. Secundaria, Bachillerato"
+    }
+
+    dim_geografica {
+        int sk_geografica PK "Clave sustituta (Surrogate Key)"
+        string id_inegi "Clave original de la INEGI (Business Key)"
+        string entidad "Entidad geográfica"
+        string municipio "Municipio"
+        string localidad "Localidad"
+    }
+
+    dim_marginacion {
+        int sk_marginacion PK "Clave sustituta (Surrogate Key)"
+        string id_marginacion "Clave original de la INEGI (Business Key)"
+        float indice_marginacion "Índice de marginación"
+        string grado_marginacion "Grado de marginación"
+    }
+
+    dim_perfil_hardware {
+        int sk_perfil_hardware PK "Clave sustituta (Surrogate Key)"
+        string id_perfil_hardware "Clave original de la SEP (Business Key)"
+        string nombre_perfil "Nombre del perfil de hardware"
+        string cluster_id "El grupo al que pertenece el perfil de hardware"
+    }
+
+    dim_fecha {
+        int sk_fecha PK "Clave sustituta (Surrogate Key, ej. 202609)"
+        string ciclo_escolar "Ciclo escolar"
+        string anio "Año"
+        string mes "Mes"
+    }
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<p><strong>Diseño de Claves y SCD (Slowly Changing Dimensions):</strong></p>
+<blockquote class="blockquote">
+<p><strong>Claves Sustitutas (Surrogate Keys):</strong> Se utilizarán claves sustitutas int (con prefijo <code>sk_</code>) en todas las dimensiones (ej. <code>sk_cct</code>, <code>sk_fecha</code>) para aislar el DW de los cambios en los sistemas de la SEP y el INEGI.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p><strong>SCD Tipo 2:</strong> Para dimensiones como <code>dim_cct</code> o <code>dim_perfil_hardware</code>, se aplica SCD Tipo 2. Esto significa que si una escuela cambia su nombre o actualiza su perfil de hardware con el tiempo, no se borrará el registro viejo, se agrega una fila nueva para mantener el historial completo.</p>
+</blockquote>
 
 
 
