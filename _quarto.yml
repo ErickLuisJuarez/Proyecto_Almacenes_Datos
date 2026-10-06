@@ -7,6 +7,7 @@ website:
   navbar:
     left:
       - href: index.qmd
+        text: "Inicio"
       - text: "E0: Comprensión del Negocio"
         menu:
           - href: entregas/E0_comprension_negocio/bitacora.qmd
