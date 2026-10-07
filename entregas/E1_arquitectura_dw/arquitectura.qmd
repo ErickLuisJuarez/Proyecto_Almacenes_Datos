@@ -11,4 +11,131 @@ format:
   html:
     theme: cosmo
     toc: true
+    toc-depth: 3
+    number-sections: true
 ---
+
+# Introducción a la Arquitectura del Sistema
+
+El presente documento detalla la arquitectura técnica y el diseño del modelo de datos implementado en **Google BigQuery** para el proyecto de Rescate Tecnológico con Linux. El sistema analiza la infraestructura tecnológica escolar, los niveles de marginación social y la asignación presupuestal (PEF) en México.
+
+La solución adopta un enfoque moderno de arquitectura en la nube basado en el patrón **ELT (Extract, Load, Transform)**, estructurado explícitamente en un flujo de **3 Capas Graduales de Tratamiento de Datos**:
+
+1. **Capa Staging (`eq_staging`)**: Almacenamiento primario e ingesta de datos en crudo.
+2. **Capa Data Warehouse (`eq_dw`)**: Modelado dimensional tipo **Estrella / Copo de Nieve (Kimball)** estandarizado, desnormalizado en claves sustitutas (*surrogate keys*) y optimizado para análisis integrado.
+3. **Capa Data Mart (`eq_mart`)**: Capa de consumo analítico final, especializada por preguntas de negocio y casos de uso estratégicos.
+
+---
+
+# Explicación Detallada del Flujo de 3 Capas (Staging $\rightarrow$ DW $\rightarrow$ Data Mart)
+
+El flujo de procesamiento sigue un patrón de transformación progresiva donde la calidad, la granularidad y la abstracción del dato van evolucionando conforme atraviesa cada capa del pipeline.
+
+```text
++-----------------------------------------------------------------------------------+
+|                                  FUENTES DE ORIGEN                                |
+|         (Archivos CSV: Infraestructura Escolar, Marginación CONAPO, PEF)           |
++-----------------------------------------------------------------------------------+
+                                          |
+                                          v (Ingesta Directa / Load)
++-----------------------------------------------------------------------------------+
+| 1. CAPA STAGING (eq_staging)                                                      |
+|    - eq_staging.infrestructura                                                    |
+|    - eq_staging.indicemarginacion                                                 |
+|    - eq_staging.pef_2026                                                          |
+|    * Característica: Datos en crudo, sin tipado estricto, persistentes.            |
++-----------------------------------------------------------------------------------+
+                                          |
+                                          v (Transformaciones DDL/DML en SQL)
++-----------------------------------------------------------------------------------+
+| 2. CAPA DATA WAREHOUSE (eq_dw)                                                    |
+|    - Dimensiones: dim_cct, dim_geografica, dim_fecha, dim_marginacion,            |
+|                   dim_perfil_hardware                                             |
+|    - Tabla de Hechos: fact_infraestructura_escolar                                |
+|    * Característica: Modelo Kimball, SK unívocas, casting estricto, integ. refer. |
++-----------------------------------------------------------------------------------+
+                                          |
+                                          v (Agregaciones y Vistas de Negocio)
++-----------------------------------------------------------------------------------+
+| 3. CAPA DATA MART (eq_mart)                                                       |
+|    - eq_mart.ahorro_presupuesto_municipio                                         |
+|    * Característica: Tablas agregadas, optimizadas para dashboards y reporteo.   |
++-----------------------------------------------------------------------------------+
+
+Capa 1 - Staging: 
+Esta capa recibe los datos en crudo que provienen de las fuentes (en nuestro caso de los csv's) como de la SEP (infrestructura escolar), CONAPO (índice de marginación) y el presupuesto PEF.
+Estos datos los cargamos en el BigQuery sin modificar su formato original; por lo general, todo se guarda como texto (STRING) para evitar errores de carga si un campo viene mal redactado. Y esta capa nos sirve como respaldo o historial.
+
+Capa 2 - DATA WAREHOUSE:
+En esta capa se toman los datos sin procesar de la capa anterior los limpia, los estandariza y los organiza en un modelo dimensional. Además de que se convierte el texto en números reales, también se crean identificadores artificiales, se eliminan duplicados y se reemplazan con valores nulos por valores por defecto y se cruzan los catálogos con la tabla central de hechos.
+
+Capa 3 - Data Mart: 
+En esta se crean visitas o tablas resumidas diseñadas para responder preguntas específicas de los tomadores de decisiones o alimentar dashboards.
+Funciona mediante consultas SQL (GROUP BY, SUM, AVG), que agrupan los datos por región, municipio o nivel educativo. Esta capa existe por simplicidad, ya que los analistas del negocio no tienen que hacer JOINS entre 6 tablas, solamente leen una tabla resumen lista con la información que buscan. Además como en BigQuery se cobra por el volumen de datos leídos, por lo que si consulta una tabla agrupada de la capa Data Mart la respuesta costará centavos y será dada en milisegundos; a diferencia de una tabla de hechos con millones de filas.
+
+# Explicación Detallada de las Tablas del Data Warehouse (`eq_dw`)
+
+El Data Warehouse está diseñado bajo la metodología de **Modelado Dimensional de Ralph Kimball** (Esquema en Estrella/Copo de Nieve). Consta de **5 Tablas Dimensionales** (que le dan contexto e identidad a los datos) y **1 Tabla de Hechos** central (que almacena las métricas y conteos acumulables).
+
+---
+
+## 1. Tablas Dimensionales (El Contexto)
+
+Las dimensiones responden a las preguntas: **¿Dónde?**, **¿Cuándo?**, **¿En qué escuela?** y **¿Bajo qué condiciones socioeconómicas?**
+
+### A. `eq_dw.dim_cct` — Dimensión Escuela / Centro de Trabajo
+* **¿Para qué sirve?:** Contiene el catálogo único de las escuelas (Centros de Trabajo de la SEP). Identifica cada plantel educativo del país.
+* **Llave Primaria (`sk_cct`):** Es una clave sustituta (*Surrogate Key*) numérica autogenerada. Se usa en lugar de la clave de la SEP para evitar problemas si la SEP cambia el formato de sus códigos.
+* **Campos clave:**
+  * `id_cct`: Código oficial CCT de la escuela (ej. `09DPR0001A`).
+  * `nombre_escuela`: Nombre oficial del plantel.
+  * `nivel_educativo`: Nivel de enseñanza (Primaria, Secundaria, Bachillerato, etc.).
+
+---
+
+### B. `eq_dw.dim_geografica` — Dimensión Geográfica y Territorial
+* **¿Para qué sirve?:** Representa la ubicación geográfica estandarizada de los datos conforme a la división territorial oficial de México (INEGI/CONAPO).
+* **Llave Primaria (`sk_geografica`):** Clave sustituta única para cada combinación geográfica.
+* **Campos clave:**
+  * `id_ine`: Código de entidad federativa según el INEGI.
+  * `entidad`: Nombre del estado (ej. "Ciudad de México", "Oaxaca").
+  * `municipio` y `localidad`: Desglose territorial para análisis a nivel local.
+
+---
+
+### C. `eq_dw.dim_fecha` — Dimensión Temporal
+* Sirve para realizar análisis de tendencias en el tiempo, comparando diferentes años de reporte y ciclos escolares; la llave primaria es `sk_fecha`, que representa el identificador numérico del año. Los campos clave son `ciclo_escolar`, que es la cadena como "2025-2026", `anio` y `mes` acá es el desglose de fechas para agrupaciones temporales.
+
+
+---
+
+### D. `eq_dw.dim_marginacion` — Dimensión de Contexto Social (CONAPO)
+* Esta tabla asocia el nivel socioeconómico y de marginación social definido por el CONAPO a las regiones donde se ubican los planteles; la clave primaria es `sk_marginacion` y es el identificador sustituto de la catergotía de marginación; los campos clave son el `indice_marginacion` que es el valor númerico continuo del índice CONAPO 2020 y `grado_marginacion` que es la categorización cualitativa (Muy Alto, Alto, Medio, Bajo, Muy Bajo), fundamental para priorizar las escuelas que más necesitan rescate tecnológico.
+
+
+---
+
+### E. `eq_dw.dim_perfil_hardware` — Dimensión Perfil de Equipamiento
+* Esta tabla clasifica los planteles según su nivel o tipo de infraestructura tecnológica existente; la llave primaria es `sk_perfil_hardware`, que es la clave númerica sustituta; los campos clave son `nombre_perfil` que es la etiqueta descriptiva (como "Equipamiento Alto/Crítico") y `cluster_id` que es un agrupador utilizado para algoritmos de segmentación y aprendizaje automático (*Clustering*).
+
+
+---
+
+## 2. Tabla de Hechos (Las Métricas)
+
+### `eq_dw.fact_infraestructura_escolar` — Tabla Central de Hechos
+* Esta tabla es el corazón del Data Warehouse. Une todas las dimensiones anteriores mediante Llaves Foráneas (*Foreign Keys - FK*) y almacena las cantidades numéricas que se pueden sumar, promediar o analizar.
+Las llaves foraneas son las siguientes: 
+  * `sk_cct` $\rightarrow$ conecta con `dim_cct`
+  * `sk_geografica` $\rightarrow$ conecta con `dim_geografica`
+  * `sk_fecha` $\rightarrow$ conecta con `dim_fecha`
+  * `sk_marginacion` $\rightarrow$ conecta con `dim_marginacion`
+  * `sk_perfil_hardware` $\rightarrow$ conecta con `dim_perfil_hardware`
+* Las métricas y atributos medibles son los siguientes:
+  * `computadora`: Número de computadoras de escritorio operativas en el plantel.
+  * `laptop`: Número de laptops o computadoras portátiles operativas.
+  * `con_luz` / `internet`: Indicadores del estado de los servicios básicos (1 = Sí tiene, 0 = No tiene).
+  * `pob_total`: Población de la zona según CONAPO.
+  * `monto_pef_2026`: Presupuesto asignado a la entidad en el Presupuesto de Egresos de la Federación.
+  * `monto_ahorro_licenciamiento_mxn` **(Métrica Calculada):** Representa el ahorro estimado en pesos mexicanos al instalar distribuciones de Linux y software libre en lugar de licencias comerciales. Se calcula como:
+    $$\text{Ahorro} = (\text{computadoras} + \text{laptops}) \times \$2,500.00 \text{ MXN}$$
