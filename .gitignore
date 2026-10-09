@@ -5,5 +5,4 @@
 # Archivos de Quarto
 /.quarto/
 **/*.quarto_ipynb
-docs/
 .quarto/

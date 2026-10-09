@@ -180,7 +180,7 @@ ul.task-list li input[type="checkbox"] {
         
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
+<main class="content page-columns page-full" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
@@ -217,8 +217,95 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<div class="column-page-left">
+<section id="proceso-de-búsqueda-y-evaluación-de-fuentes" class="level2">
+<h2 class="anchored" data-anchor-id="proceso-de-búsqueda-y-evaluación-de-fuentes">1. Proceso de Búsqueda y Evaluación de Fuentes</h2>
+<p>Se llevó a cabo una búsqueda directa en portales de datos abiertos gubernamentales (<code>datos.gob.mx</code>, <code>transparenciapresupuestaria.gob.mx</code>) y herramientas de <em>deep research</em> 2. El objetivo fue localizar bases de datos que permitieran evaluar la viabilidad técnica, el contexto socioeconómico y el apalancamiento financiero para el despliegue del proyecto.</p>
+<p>Se evaluaron 5 fuentes candidatas, documentando los criterios de selección para elegir las 3 definitivas:</p>
+<ol type="1">
+<li><strong>Información Infraestructura Física Educativa (SEP):</strong> Archivo CSV en <code>datos.gob.mx</code>. Seleccionada por contener variables explícitas a nivel de Centro de Trabajo (CCT) como <code>con_luz</code>, <code>computadora</code>, <code>laptop</code> e <code>internet</code>.</li>
+<li><strong>Índices de Marginación (CONAPO):</strong> Base tabular en <code>datos.gob.mx</code>. Seleccionada para integrar la priorización por vulnerabilidad social a nivel geográfico. <strong>Presupuesto de Egresos de la Federación (SHCP):</strong> Datos abiertos en el portal de Transparencia Presupuestaria. Seleccionada para contrastar presupuestos estatales contra el ahorro estimado en licencias comerciales.</li>
+<li><strong>Censo de Escuelas, Maestros y Alumnos de Educación Básica y Especial (CEMABE - INEGI):</strong> Evaluada como candidata, pero descartada debido a que los datos de infraestructura física de la SEP ofrecen una actualización más dinámica y un cruce más directo con el estatus eléctrico actual de las escuelas.</li>
+<li><strong>Formato 911 (SEP):</strong> Evaluada, pero descartada para evitar redundancia de datos, no entregaba nada nuevo de información, ni contenía datos “interesantes”.</li>
+</ol>
+</section>
+<section id="catálogo-de-fuentes-elegidas" class="level2">
+<h2 class="anchored" data-anchor-id="catálogo-de-fuentes-elegidas">2. Catálogo de Fuentes Elegidas</h2>
+<p>A continuación, se catalogan las tres fuentes definitivas verificadas <em>(Nota: Las capturas de pantalla de la página de origen y la vista previa de los datos de cada fuente se encuentran en el directorio <code>img/</code> del repositorio)</em> 3, 7.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Campo</th>
+<th style="text-align: left;">Fuente 1: Infraestructura Física</th>
+<th style="text-align: left;">Fuente 2: Índices de Marginación</th>
+<th style="text-align: left;">Fuente 3: Presupuesto PEF</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>Nombre y dueño</strong></td>
+<td style="text-align: left;">Información de Infraestructura Física Educativa (Secretaría de Educación Pública)</td>
+<td style="text-align: left;">Índices de Marginación (Consejo Nacional de Población - CONAPO)</td>
+<td style="text-align: left;">Presupuesto de Egresos de la Federación (Secretaría de Hacienda y Crédito Público)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>URL y acceso</strong></td>
+<td style="text-align: left;">https://www.datos.gob.mx/dataset/informacion_infraestructura_fisica_educativa/resource/7e810e5d-de87-4587-99e4-3088a137e627 (Descarga directa)</td>
+<td style="text-align: left;">https://www.datos.gob.mx/dataset/indices_marginacion/resource/d217f9aa-70e5-4176-b00b-3a92b7541a1e (Descarga directa)</td>
+<td style="text-align: left;">https://www.transparenciapresupuestaria.gob.mx/Datos-Abiertos#/PEF (Descarga directa)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Formato y tamaño</strong></td>
+<td style="text-align: left;">CSV 953 kb.</td>
+<td style="text-align: left;">CSV / Excel, 8 kb</td>
+<td style="text-align: left;">CSV, &gt;500 MB anual</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Grano</strong></td>
+<td style="text-align: left;">Un registro por escuela/Centro de Trabajo (CCT)</td>
+<td style="text-align: left;">Un registro por entidad/municipio</td>
+<td style="text-align: left;">Un registro por partida de gasto/programa presupuestario</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Cobertura</strong></td>
+<td style="text-align: left;">Nacional</td>
+<td style="text-align: left;">Nacional</td>
+<td style="text-align: left;">Nacional</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Licencia y restricciones</strong></td>
+<td style="text-align: left;">Datos Abiertos Gubernamentales (Libre uso)</td>
+<td style="text-align: left;">Libre uso, citando fuente oficial</td>
+<td style="text-align: left;">Datos Abiertos Gubernamentales</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Llaves de integración</strong></td>
+<td style="text-align: left;"><code>clave_cct</code>, <code>entidad_federativa</code></td>
+<td style="text-align: left;"><code>NOM_ENT</code></td>
+<td style="text-align: left;"><code>DESC_ENTIDAD_FEDERATIVA</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Pregunta(s) de E0</strong></td>
+<td style="text-align: left;">P1</td>
+<td style="text-align: left;">P2</td>
+<td style="text-align: left;">P4</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="análisis-de-integración" class="level2">
+<h2 class="anchored" data-anchor-id="análisis-de-integración">Análisis de Integración</h2>
+<p>Para su integración se tomaran en cuenta las siguientes cosnideraciones: * <strong>Llaves de Unión :</strong> Se utilizará la entidad federativa. Vamos usar <code>Infraestructura.csv</code> (primera fuente) como “base”. Para vincular los datos de CONAPO, se unira el campo <code>entidad_federativa</code> de la SEP con el campo <code>NOM_ENT</code> del Índice de Marginación. Y para los datos del PEF se unirá <code>entidad_federativa</code> de la SEP con <code>DESC_ENTIDAD_FEDERATIVA</code> del PEF * <strong>Diferencias de Granularidad:</strong> La fuente de la SEP tiene un grano muy fino (fila por escuela) mientras que las otras dos fuentes van por entidad y municipio * <strong>Problemas Anticipados:</strong> Al revisar las fuentes notamos que puede existen variaciones en el campo de la entidad federativa (<code>entidad_federativa</code>, <code>NOM_ENT</code>, <code>DESC_ENTIDAD_FEDERATIVA</code>), por lo que podemos prever que existan errores por diferencias ortográficas (acentos, uso de mayúsculas, abreviaturas, etc). Se requerirá limpiar y estandarizar los datos.</p>
 
 
+</section>
+</div>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

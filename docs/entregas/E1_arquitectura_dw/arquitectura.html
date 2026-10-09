@@ -79,6 +79,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -176,8 +205,30 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#introducción-a-la-arquitectura-del-sistema" id="toc-introducción-a-la-arquitectura-del-sistema" class="nav-link active" data-scroll-target="#introducción-a-la-arquitectura-del-sistema"><span class="header-section-number">1</span> Introducción a la Arquitectura del Sistema</a></li>
+  <li><a href="#explicación-detallada-del-flujo-de-3-capas-staging-rightarrow-dw-rightarrow-data-mart" id="toc-explicación-detallada-del-flujo-de-3-capas-staging-rightarrow-dw-rightarrow-data-mart" class="nav-link" data-scroll-target="#explicación-detallada-del-flujo-de-3-capas-staging-rightarrow-dw-rightarrow-data-mart"><span class="header-section-number">2</span> Explicación Detallada del Flujo de 3 Capas (Staging <span class="math inline">\(\rightarrow\)</span> DW <span class="math inline">\(\rightarrow\)</span> Data Mart)</a></li>
+  <li><a href="#explicación-detallada-de-las-tablas-del-data-warehouse-eq_dw" id="toc-explicación-detallada-de-las-tablas-del-data-warehouse-eq_dw" class="nav-link" data-scroll-target="#explicación-detallada-de-las-tablas-del-data-warehouse-eq_dw"><span class="header-section-number">3</span> Explicación Detallada de las Tablas del Data Warehouse (<code>eq_dw</code>)</a>
+  <ul class="collapse">
+  <li><a href="#tablas-dimensionales-el-contexto" id="toc-tablas-dimensionales-el-contexto" class="nav-link" data-scroll-target="#tablas-dimensionales-el-contexto"><span class="header-section-number">3.1</span> 1. Tablas Dimensionales (El Contexto)</a>
+  <ul class="collapse">
+  <li><a href="#a.-eq_dw.dim_cct-dimensión-escuela-centro-de-trabajo" id="toc-a.-eq_dw.dim_cct-dimensión-escuela-centro-de-trabajo" class="nav-link" data-scroll-target="#a.-eq_dw.dim_cct-dimensión-escuela-centro-de-trabajo"><span class="header-section-number">3.1.1</span> A. <code>eq_dw.dim_cct</code> — Dimensión Escuela / Centro de Trabajo</a></li>
+  <li><a href="#b.-eq_dw.dim_geografica-dimensión-geográfica-y-territorial" id="toc-b.-eq_dw.dim_geografica-dimensión-geográfica-y-territorial" class="nav-link" data-scroll-target="#b.-eq_dw.dim_geografica-dimensión-geográfica-y-territorial"><span class="header-section-number">3.1.2</span> B. <code>eq_dw.dim_geografica</code> — Dimensión Geográfica y Territorial</a></li>
+  <li><a href="#c.-eq_dw.dim_fecha-dimensión-temporal" id="toc-c.-eq_dw.dim_fecha-dimensión-temporal" class="nav-link" data-scroll-target="#c.-eq_dw.dim_fecha-dimensión-temporal"><span class="header-section-number">3.1.3</span> C. <code>eq_dw.dim_fecha</code> — Dimensión Temporal</a></li>
+  <li><a href="#d.-eq_dw.dim_marginacion-dimensión-de-contexto-social-conapo" id="toc-d.-eq_dw.dim_marginacion-dimensión-de-contexto-social-conapo" class="nav-link" data-scroll-target="#d.-eq_dw.dim_marginacion-dimensión-de-contexto-social-conapo"><span class="header-section-number">3.1.4</span> D. <code>eq_dw.dim_marginacion</code> — Dimensión de Contexto Social (CONAPO)</a></li>
+  <li><a href="#e.-eq_dw.dim_perfil_hardware-dimensión-perfil-de-equipamiento" id="toc-e.-eq_dw.dim_perfil_hardware-dimensión-perfil-de-equipamiento" class="nav-link" data-scroll-target="#e.-eq_dw.dim_perfil_hardware-dimensión-perfil-de-equipamiento"><span class="header-section-number">3.1.5</span> E. <code>eq_dw.dim_perfil_hardware</code> — Dimensión Perfil de Equipamiento</a></li>
+  </ul></li>
+  <li><a href="#tabla-de-hechos-las-métricas" id="toc-tabla-de-hechos-las-métricas" class="nav-link" data-scroll-target="#tabla-de-hechos-las-métricas"><span class="header-section-number">3.2</span> 2. Tabla de Hechos (Las Métricas)</a>
+  <ul class="collapse">
+  <li><a href="#eq_dw.fact_infraestructura_escolar-tabla-central-de-hechos" id="toc-eq_dw.fact_infraestructura_escolar-tabla-central-de-hechos" class="nav-link" data-scroll-target="#eq_dw.fact_infraestructura_escolar-tabla-central-de-hechos"><span class="header-section-number">3.2.1</span> <code>eq_dw.fact_infraestructura_escolar</code> — Tabla Central de Hechos</a></li>
+  </ul></li>
+  </ul></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -217,8 +268,110 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<section id="introducción-a-la-arquitectura-del-sistema" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Introducción a la Arquitectura del Sistema</h1>
+<p>El presente documento detalla la arquitectura técnica y el diseño del modelo de datos implementado en <strong>Google BigQuery</strong> para el proyecto de Rescate Tecnológico con Linux. El sistema analiza la infraestructura tecnológica escolar, los niveles de marginación social y la asignación presupuestal (PEF) en México.</p>
+<p>La solución adopta un enfoque moderno de arquitectura en la nube basado en el patrón <strong>ELT (Extract, Load, Transform)</strong>, estructurado explícitamente en un flujo de <strong>3 Capas Graduales de Tratamiento de Datos</strong>:</p>
+<ol type="1">
+<li><strong>Capa Staging (<code>eq_staging</code>)</strong>: Almacenamiento primario e ingesta de datos en crudo.</li>
+<li><strong>Capa Data Warehouse (<code>eq_dw</code>)</strong>: Modelado dimensional tipo <strong>Estrella / Copo de Nieve (Kimball)</strong> estandarizado, desnormalizado en claves sustitutas (<em>surrogate keys</em>) y optimizado para análisis integrado.</li>
+<li><strong>Capa Data Mart (<code>eq_mart</code>)</strong>: Capa de consumo analítico final, especializada por preguntas de negocio y casos de uso estratégicos.</li>
+</ol>
+<hr>
+</section>
+<section id="explicación-detallada-del-flujo-de-3-capas-staging-rightarrow-dw-rightarrow-data-mart" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> Explicación Detallada del Flujo de 3 Capas (Staging <span class="math inline">\(\rightarrow\)</span> DW <span class="math inline">\(\rightarrow\)</span> Data Mart)</h1>
+<p>El flujo de procesamiento sigue un patrón de transformación progresiva donde la calidad, la granularidad y la abstracción del dato van evolucionando conforme atraviesa cada capa del pipeline.</p>
+<p>```text +———————————————————————————–+ | FUENTES DE ORIGEN | | (Archivos CSV: Infraestructura Escolar, Marginación CONAPO, PEF) | +———————————————————————————–+ | v (Ingesta Directa / Load) +———————————————————————————–+ | 1. CAPA STAGING (eq_staging) | | - eq_staging.infrestructura | | - eq_staging.indicemarginacion | | - eq_staging.pef_2026 | | * Característica: Datos en crudo, sin tipado estricto, persistentes. | +———————————————————————————–+ | v (Transformaciones DDL/DML en SQL) +———————————————————————————–+ | 2. CAPA DATA WAREHOUSE (eq_dw) | | - Dimensiones: dim_cct, dim_geografica, dim_fecha, dim_marginacion, | | dim_perfil_hardware | | - Tabla de Hechos: fact_infraestructura_escolar | | * Característica: Modelo Kimball, SK unívocas, casting estricto, integ. refer. | +———————————————————————————–+ | v (Agregaciones y Vistas de Negocio) +———————————————————————————–+ | 3. CAPA DATA MART (eq_mart) | | - eq_mart.ahorro_presupuesto_municipio | | * Característica: Tablas agregadas, optimizadas para dashboards y reporteo. | +———————————————————————————–+</p>
+<p>Capa 1 - Staging: Esta capa recibe los datos en crudo que provienen de las fuentes (en nuestro caso de los csv’s) como de la SEP (infrestructura escolar), CONAPO (índice de marginación) y el presupuesto PEF. Estos datos los cargamos en el BigQuery sin modificar su formato original; por lo general, todo se guarda como texto (STRING) para evitar errores de carga si un campo viene mal redactado. Y esta capa nos sirve como respaldo o historial.</p>
+<p>Capa 2 - DATA WAREHOUSE: En esta capa se toman los datos sin procesar de la capa anterior los limpia, los estandariza y los organiza en un modelo dimensional. Además de que se convierte el texto en números reales, también se crean identificadores artificiales, se eliminan duplicados y se reemplazan con valores nulos por valores por defecto y se cruzan los catálogos con la tabla central de hechos.</p>
+<p>Capa 3 - Data Mart: En esta se crean visitas o tablas resumidas diseñadas para responder preguntas específicas de los tomadores de decisiones o alimentar dashboards. Funciona mediante consultas SQL (GROUP BY, SUM, AVG), que agrupan los datos por región, municipio o nivel educativo. Esta capa existe por simplicidad, ya que los analistas del negocio no tienen que hacer JOINS entre 6 tablas, solamente leen una tabla resumen lista con la información que buscan. Además como en BigQuery se cobra por el volumen de datos leídos, por lo que si consulta una tabla agrupada de la capa Data Mart la respuesta costará centavos y será dada en milisegundos; a diferencia de una tabla de hechos con millones de filas.</p>
+</section>
+<section id="explicación-detallada-de-las-tablas-del-data-warehouse-eq_dw" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> Explicación Detallada de las Tablas del Data Warehouse (<code>eq_dw</code>)</h1>
+<p>El Data Warehouse está diseñado bajo la metodología de <strong>Modelado Dimensional de Ralph Kimball</strong> (Esquema en Estrella/Copo de Nieve). Consta de <strong>5 Tablas Dimensionales</strong> (que le dan contexto e identidad a los datos) y <strong>1 Tabla de Hechos</strong> central (que almacena las métricas y conteos acumulables).</p>
+<hr>
+<section id="tablas-dimensionales-el-contexto" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="tablas-dimensionales-el-contexto"><span class="header-section-number">3.1</span> 1. Tablas Dimensionales (El Contexto)</h2>
+<p>Las dimensiones responden a las preguntas: <strong>¿Dónde?</strong>, <strong>¿Cuándo?</strong>, <strong>¿En qué escuela?</strong> y <strong>¿Bajo qué condiciones socioeconómicas?</strong></p>
+<section id="a.-eq_dw.dim_cct-dimensión-escuela-centro-de-trabajo" class="level3" data-number="3.1.1">
+<h3 data-number="3.1.1" class="anchored" data-anchor-id="a.-eq_dw.dim_cct-dimensión-escuela-centro-de-trabajo"><span class="header-section-number">3.1.1</span> A. <code>eq_dw.dim_cct</code> — Dimensión Escuela / Centro de Trabajo</h3>
+<ul>
+<li><strong>¿Para qué sirve?:</strong> Contiene el catálogo único de las escuelas (Centros de Trabajo de la SEP). Identifica cada plantel educativo del país.</li>
+<li><strong>Llave Primaria (<code>sk_cct</code>):</strong> Es una clave sustituta (<em>Surrogate Key</em>) numérica autogenerada. Se usa en lugar de la clave de la SEP para evitar problemas si la SEP cambia el formato de sus códigos.</li>
+<li><strong>Campos clave:</strong>
+<ul>
+<li><code>id_cct</code>: Código oficial CCT de la escuela (ej. <code>09DPR0001A</code>).</li>
+<li><code>nombre_escuela</code>: Nombre oficial del plantel.</li>
+<li><code>nivel_educativo</code>: Nivel de enseñanza (Primaria, Secundaria, Bachillerato, etc.).</li>
+</ul></li>
+</ul>
+<hr>
+</section>
+<section id="b.-eq_dw.dim_geografica-dimensión-geográfica-y-territorial" class="level3" data-number="3.1.2">
+<h3 data-number="3.1.2" class="anchored" data-anchor-id="b.-eq_dw.dim_geografica-dimensión-geográfica-y-territorial"><span class="header-section-number">3.1.2</span> B. <code>eq_dw.dim_geografica</code> — Dimensión Geográfica y Territorial</h3>
+<ul>
+<li><strong>¿Para qué sirve?:</strong> Representa la ubicación geográfica estandarizada de los datos conforme a la división territorial oficial de México (INEGI/CONAPO).</li>
+<li><strong>Llave Primaria (<code>sk_geografica</code>):</strong> Clave sustituta única para cada combinación geográfica.</li>
+<li><strong>Campos clave:</strong>
+<ul>
+<li><code>id_ine</code>: Código de entidad federativa según el INEGI.</li>
+<li><code>entidad</code>: Nombre del estado (ej. “Ciudad de México”, “Oaxaca”).</li>
+<li><code>municipio</code> y <code>localidad</code>: Desglose territorial para análisis a nivel local.</li>
+</ul></li>
+</ul>
+<hr>
+</section>
+<section id="c.-eq_dw.dim_fecha-dimensión-temporal" class="level3" data-number="3.1.3">
+<h3 data-number="3.1.3" class="anchored" data-anchor-id="c.-eq_dw.dim_fecha-dimensión-temporal"><span class="header-section-number">3.1.3</span> C. <code>eq_dw.dim_fecha</code> — Dimensión Temporal</h3>
+<ul>
+<li>Sirve para realizar análisis de tendencias en el tiempo, comparando diferentes años de reporte y ciclos escolares; la llave primaria es <code>sk_fecha</code>, que representa el identificador numérico del año. Los campos clave son <code>ciclo_escolar</code>, que es la cadena como “2025-2026”, <code>anio</code> y <code>mes</code> acá es el desglose de fechas para agrupaciones temporales.</li>
+</ul>
+<hr>
+</section>
+<section id="d.-eq_dw.dim_marginacion-dimensión-de-contexto-social-conapo" class="level3" data-number="3.1.4">
+<h3 data-number="3.1.4" class="anchored" data-anchor-id="d.-eq_dw.dim_marginacion-dimensión-de-contexto-social-conapo"><span class="header-section-number">3.1.4</span> D. <code>eq_dw.dim_marginacion</code> — Dimensión de Contexto Social (CONAPO)</h3>
+<ul>
+<li>Esta tabla asocia el nivel socioeconómico y de marginación social definido por el CONAPO a las regiones donde se ubican los planteles; la clave primaria es <code>sk_marginacion</code> y es el identificador sustituto de la catergotía de marginación; los campos clave son el <code>indice_marginacion</code> que es el valor númerico continuo del índice CONAPO 2020 y <code>grado_marginacion</code> que es la categorización cualitativa (Muy Alto, Alto, Medio, Bajo, Muy Bajo), fundamental para priorizar las escuelas que más necesitan rescate tecnológico.</li>
+</ul>
+<hr>
+</section>
+<section id="e.-eq_dw.dim_perfil_hardware-dimensión-perfil-de-equipamiento" class="level3" data-number="3.1.5">
+<h3 data-number="3.1.5" class="anchored" data-anchor-id="e.-eq_dw.dim_perfil_hardware-dimensión-perfil-de-equipamiento"><span class="header-section-number">3.1.5</span> E. <code>eq_dw.dim_perfil_hardware</code> — Dimensión Perfil de Equipamiento</h3>
+<ul>
+<li>Esta tabla clasifica los planteles según su nivel o tipo de infraestructura tecnológica existente; la llave primaria es <code>sk_perfil_hardware</code>, que es la clave númerica sustituta; los campos clave son <code>nombre_perfil</code> que es la etiqueta descriptiva (como “Equipamiento Alto/Crítico”) y <code>cluster_id</code> que es un agrupador utilizado para algoritmos de segmentación y aprendizaje automático (<em>Clustering</em>).</li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="tabla-de-hechos-las-métricas" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="tabla-de-hechos-las-métricas"><span class="header-section-number">3.2</span> 2. Tabla de Hechos (Las Métricas)</h2>
+<section id="eq_dw.fact_infraestructura_escolar-tabla-central-de-hechos" class="level3" data-number="3.2.1">
+<h3 data-number="3.2.1" class="anchored" data-anchor-id="eq_dw.fact_infraestructura_escolar-tabla-central-de-hechos"><span class="header-section-number">3.2.1</span> <code>eq_dw.fact_infraestructura_escolar</code> — Tabla Central de Hechos</h3>
+<ul>
+<li>Esta tabla es el corazón del Data Warehouse. Une todas las dimensiones anteriores mediante Llaves Foráneas (<em>Foreign Keys - FK</em>) y almacena las cantidades numéricas que se pueden sumar, promediar o analizar. Las llaves foraneas son las siguientes:
+<ul>
+<li><code>sk_cct</code> <span class="math inline">\(\rightarrow\)</span> conecta con <code>dim_cct</code></li>
+<li><code>sk_geografica</code> <span class="math inline">\(\rightarrow\)</span> conecta con <code>dim_geografica</code></li>
+<li><code>sk_fecha</code> <span class="math inline">\(\rightarrow\)</span> conecta con <code>dim_fecha</code></li>
+<li><code>sk_marginacion</code> <span class="math inline">\(\rightarrow\)</span> conecta con <code>dim_marginacion</code></li>
+<li><code>sk_perfil_hardware</code> <span class="math inline">\(\rightarrow\)</span> conecta con <code>dim_perfil_hardware</code></li>
+</ul></li>
+<li>Las métricas y atributos medibles son los siguientes:
+<ul>
+<li><code>computadora</code>: Número de computadoras de escritorio operativas en el plantel.</li>
+<li><code>laptop</code>: Número de laptops o computadoras portátiles operativas.</li>
+<li><code>con_luz</code> / <code>internet</code>: Indicadores del estado de los servicios básicos (1 = Sí tiene, 0 = No tiene).</li>
+<li><code>pob_total</code>: Población de la zona según CONAPO.</li>
+<li><code>monto_pef_2026</code>: Presupuesto asignado a la entidad en el Presupuesto de Egresos de la Federación.</li>
+<li><code>monto_ahorro_licenciamiento_mxn</code> <strong>(Métrica Calculada):</strong> Representa el ahorro estimado en pesos mexicanos al instalar distribuciones de Linux y software libre en lugar de licencias comerciales. Se calcula como: <span class="math display">\[\text{Ahorro} = (\text{computadoras} + \text{laptops}) \times \$2,500.00 \text{ MXN}\]</span></li>
+</ul></li>
+</ul>
 
 
+</section>
+</section>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
