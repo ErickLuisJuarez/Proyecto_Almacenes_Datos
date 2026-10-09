@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.10.18">
+<meta name="generator" content="quarto-1.10.19">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -47,10 +47,10 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-bf27225e3a48a9273f3daa8f8e829971.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-bcee6f4fb1efaec4da1e3493886933c1.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-d7a0287c6fc77c123a286fcb827ba457.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -220,18 +220,19 @@ ul.task-list li input[type="checkbox"] {
 <div class="column-page-left">
 <section id="proceso-de-búsqueda-y-evaluación-de-fuentes" class="level2">
 <h2 class="anchored" data-anchor-id="proceso-de-búsqueda-y-evaluación-de-fuentes">1. Proceso de Búsqueda y Evaluación de Fuentes</h2>
-<p>Se llevó a cabo una búsqueda directa en portales de datos abiertos gubernamentales (<code>datos.gob.mx</code>, <code>transparenciapresupuestaria.gob.mx</code>) y herramientas de <em>deep research</em> 2. El objetivo fue localizar bases de datos que permitieran evaluar la viabilidad técnica, el contexto socioeconómico y el apalancamiento financiero para el despliegue del proyecto.</p>
+<p>Se llevó a cabo una búsqueda directa en portales de datos abiertos gubernamentales (<code>datos.gob.mx</code>, <code>transparenciapresupuestaria.gob.mx</code>) y herramientas de <em>deep research</em> . El objetivo fue localizar bases de datos que permitieran evaluar la viabilidad técnica, el contexto socioeconómico y el apalancamiento financiero para el despliegue del proyecto.</p>
 <p>Se evaluaron 5 fuentes candidatas, documentando los criterios de selección para elegir las 3 definitivas:</p>
 <ol type="1">
 <li><strong>Información Infraestructura Física Educativa (SEP):</strong> Archivo CSV en <code>datos.gob.mx</code>. Seleccionada por contener variables explícitas a nivel de Centro de Trabajo (CCT) como <code>con_luz</code>, <code>computadora</code>, <code>laptop</code> e <code>internet</code>.</li>
-<li><strong>Índices de Marginación (CONAPO):</strong> Base tabular en <code>datos.gob.mx</code>. Seleccionada para integrar la priorización por vulnerabilidad social a nivel geográfico. <strong>Presupuesto de Egresos de la Federación (SHCP):</strong> Datos abiertos en el portal de Transparencia Presupuestaria. Seleccionada para contrastar presupuestos estatales contra el ahorro estimado en licencias comerciales.</li>
+<li><strong>Índices de Marginación (CONAPO):</strong> Base tabular en <code>datos.gob.mx</code>. Seleccionada para integrar la priorización por vulnerabilidad social a nivel geográfico.</li>
+<li><strong>Presupuesto de Egresos de la Federación (SHCP):</strong> Datos abiertos en el portal de Transparencia Presupuestaria. Seleccionada para contrastar presupuestos estatales contra el ahorro estimado en licencias comerciales.</li>
 <li><strong>Censo de Escuelas, Maestros y Alumnos de Educación Básica y Especial (CEMABE - INEGI):</strong> Evaluada como candidata, pero descartada debido a que los datos de infraestructura física de la SEP ofrecen una actualización más dinámica y un cruce más directo con el estatus eléctrico actual de las escuelas.</li>
 <li><strong>Formato 911 (SEP):</strong> Evaluada, pero descartada para evitar redundancia de datos, no entregaba nada nuevo de información, ni contenía datos “interesantes”.</li>
 </ol>
 </section>
-<section id="catálogo-de-fuentes-elegidas" class="level2">
-<h2 class="anchored" data-anchor-id="catálogo-de-fuentes-elegidas">2. Catálogo de Fuentes Elegidas</h2>
-<p>A continuación, se catalogan las tres fuentes definitivas verificadas <em>(Nota: Las capturas de pantalla de la página de origen y la vista previa de los datos de cada fuente se encuentran en el directorio <code>img/</code> del repositorio)</em> 3, 7.</p>
+<section id="fuentes-elegidas" class="level2">
+<h2 class="anchored" data-anchor-id="fuentes-elegidas">2. Fuentes Elegidas</h2>
+<p>A continuación, se catalogan las tres fuentes definitivas verificadas.</p>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 25%">
@@ -299,9 +300,22 @@ ul.task-list li input[type="checkbox"] {
 </tbody>
 </table>
 </section>
+<section id="verificación-por-fuente" class="level2">
+<h2 class="anchored" data-anchor-id="verificación-por-fuente">Verificación Por Fuente</h2>
+<ol type="1">
+<li><strong>Información Infraestructura Física Educativa (SEP):</strong> <img src="../../imagenes/infraestructura.png" class="img-fluid" alt="Archivo CSV"> <img src="../../imagenes/infraestructura_web.png" class="img-fluid" alt="Archivo CSV"></li>
+<li><strong>Índices de Marginación (CONAPO):</strong> <img src="../../imagenes/marginacion.png" class="img-fluid" alt="Archivo CSV"> <img src="../../imagenes/marginacion_web.png" class="img-fluid" alt="Archivo CSV"></li>
+<li><strong>Presupuesto de Egresos de la Federación (SHCP):</strong> <img src="../../imagenes/pef.png" class="img-fluid" alt="Archivo CSV"> <img src="../../imagenes/pef_web.png" class="img-fluid" alt="Archivo CSV"></li>
+</ol>
+</section>
 <section id="análisis-de-integración" class="level2">
 <h2 class="anchored" data-anchor-id="análisis-de-integración">Análisis de Integración</h2>
-<p>Para su integración se tomaran en cuenta las siguientes cosnideraciones: * <strong>Llaves de Unión :</strong> Se utilizará la entidad federativa. Vamos usar <code>Infraestructura.csv</code> (primera fuente) como “base”. Para vincular los datos de CONAPO, se unira el campo <code>entidad_federativa</code> de la SEP con el campo <code>NOM_ENT</code> del Índice de Marginación. Y para los datos del PEF se unirá <code>entidad_federativa</code> de la SEP con <code>DESC_ENTIDAD_FEDERATIVA</code> del PEF * <strong>Diferencias de Granularidad:</strong> La fuente de la SEP tiene un grano muy fino (fila por escuela) mientras que las otras dos fuentes van por entidad y municipio * <strong>Problemas Anticipados:</strong> Al revisar las fuentes notamos que puede existen variaciones en el campo de la entidad federativa (<code>entidad_federativa</code>, <code>NOM_ENT</code>, <code>DESC_ENTIDAD_FEDERATIVA</code>), por lo que podemos prever que existan errores por diferencias ortográficas (acentos, uso de mayúsculas, abreviaturas, etc). Se requerirá limpiar y estandarizar los datos.</p>
+<p>Para su integración se tomaran en cuenta las siguientes consideraciones:</p>
+<ul>
+<li><strong>Llaves de Unión :</strong> Se utilizará la entidad federativa. Vamos usar <code>Infraestructura.csv</code> (primera fuente) como “base”. Para vincular los datos de CONAPO, se unira el campo <code>entidad_federativa</code> de la SEP con el campo <code>NOM_ENT</code> del Índice de Marginación. Y para los datos del PEF se unirá <code>entidad_federativa</code> de la SEP con <code>DESC_ENTIDAD_FEDERATIVA</code> del PEF</li>
+<li><strong>Diferencias de Granularidad:</strong> La fuente de la SEP tiene un grano muy fino (fila por escuela) mientras que las otras dos fuentes van por entidad y municipio</li>
+<li><strong>Problemas Anticipados:</strong> Al revisar las fuentes notamos que puede existen variaciones en el campo de la entidad federativa (<code>entidad_federativa</code>, <code>NOM_ENT</code>, <code>DESC_ENTIDAD_FEDERATIVA</code>), por lo que podemos prever que existan errores por diferencias ortográficas (acentos, uso de mayúsculas, abreviaturas, etc). Se necesitara limpiar y estandarizar los datos.</li>
+</ul>
 
 
 </section>

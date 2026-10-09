@@ -17,19 +17,19 @@ format:
 
 ## 1. Proceso de Búsqueda y Evaluación de Fuentes
 
-Se llevó a cabo una búsqueda directa en portales de datos abiertos gubernamentales (`datos.gob.mx`, `transparenciapresupuestaria.gob.mx`) y herramientas de *deep research* 2. El objetivo fue localizar bases de datos que permitieran evaluar la viabilidad técnica, el contexto socioeconómico y el apalancamiento financiero para el despliegue del proyecto. 
+Se llevó a cabo una búsqueda directa en portales de datos abiertos gubernamentales (`datos.gob.mx`, `transparenciapresupuestaria.gob.mx`) y herramientas de *deep research* . El objetivo fue localizar bases de datos que permitieran evaluar la viabilidad técnica, el contexto socioeconómico y el apalancamiento financiero para el despliegue del proyecto. 
 
 Se evaluaron 5 fuentes candidatas, documentando los criterios de selección para elegir las 3 definitivas:
 
 1. **Información Infraestructura Física Educativa (SEP):** Archivo CSV en `datos.gob.mx`. Seleccionada por contener variables explícitas a nivel de Centro de Trabajo (CCT) como `con_luz`, `computadora`, `laptop` e `internet`.
 2. **Índices de Marginación (CONAPO):** Base tabular en `datos.gob.mx`. Seleccionada para integrar la priorización por vulnerabilidad social a nivel geográfico.
- **Presupuesto de Egresos de la Federación (SHCP):** Datos abiertos en el portal de Transparencia Presupuestaria. Seleccionada para contrastar presupuestos estatales contra el ahorro estimado en licencias comerciales.
+3.  **Presupuesto de Egresos de la Federación (SHCP):** Datos abiertos en el portal de Transparencia Presupuestaria. Seleccionada para contrastar presupuestos estatales contra el ahorro estimado en licencias comerciales.
 4. **Censo de Escuelas, Maestros y Alumnos de Educación Básica y Especial (CEMABE - INEGI):** Evaluada como candidata, pero descartada debido a que los datos de infraestructura física de la SEP ofrecen una actualización más dinámica y un cruce más directo con el estatus eléctrico actual de las escuelas.
 5. **Formato 911 (SEP):** Evaluada, pero descartada para evitar redundancia de datos, no entregaba nada nuevo de información, ni contenía datos "interesantes".
 
-## 2. Catálogo de Fuentes Elegidas
+## 2. Fuentes Elegidas
 
-A continuación, se catalogan las tres fuentes definitivas verificadas  *(Nota: Las capturas de pantalla de la página de origen y la vista previa de los datos de cada fuente se encuentran en el directorio `img/` del repositorio)* 3, 7.
+A continuación, se catalogan las tres fuentes definitivas verificadas.
 
 | Campo | Fuente 1: Infraestructura Física | Fuente 2: Índices de Marginación | Fuente 3: Presupuesto PEF |
 | :--- | :--- | :--- | :--- |
@@ -42,9 +42,23 @@ A continuación, se catalogan las tres fuentes definitivas verificadas  *(Nota: 
 | **Llaves de integración** | `clave_cct`, `entidad_federativa`  | `NOM_ENT`  | `DESC_ENTIDAD_FEDERATIVA`  |
 | **Pregunta(s) de E0** | P1   | P2   | P4   |
 
+## Verificación Por Fuente
+
+1. **Información Infraestructura Física Educativa (SEP):** 
+![Archivo CSV](../../imagenes/infraestructura.png)
+![Archivo CSV](../../imagenes/infraestructura_web.png)
+2. **Índices de Marginación (CONAPO):**
+![Archivo CSV](../../imagenes/marginacion.png)
+![Archivo CSV](../../imagenes/marginacion_web.png)
+3. **Presupuesto de Egresos de la Federación (SHCP):** 
+![Archivo CSV](../../imagenes/pef.png)
+![Archivo CSV](../../imagenes/pef_web.png)
+
 ##  Análisis de Integración
 
-Para su integración se tomaran en cuenta las siguientes cosnideraciones:
+Para su integración se tomaran en cuenta las siguientes consideraciones:
+
+
 * **Llaves de Unión :** Se utilizará la entidad federativa. Vamos usar `Infraestructura.csv` (primera fuente) como "base". Para vincular los datos de CONAPO, se unira el campo `entidad_federativa` de la SEP con el campo `NOM_ENT` del Índice de Marginación. Y para los datos del PEF se unirá `entidad_federativa` de la SEP con `DESC_ENTIDAD_FEDERATIVA` del PEF 
 * **Diferencias de Granularidad:** La fuente de la SEP tiene un grano muy fino (fila por escuela) mientras que las otras dos fuentes van por entidad y municipio
-* **Problemas Anticipados:** Al revisar las fuentes notamos que puede existen variaciones en el campo de la entidad federativa (`entidad_federativa`, `NOM_ENT`, `DESC_ENTIDAD_FEDERATIVA`), por lo que podemos prever que existan errores por diferencias ortográficas (acentos, uso de mayúsculas, abreviaturas, etc). Se requerirá limpiar y estandarizar los datos.
+* **Problemas Anticipados:** Al revisar las fuentes notamos que puede existen variaciones en el campo de la entidad federativa (`entidad_federativa`, `NOM_ENT`, `DESC_ENTIDAD_FEDERATIVA`), por lo que podemos prever que existan errores por diferencias ortográficas (acentos, uso de mayúsculas, abreviaturas, etc). Se necesitara limpiar y estandarizar los datos.
