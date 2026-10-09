@@ -34,7 +34,7 @@ El flujo de procesamiento sigue un patrón de transformación progresiva donde l
 ```text
 +-----------------------------------------------------------------------------------+
 |                                  FUENTES DE ORIGEN                                |
-|         (Archivos CSV: Infraestructura Escolar, Marginación CONAPO, PEF)           |
+|         (Archivos CSV: Infraestructura Escolar, Marginación CONAPO, PEF)          |
 +-----------------------------------------------------------------------------------+
                                           |
                                           v (Ingesta Directa / Load)
@@ -43,7 +43,7 @@ El flujo de procesamiento sigue un patrón de transformación progresiva donde l
 |    - eq_staging.infrestructura                                                    |
 |    - eq_staging.indicemarginacion                                                 |
 |    - eq_staging.pef_2026                                                          |
-|    * Característica: Datos en crudo, sin tipado estricto, persistentes.            |
+|    * Característica: Datos en crudo, sin tipado estricto, persistentes.           |
 +-----------------------------------------------------------------------------------+
                                           |
                                           v (Transformaciones DDL/DML en SQL)
@@ -59,8 +59,9 @@ El flujo de procesamiento sigue un patrón de transformación progresiva donde l
 +-----------------------------------------------------------------------------------+
 | 3. CAPA DATA MART (eq_mart)                                                       |
 |    - eq_mart.ahorro_presupuesto_municipio                                         |
-|    * Característica: Tablas agregadas, optimizadas para dashboards y reporteo.   |
+|    * Característica: Tablas agregadas, optimizadas para dashboards y reporteo.    |
 +-----------------------------------------------------------------------------------+
+```
 
 Capa 1 - Staging: 
 Esta capa recibe los datos en crudo que provienen de las fuentes (en nuestro caso de los csv's) como de la SEP (infrestructura escolar), CONAPO (índice de marginación) y el presupuesto PEF.

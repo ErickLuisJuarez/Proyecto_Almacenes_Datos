@@ -282,7 +282,35 @@ window.Quarto = {
 <section id="explicación-detallada-del-flujo-de-3-capas-staging-rightarrow-dw-rightarrow-data-mart" class="level1" data-number="2">
 <h1 data-number="2"><span class="header-section-number">2</span> Explicación Detallada del Flujo de 3 Capas (Staging <span class="math inline">\(\rightarrow\)</span> DW <span class="math inline">\(\rightarrow\)</span> Data Mart)</h1>
 <p>El flujo de procesamiento sigue un patrón de transformación progresiva donde la calidad, la granularidad y la abstracción del dato van evolucionando conforme atraviesa cada capa del pipeline.</p>
-<p>```text +———————————————————————————–+ | FUENTES DE ORIGEN | | (Archivos CSV: Infraestructura Escolar, Marginación CONAPO, PEF) | +———————————————————————————–+ | v (Ingesta Directa / Load) +———————————————————————————–+ | 1. CAPA STAGING (eq_staging) | | - eq_staging.infrestructura | | - eq_staging.indicemarginacion | | - eq_staging.pef_2026 | | * Característica: Datos en crudo, sin tipado estricto, persistentes. | +———————————————————————————–+ | v (Transformaciones DDL/DML en SQL) +———————————————————————————–+ | 2. CAPA DATA WAREHOUSE (eq_dw) | | - Dimensiones: dim_cct, dim_geografica, dim_fecha, dim_marginacion, | | dim_perfil_hardware | | - Tabla de Hechos: fact_infraestructura_escolar | | * Característica: Modelo Kimball, SK unívocas, casting estricto, integ. refer. | +———————————————————————————–+ | v (Agregaciones y Vistas de Negocio) +———————————————————————————–+ | 3. CAPA DATA MART (eq_mart) | | - eq_mart.ahorro_presupuesto_municipio | | * Característica: Tablas agregadas, optimizadas para dashboards y reporteo. | +———————————————————————————–+</p>
+<pre class="text"><code>+-----------------------------------------------------------------------------------+
+|                                  FUENTES DE ORIGEN                                |
+|         (Archivos CSV: Infraestructura Escolar, Marginación CONAPO, PEF)          |
++-----------------------------------------------------------------------------------+
+                                          |
+                                          v (Ingesta Directa / Load)
++-----------------------------------------------------------------------------------+
+| 1. CAPA STAGING (eq_staging)                                                      |
+|    - eq_staging.infrestructura                                                    |
+|    - eq_staging.indicemarginacion                                                 |
+|    - eq_staging.pef_2026                                                          |
+|    * Característica: Datos en crudo, sin tipado estricto, persistentes.           |
++-----------------------------------------------------------------------------------+
+                                          |
+                                          v (Transformaciones DDL/DML en SQL)
++-----------------------------------------------------------------------------------+
+| 2. CAPA DATA WAREHOUSE (eq_dw)                                                    |
+|    - Dimensiones: dim_cct, dim_geografica, dim_fecha, dim_marginacion,            |
+|                   dim_perfil_hardware                                             |
+|    - Tabla de Hechos: fact_infraestructura_escolar                                |
+|    * Característica: Modelo Kimball, SK unívocas, casting estricto, integ. refer. |
++-----------------------------------------------------------------------------------+
+                                          |
+                                          v (Agregaciones y Vistas de Negocio)
++-----------------------------------------------------------------------------------+
+| 3. CAPA DATA MART (eq_mart)                                                       |
+|    - eq_mart.ahorro_presupuesto_municipio                                         |
+|    * Característica: Tablas agregadas, optimizadas para dashboards y reporteo.    |
++-----------------------------------------------------------------------------------+</code></pre>
 <p>Capa 1 - Staging: Esta capa recibe los datos en crudo que provienen de las fuentes (en nuestro caso de los csv’s) como de la SEP (infrestructura escolar), CONAPO (índice de marginación) y el presupuesto PEF. Estos datos los cargamos en el BigQuery sin modificar su formato original; por lo general, todo se guarda como texto (STRING) para evitar errores de carga si un campo viene mal redactado. Y esta capa nos sirve como respaldo o historial.</p>
 <p>Capa 2 - DATA WAREHOUSE: En esta capa se toman los datos sin procesar de la capa anterior los limpia, los estandariza y los organiza en un modelo dimensional. Además de que se convierte el texto en números reales, también se crean identificadores artificiales, se eliminan duplicados y se reemplazan con valores nulos por valores por defecto y se cruzan los catálogos con la tabla central de hechos.</p>
 <p>Capa 3 - Data Mart: En esta se crean visitas o tablas resumidas diseñadas para responder preguntas específicas de los tomadores de decisiones o alimentar dashboards. Funciona mediante consultas SQL (GROUP BY, SUM, AVG), que agrupan los datos por región, municipio o nivel educativo. Esta capa existe por simplicidad, ya que los analistas del negocio no tienen que hacer JOINS entre 6 tablas, solamente leen una tabla resumen lista con la información que buscan. Además como en BigQuery se cobra por el volumen de datos leídos, por lo que si consulta una tabla agrupada de la capa Data Mart la respuesta costará centavos y será dada en milisegundos; a diferencia de una tabla de hechos con millones de filas.</p>
