@@ -45,16 +45,16 @@ A través de la barra de navegación superior se puede acceder a las distintas s
 
 #### **E1: Arquitectura del DW**
 
-* **Catálogo de Fuentes:** Selección e integración de bases de datos públicas oficiales
-* **Diseño Dimensional:** Esquema estrella, granularidad de los hechos y diagrama ER del DW
-* **Capas y BigQuery:** Documentación técnica del flujo en 3 capas (Staging $\rightarrow$ DW $\rightarrow$ DataMart) y scripts SQL
-* **Matriz de Trazabilidad:** Mapeo de la cobertura de preguntas de negocio con dimensiones y métricas sin dimensiones huérfanas
-* **Análisis de Pivote:** Evaluación de granularidad y ajustes metodológicos derivados de las fuentes reales
-* **Uso de IA:** Bitácora de prompts y proceso de validación técnica de código e infraestructura
+* **[Catálogo de Fuentes]:** Selección e integración de bases de datos públicas oficiales
+* **[Diseño Dimensional]:** Esquema estrella, granularidad de los hechos y diagrama ER del DW
+* **[Capas y BigQuery]:** Documentación técnica del flujo en 3 capas (Staging $\rightarrow$ DW $\rightarrow$ DataMart) y scripts SQL
+* **[Matriz de Trazabilidad]:** Mapeo de la cobertura de preguntas de negocio con dimensiones y métricas sin dimensiones huérfanas
+* **[Análisis de Pivote]:** Evaluación de granularidad y ajustes metodológicos derivados de las fuentes reales
+* **[Uso de IA]:** Bitácora de prompts y proceso de validación técnica de código e infraestructura
 
 #### **E2: EDA y Preparación de Datos**
 
-* **[EDA](entregas/E2_eda_preparacion/eda.qmd):** Estadística descriptiva (localización, variabilidad, heterogeneidad y concentración), Gini y entropía, visualizaciones y hallazgos ligados a las preguntas de E0.
+* **[EDA]:** Estadística descriptiva (localización, variabilidad, heterogeneidad y concentración), Gini y entropía, visualizaciones y hallazgos ligados a las preguntas de E0.
 * **[Calidad y Limpieza]:** Diagnóstico y registro de limpieza: faltantes, duplicados, atípicos e inconsistencias, con la decisión tomada en cada caso.
 * **[Reducción y Muestreo]:** Chi-cuadrada, correlación y PCA con una decisión por variable, y verificación de antes contra después.
 * **[Pipeline y DW Poblado]:** Flujo reproducible de staging a DW, evidencia de consistencia y consultas del DataMart con resultados.
