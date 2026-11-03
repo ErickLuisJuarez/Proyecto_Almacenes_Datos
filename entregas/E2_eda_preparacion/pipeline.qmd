@@ -1,0 +1,15 @@
+---
+title: "Pipeline reproducible y DW poblado"
+subtitle: "E2: EDA y Preparación — Rescate Tecnológico con Linux"
+author:
+  - "Erick Luis Juárez"
+  - "Julio Alejandro Herrera Avalos"
+  - "Luis Mario Solares Ramos"
+  - "Cesar Candelario Fuentes Anica"
+date: "2026-11-06"
+format:
+  html:
+    theme: cosmo
+    toc: true
+---
+

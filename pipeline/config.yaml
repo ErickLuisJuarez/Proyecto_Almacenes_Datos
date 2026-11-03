@@ -1,0 +1,37 @@
+# Parámetros del pipeline de E2. Nada de esto debe estar escrito dentro del código.
+proyecto_gcp: "proyectoalmacenesdatos"   # cambiar si cada quien usa su propio proyecto
+ubicacion: "US"                          # los 3 datasets deben estar en la misma ubicación
+
+datasets:
+  staging: "eq_staging"
+  dw: "eq_dw"
+  mart: "eq_mart"
+
+# Nombres de las tablas crudas en staging (verificar los nombres reales en BigQuery)
+tablas_staging:
+  infraestructura: "infrestructura"   # así aparece en arquitectura.qmd, con la errata
+  marginacion: "indicemarginacion"
+  pef: "pef_2026"
+
+semilla: 42
+
+# DECISIÓN DEL DÍA 1: confirmar niveles y escribirlos tal como vienen en el CSV
+alcance:
+  niveles: ["PRIMARIA","SECUNDARIA", "BACHILLERATO"]
+
+supuestos:
+  costo_licencia_mxn: 2500   # SUPUESTO propio del equipo, sin fuente oficial (ver ajustes.qmd)
+
+umbrales:                    # metas propias; justificar cualquier cambio en preparacion.qmd
+  correlacion_redundante: 0.90
+  p_valor: 0.05
+  v_cramer_minimo: 0.10
+  varianza_pca: 0.85
+
+muestreo:
+  activo: false              # si no aplica, se explica en un párrafo (ver preparacion.qmd)
+  tamano: null
+
+salida:
+  muestra_filas: 20000     # tope de filas de los CSV que se suben a git (pipeline/data/sample/)
+                             # en --demo todo se escribe en pipeline/output/ (no se sube) para no mezclar datos sintéticos

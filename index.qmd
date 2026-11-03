@@ -52,4 +52,14 @@ A través de la barra de navegación superior se puede acceder a las distintas s
 * **Análisis de Pivote:** Evaluación de granularidad y ajustes metodológicos derivados de las fuentes reales
 * **Uso de IA:** Bitácora de prompts y proceso de validación técnica de código e infraestructura
 
+#### **E2: EDA y Preparación de Datos**
+
+* **[EDA](entregas/E2_eda_preparacion/eda.qmd):** Estadística descriptiva (localización, variabilidad, heterogeneidad y concentración), Gini y entropía, visualizaciones y hallazgos ligados a las preguntas de E0.
+* **[Calidad y Limpieza](entregas/E2_eda_preparacion/preparacion.qmd):** Diagnóstico y registro de limpieza: faltantes, duplicados, atípicos e inconsistencias, con la decisión tomada en cada caso.
+* **[Reducción y Muestreo](entregas/E2_eda_preparacion/reduccion.qmd):** Chi-cuadrada, correlación y PCA con una decisión por variable, y verificación de antes contra después.
+* **[Pipeline y DW Poblado](entregas/E2_eda_preparacion/pipeline.qmd):** Flujo reproducible de staging a DW, evidencia de consistencia y consultas del DataMart con resultados.
+* **[Documento de Decisiones](entregas/E2_eda_preparacion/decisiones.qmd):** Explicación, en lenguaje no técnico, de qué se hizo con los datos y por qué.
+* **[Trazabilidad Extendida](entregas/E2_eda_preparacion/trazabilidad.qmd):** Matriz de E1 ampliada con hallazgos, decisiones de preparación y estado actualizado de cada pregunta.
+* **[Ajustes a E1 (v2)](entregas/E2_eda_preparacion/ajustes.qmd):** Correcciones al diseño del DW detectadas antes de poblarlo y su justificación.
+* **[Uso de IA](entregas/E2_eda_preparacion/uso_ia.qmd):** Registro de herramientas, código generado y cómo se verificó
 :::
